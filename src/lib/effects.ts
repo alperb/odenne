@@ -63,15 +63,27 @@ export class EffectRequest {
 
 export class Effect {
     request: EffectRequest;
+    count!: number;
     target!: Member;
     sourceMember: Member | undefined;
     source: Skill | Effect | undefined;
+
     /**
      * Constructs a new effect
      * @param {EffectRequest} request effect request
      */
     constructor(request: EffectRequest){
         this.request = request;
+    }
+
+    reduce(){
+        if(this.count > 0){
+            this.count -= 1;
+        }
+    }
+
+    hasExpired(){
+        return this.count == 0;
     }
 
     processRequest(){

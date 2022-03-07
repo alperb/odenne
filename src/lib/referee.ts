@@ -1,19 +1,16 @@
 import Odenne from '../odenne';
 import { OdenneTurn, STATUSCODES, TurnTypes } from '../types/types';
-import Decider from './deciders/decider';
 import { Round } from './rounds';
 import { Player } from './teams';
 
 class Referee {
     Odenne: Odenne;
-    Decider: Decider;
     turn!: OdenneTurn;
     roundCount: number;
     currentRound!: Round;
 
     constructor(Odenne: Odenne){
         this.Odenne = Odenne;
-        this.Decider = new Decider(this);
         this.roundCount = 0;
     }
 
@@ -50,7 +47,7 @@ class Referee {
     }
 
     runRound(){
-
+        this.currentRound.simulate();
     }
 
     checkGameStatus(){
@@ -78,6 +75,8 @@ class Referee {
             team: 0,
             player: this.getRandomPlayer(0)
         };
+
+        this.Odenne.status.set(STATUSCODES.STARTED);
     }
 }
 export default Referee;

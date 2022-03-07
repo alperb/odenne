@@ -1,0 +1,9 @@
+[
+    {
+        "id": 0,
+        "name": "Basic Attack",
+        "min": 5,
+        "max": 15,
+        "level": 1
+    }
+]

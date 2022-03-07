@@ -106,10 +106,10 @@ let player1 = {
         },
         "skills": [
             0,
-            120,
-            110,
-            60,
-            13
+            0,
+            0,
+            0,
+            0
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -302,10 +302,10 @@ let player2 = {
         },
         "skills": [
             0,
-            120,
-            110,
-            60,
-            13
+            0,
+            0,
+            0,
+            0
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -404,7 +404,10 @@ options
 try{
     let battle = new Odenne(options);
 
-    console.log(battle.teams);
+    battle.start();
+    while(battle.status.get() !== 'ended'){
+        battle.advance();
+    }
 }
 catch(e){
     console.log(e);

@@ -1,3 +1,5 @@
+import { Skill, SkillResult } from "../lib/skills";
+
 export interface OriginalPlayer {
     name: string;
     discriminator: string;
@@ -64,7 +66,7 @@ export interface ItemImages {
     inventory?: string | Array<string>;
 }
 
-export enum ItemPlacement {
+export const enum ItemPlacement {
     chest = 'chest',
     arms = 'arms',
     leggings = 'leggings',
@@ -74,7 +76,24 @@ export enum ItemPlacement {
 
 export interface OriginalSkill {
     id: number;
-    [key: string]: number | string;
+    name: string;
+    min?: number;
+    max?: number;
+}
+
+export interface SkillArtifact {
+    min?: number;
+    max?: number;
+}
+
+export const enum DAMAGETYPES {
+    RANGED = 'ranged',
+    CONST = 'constant',
+    NONE = 'none'
+}
+
+export interface SkillPipe {
+    (skill: Skill): SkillResult;
 }
 
 export interface OdennePlayer {

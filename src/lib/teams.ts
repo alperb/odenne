@@ -1,6 +1,7 @@
 import Odenne from "../odenne";
 import { Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
 import { TurnTypes } from "../types/types";
+import Decider from "./decider";
 import { AttackSkill, DefenseSkill, Skill } from "./skills";
 
 export class Teams {
@@ -49,6 +50,7 @@ export class Member {
     team: Team;
     original: OriginalPlayer;
     player: OdennePlayer;
+    Decider!: Decider;
 
     constructor(Team: Team, original: OriginalPlayer){
         this.team = Team;
@@ -73,6 +75,7 @@ export class Member {
             if(this.isSkillValid(randomSkill)){
                 return randomSkill;
             }
+            count++;
         }
 
         if(this.team.Odenne.Referee.turn.type !== TurnTypes.ATTACK){
@@ -82,7 +85,7 @@ export class Member {
     }
 
     private isSkillValid(skill: Skill): boolean {
-        if(this.team.Odenne.Referee.turn.type !== TurnTypes.ATTACK){
+        if(this.team.Odenne.Referee.turn.type === TurnTypes.ATTACK){
             return skill instanceof AttackSkill;
         }
         else {
@@ -94,9 +97,10 @@ export class Member {
 export class Player extends Member {
     DIVIDERS: {[key: string]: number};
 
+
     constructor(Team: Team, original: OriginalPlayer){
         super(Team, original);
-
+        this.Decider = new Decider(this);
         this.DIVIDERS = {
             attack: 5,
             defense: 10,
@@ -158,11 +162,17 @@ export class Player extends Member {
         // TBI
     }
 
+    findSkillFromConfig(id: number): OriginalSkill | undefined{
+        for(const skill of this.team.Odenne.SkillConfig as Array<OriginalSkill>){
+            if(skill.id == id) return skill;
+        }
+    }
+
 
 
     prepareSkills(){
         for(const skillId of (this.original.wearings.skills as Array<number>)){
-            const skill: OriginalSkill = {id: skillId}
+            const skill: OriginalSkill = this.findSkillFromConfig(skillId) as OriginalSkill;
             this.team.Odenne.Skills.create(this, skill);
         }
     }

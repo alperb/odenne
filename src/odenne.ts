@@ -21,10 +21,14 @@ import Keeper from './lib/keeper';
 import Referee from './lib/referee';
 import Environments from './lib/environments';
 import Effects from './lib/effects';    
-import Skills from './lib/skills';
+import Skills, { Skill } from './lib/skills';
 import Rounds from './lib/rounds';
 import OdenneUI from './lib/ui';
+import Rarity from './helpers/rarity';
+import Modifiers from './lib/modifiers';
+import SkillConfig from './config/skills.json';
 import { STATUSCODES } from './types/types';
+import { OriginalSkill } from './types/player';
 
 // External helpers
 // import Rarity from './helpers/rarity';
@@ -40,7 +44,10 @@ export class Odenne {
     Effects: Effects;
     Skills: Skills;
     Rounds: Rounds;
+    Rarity: Rarity;
     UI: OdenneUI;
+    Modifiers: Modifiers;
+    SkillConfig: OriginalSkill[];
 
     teams: Array<Team> = [];
 
@@ -52,12 +59,12 @@ export class Odenne {
         // initialize structural helpers
         this.exceptions = Exceptions;
         this.status = new Status(this);
-        //this.Rarity = new Rarity();
+        this.Rarity = new Rarity();
         
         this.options = options;
         this.validateOptions();
 
-        // initialize game helper
+        // initialize game helpers
         this.Environments = new Environments(this);
         this.Teams = new Teams(this);
         this.Referee = new Referee(this);
@@ -66,6 +73,8 @@ export class Odenne {
         this.Skills = new Skills(this);
         this.Rounds = new Rounds(this);
         this.UI = new OdenneUI(this);
+        this.Modifiers = new Modifiers(this);
+        this.SkillConfig = SkillConfig;
         
         this.prepare();
         
@@ -76,8 +85,6 @@ export class Odenne {
     prepare(){
         try{
             this.prepareTeams();
-
-            this.status.set(this.status.codes.STARTED);
         }
         catch(err: any){
             console.log(err);
@@ -89,7 +96,7 @@ export class Odenne {
 
     prepareTeams(){
         this.teams = [(this.Teams.createTeam()), (this.Teams.createTeam())];
-
+        
         for(let i = 0; i < this.options.teams.length; i++){
             for(let j = 0; j < this.options.teams[i].length; j++){
                 this.teams[i].addPlayer(this.options.teams[i][j]);
@@ -122,6 +129,7 @@ export class Odenne {
         if(this.status.get() !== STATUSCODES.STARTED)
             throw this.exceptions.INVALID_GAME_STATUS_FOR_ADVANCING;
         this.Referee.createRound();
+        
         this.Referee.runRound();
         this.Referee.checkGameStatus();
     }

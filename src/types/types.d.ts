@@ -22,3 +22,10 @@ export const enum STATUSCODES {
     FINISHED = 'FINISHED',
     ERRORED = 'ERRORED'
 }
+
+export interface DamageDone {
+    damage: number;
+    source: Skill | Effect;
+    target: Player;
+    cancelled: boolean;
+}
