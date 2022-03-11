@@ -17,6 +17,7 @@ class Referee {
     createRound() {
         const round = this.Odenne.Rounds.create(this.turn.type);
         this.currentRound = round;
+        this.roundCount++;
     }
 
     switchTurn(){
@@ -52,7 +53,7 @@ class Referee {
 
     checkGameStatus(){
         const roundLimitExceeded = this.roundCount >= this.Odenne.options.roundLimit;
-        const isAllPlayersDead = this.Odenne.teams[0].isAllPlayersDead() && this.Odenne.teams[1].isAllPlayersDead();
+        const isAllPlayersDead = this.Odenne.teams[0].isAllPlayersDead() || this.Odenne.teams[1].isAllPlayersDead();
         const conditions = [
             roundLimitExceeded,
             isAllPlayersDead
@@ -62,7 +63,12 @@ class Referee {
             this.Odenne.status.set(STATUSCODES.FINISHED);
             this.cleanUpGameVariables();
         }
-        
+    }
+
+    applyRound(){
+        for(const team of this.Odenne.teams){
+            team.applyRound();
+        }
     }
 
     cleanUpGameVariables(){

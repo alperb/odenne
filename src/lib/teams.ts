@@ -1,7 +1,8 @@
 import Odenne from "../odenne";
 import { Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
-import { TurnTypes } from "../types/types";
+import { DamageDone, DeciderSummary, TurnTypes } from "../types/types";
 import Decider from "./decider";
+import { Effect } from "./effects";
 import { AttackSkill, DefenseSkill, Skill } from "./skills";
 
 export class Teams {
@@ -34,7 +35,7 @@ export class Team {
     }
 
     addPlayer(originalPlayer: OriginalPlayer){
-        const player = new Player(this,originalPlayer);
+        const player = new Player(this, originalPlayer);
         this.players.push(player);
     }
 
@@ -44,6 +45,31 @@ export class Team {
         }
         return true;
     }
+
+    getSummaries(): DeciderSummary{
+        let summaries: DeciderSummary[] = []
+        for(const player of this.players){
+            summaries.push(player.Decider.getSummary())
+        }
+        if(summaries.length === 1) return summaries[0];
+        else{
+            let summary: DeciderSummary = {damageDone: [], damageTaken: [], effects: []};
+            for(const sum of summaries){
+                for(const key in sum){
+                    for(const elem of sum[key as keyof DeciderSummary]){
+                        summary[key as keyof DeciderSummary].push(elem as DamageDone & Effect)
+                    }
+                }
+            }
+            return summary;
+        }
+    }
+
+    applyRound(){
+        for(const player of this.players){
+            player.Decider.apply();
+        }
+    }
 }
 
 export class Member {
@@ -51,6 +77,7 @@ export class Member {
     original: OriginalPlayer;
     player: OdennePlayer;
     Decider!: Decider;
+    effects: Effect[];
 
     constructor(Team: Team, original: OriginalPlayer){
         this.team = Team;
@@ -61,6 +88,8 @@ export class Member {
             },
             skills: []
         };
+
+        this.effects = [];
     }
 
     getRandomSkill(): Skill{

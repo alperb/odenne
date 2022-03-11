@@ -1,66 +1,75 @@
-import { DamageDone } from "../types/types";
+import { CancelInfo, DamageDone, DeciderSummary } from "../types/types";
 import { Effect } from "./effects";
 import { Player } from "./teams";
+
 
 export default class Decider {
     Player: Player;
 
-    damageTaken: DamageDone[];
-    damageDone: DamageDone[];
-    effects: Effect[];
-
+    Current: DeciderSummary;
     constructor(Player: Player){
         this.Player = Player;
-
-        this.damageTaken = [];
-        this.damageDone = [];
-        this.effects = [];
+        this.Current = {damageTaken: [], damageDone: [], effects: []}
     }
 
     clear(){
-        this.damageDone = [];
-        this.damageDone = [];
+        this.Current.damageDone = [];
+        this.Current.damageTaken = [];
+        this.Current.effects = [];
         this.reduceEffects();
     }
 
     reduceEffects(){
         let effectsToRemove: Effect[] = [];
-        for(const effect of this.effects){
+        for(const effect of this.Player.effects){
             effect.reduce();
             if(effect.hasExpired()){
                 effectsToRemove.push(effect);
             }
         }
         for(const effect of effectsToRemove){
-            this.effects.splice(this.effects.indexOf(effect), 1);
+            this.Player.effects.splice(this.Player.effects.indexOf(effect), 1);
         }
     }
 
-    takeDamage(damage: DamageDone): boolean {
-        if(this.shouldTakeDamage(damage)){
-            this.damageTaken.push(damage);
-            return true;
+    takeDamage(damage: DamageDone): CancelInfo {
+        const shouldTake = this.shouldTakeDamage(damage);
+        if(!shouldTake.isCancelled){
+            this.Current.damageTaken.push(damage);
         }
-        else return false;
+        else{
+            damage.cancel = shouldTake;
+        }
+
+        return shouldTake;
     }
 
-    shouldTakeDamage(damage: DamageDone): boolean {
-        return true;
+    shouldTakeDamage(damage: DamageDone): CancelInfo {
+        return {isCancelled: false}
     }
 
     apply(){
         this.applyTakenDamages();
+        this.applyEffects();
         // clear artifacts
         this.clear();
     }
 
-    private applyTakenDamages(){
-        for(const damage of this.damageTaken){
-            this.Player.player.stats.health -= damage.damage;
+    private applyEffects(){
+        for(const effect of this.Current.effects){
+            this.Player.effects.push(effect);
         }
     }
 
-    getSummary(){
-        
+    private applyTakenDamages(){
+        for(const damage of this.Current.damageTaken){
+            console.log(this.Player.player.stats.health)
+            this.Player.player.stats.health -= damage.damage;
+            console.log(this.Player.player.stats.health)
+        }
+    }
+
+    getSummary(): DeciderSummary{
+        return this.Current;
     }
 }

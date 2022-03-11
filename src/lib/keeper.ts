@@ -1,4 +1,5 @@
 import Odenne from "../odenne";
+import { DeciderSummary } from "../types/types";
 import { Round } from "./rounds";
 
 export default class Keeper {
@@ -14,8 +15,8 @@ export default class Keeper {
      * Creates a new Log
      * @returns {Log} Log
      */
-    log(attackRound: Round, defenseRound?: Round): Log {
-        const log = new Log(attackRound, defenseRound);
+    log(summaries: DeciderSummary[]): Log {
+        const log = new Log(summaries);
         return log;
     }
 
@@ -29,11 +30,9 @@ export default class Keeper {
 }
 
 export class Log {
-    attackRound: Round;
-    defenseRound?: Round;
+    summaries: DeciderSummary[];
 
-    constructor(attackRound: Round, defenseRound?: Round){
-        this.attackRound = attackRound;
-        this.defenseRound = defenseRound;
+    constructor(summaries: DeciderSummary[]){
+        this.summaries = summaries;
     }
 }

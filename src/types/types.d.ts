@@ -1,3 +1,4 @@
+import { Effect } from "../lib/effects";
 import { Skill } from "../lib/skills";
 import { Player } from "../lib/teams";
 
@@ -25,7 +26,24 @@ export const enum STATUSCODES {
 
 export interface DamageDone {
     damage: number;
-    source: Skill | Effect;
+    source: DamageSource;
     target: Player;
-    cancelled: boolean;
+    cancel: CancelInfo;
+}
+
+export interface DamageSource {
+    player: Player;
+    source: Skill | Effect;
+}
+
+export interface CancelInfo {
+    isCancelled: boolean;
+    sourceMember?: Player;
+    source?: Skill | Effect;
+}
+
+export interface DeciderSummary {
+    damageTaken: DamageDone[]
+    damageDone: DamageDone[]
+    effects: Effect[]
 }

@@ -1,5 +1,5 @@
 import Odenne from "../odenne";
-import { STATUSCODES, TurnTypes } from "../types/types";
+import { DeciderSummary, STATUSCODES, TurnTypes } from "../types/types";
 
 export default class Rounds {
     Odenne: Odenne;
@@ -13,7 +13,7 @@ export default class Rounds {
         if(type === TurnTypes.ATTACK){
             return new AttackRound(this.Odenne);
         }
-        else return new DefenseRound(this.Odenne);;
+        else return new DefenseRound(this.Odenne);
     }
 }
 
@@ -51,6 +51,17 @@ export class AttackRound extends Round {
             if(usedSkill){
                 const result = usedSkill.run();
                 console.log({r: result.damaged});
+                //TODO DEFENSE icin kontroller burda yapilacak.
+
+                let summaries: DeciderSummary[] = [];
+                for(const team of this.Odenne.teams){
+                    //? Ben yapmadim hepsi alperin sucu yoksa ben n^4 yapmam
+                    summaries.push(team.getSummaries());
+                }
+
+                const log = this.Odenne.Keeper.log(summaries);
+                this.Odenne.Keeper.save(log)
+                this.Odenne.Referee.applyRound();
             }
             else{
                 // its nearly impossible to be here but safety first...

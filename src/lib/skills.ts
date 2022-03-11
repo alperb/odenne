@@ -44,8 +44,7 @@ export abstract class Skill {
 
     applyDamage(damages: DamageDone[]){
         for(const damage of damages){
-            const isDamageTaken = damage.target.Decider.takeDamage(damage);
-            if(!isDamageTaken) damage.cancelled = true;
+            damage.target.Decider.takeDamage(damage);
         }
     }
 }
@@ -103,7 +102,7 @@ export class BasicAttack extends AttackSkill {
     do(): SkillResult {
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: this.player, target: target.player, cancelled: false});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
