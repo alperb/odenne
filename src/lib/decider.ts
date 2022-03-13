@@ -44,15 +44,37 @@ export default class Decider {
         return shouldTake;
     }
 
+    takeEffect(effect: Effect){
+        const shouldTake = this.shouldTakeEffect(effect);
+        if(!shouldTake.isCancelled){
+            this.Current.effects.push(effect);
+        }
+        else{
+            effect.cancel = shouldTake;
+        }
+
+        return shouldTake;
+    }
+
     shouldTakeDamage(damage: DamageDone): CancelInfo {
         return {isCancelled: false}
     }
 
+    shouldTakeEffect(effect: Effect): CancelInfo {
+        return {isCancelled: false}
+    }
+
     apply(){
-        this.applyTakenDamages();
         this.applyEffects();
+        this.runEffects();
+        this.applyTakenDamages();
+        
         // clear artifacts
         this.clear();
+    }
+
+    private runEffects(){
+        // TODO: efektlerin do()'lari calistirilacak
     }
 
     private applyEffects(){

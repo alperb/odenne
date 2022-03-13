@@ -1,20 +1,20 @@
 import Odenne from "../odenne";
+import { CancelInfo, EffectConfig } from "../types/types";
 import { Environment } from "./environments";
 import { Skill } from "./skills";
 import { Member, Player } from "./teams";
 
 export default class Effects {
     Odenne: Odenne;
-    Request: EffectRequest | undefined;
 
     constructor(Odenne: Odenne){
         this.Odenne = Odenne;
     }
 
-    new(request: EffectRequest) : Effect | undefined{
-        switch(request.name){
-            case 'AttackBonus':
-                return new AttackBonus(request);
+    new(name: string, config: EffectConfig) : Effect | undefined{
+        switch(name){
+            case 'Ignite':
+                return new Ignite(config);
             default:
                 return undefined;
         }
@@ -22,74 +22,43 @@ export default class Effects {
 
 }
 
-export class EffectRequest {
-    targetMember!: Member;
-    sourceMember: Member | undefined;
-    source: Skill | Effect | undefined;
-    expiration: number | undefined;
-    name!: string;
 
-    constructor(){}
-
-    setEffect(effectname: string){
-        this.name = effectname;
-    }
-
-    addTargetMember(Member: Member){
-        this.targetMember = Member;
-    }
-
-    addSourceMember(Member: Member){
-        this.sourceMember = Member;
-    }
-
-    /**
-     * Adds effect source
-     * @param {Skill | Effect} source Source of the effect
-     */
-    addSource(source: Skill | Effect){
-        this.source = source;
-    }
-
-    /**
-     * Sets expiration round count
-     * @param {number} count expiration round count
-     */
-    setExpiration(count: number){
-        this.expiration = count;
-    }
-}
-
-
-export class Effect {
-    request: EffectRequest;
+export abstract class Effect {
+    config: EffectConfig;
     count!: number;
-    target!: Member;
-    sourceMember: Member | undefined;
-    source: Skill | Effect | undefined;
+    cancel: CancelInfo;
 
-    /**
-     * Constructs a new effect
-     * @param {EffectRequest} request effect request
-     */
-    constructor(request: EffectRequest){
-        this.request = request;
+    constructor(config: EffectConfig){
+        this.config = config;
+        this.cancel = {isCancelled: false}
     }
 
     reduce(){
         if(this.count > 0){
             this.count -= 1;
         }
+        this.cancel = {isCancelled: false};
     }
 
     hasExpired(){
         return this.count == 0;
     }
 
-    processRequest(){
-        if(this.request.targetMember) this.target = this.request.targetMember;
-        if(this.request.sourceMember) this.sourceMember = this.request.sourceMember;
-        if(this.request.source) this.source = this.request.source;
+    abstract do(): void;
+}
+
+export abstract class ActiveEffect extends Effect{
+
+    constructor(config: EffectConfig){
+        super(config);
+    }
+}
+
+export abstract class PassiveEffect extends Effect {
+
+    constructor(config: EffectConfig){
+        super(config);
+        this.count = -1;
     }
 }
 
@@ -104,13 +73,19 @@ export class EffectResult {
     }
 }
 
-export class AttackBonus extends Effect {
-    request!: EffectRequest;
-    target!: Member;
-    sourceMember: Member | undefined;
-    source: Skill | Effect | undefined;
+export class Ignite extends ActiveEffect {
     
-    constructor(request: EffectRequest){
-        super(request);
+    constructor(config: EffectConfig){
+        super(config);
+        this.count = 2;
+    }
+
+    do(): void {
+        this.config.targetMember.Decider.takeDamage({
+            source: {player: this.config.sourceMember, source: this},
+            target: this.config.targetMember,
+            cancel: {isCancelled: false},
+            damage: 5
+        })
     }
 }

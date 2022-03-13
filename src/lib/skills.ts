@@ -1,6 +1,7 @@
 import Odenne from "../odenne";
 import { DAMAGETYPES, OriginalSkill, SkillPipe } from "../types/player";
-import { DamageDone } from "../types/types";
+import { DamageDone, EffectConfig } from "../types/types";
+import { Effect } from "./effects";
 import { Modifier, RangeModifier } from "./modifiers";
 import { Round } from "./rounds";
 import { Player } from "./teams";
@@ -47,6 +48,12 @@ export abstract class Skill {
             damage.target.Decider.takeDamage(damage);
         }
     }
+
+    applyEffects(effects: Effect[]){
+        for(const eff of effects){
+            eff.config.targetMember.Decider.takeEffect(eff);
+        }
+    }
 }
 
 export class SkillResult {
@@ -83,6 +90,7 @@ export class BasicAttack extends AttackSkill {
     skill!: OriginalSkill;
     roundType: string = 'attack';
     player: Player;
+    effects: string[];
 
     constructor(Player: Player, skill: OriginalSkill){
         super();
@@ -90,6 +98,9 @@ export class BasicAttack extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.prepare();
+
+
+        this.effects = ["Ignite"];
     }
 
     prepare(){
@@ -108,6 +119,8 @@ export class BasicAttack extends AttackSkill {
         }
 
         
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
+        const igniteEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig);
 
         this.applyDamage(result.damaged);
 

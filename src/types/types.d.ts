@@ -1,6 +1,6 @@
 import { Effect } from "../lib/effects";
 import { Skill } from "../lib/skills";
-import { Player } from "../lib/teams";
+import { Mob, Player } from "../lib/teams";
 
 export interface OdenneTurn {
     type: TurnTypes;
@@ -27,12 +27,12 @@ export const enum STATUSCODES {
 export interface DamageDone {
     damage: number;
     source: DamageSource;
-    target: Player;
+    target: Player | Mob;
     cancel: CancelInfo;
 }
 
 export interface DamageSource {
-    player: Player;
+    player: Player | Mob;
     source: Skill | Effect;
 }
 
@@ -46,4 +46,10 @@ export interface DeciderSummary {
     damageTaken: DamageDone[]
     damageDone: DamageDone[]
     effects: Effect[]
+}
+
+export interface EffectConfig {
+    targetMember: Player | Mob;
+    sourceMember: Player | Mob;
+    source: Skill | Effect;
 }

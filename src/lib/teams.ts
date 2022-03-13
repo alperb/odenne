@@ -208,4 +208,8 @@ export class Player extends Member {
 
 }
 
+export class Mob extends Member{
+    
+}
+
 export default Teams;
