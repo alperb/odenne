@@ -38,7 +38,7 @@ export interface DamageSource {
 
 export interface CancelInfo {
     isCancelled: boolean;
-    sourceMember?: Player;
+    sourceMember?: Player | Mob;
     source?: Skill | Effect;
 }
 

@@ -21,30 +21,44 @@ export default class Modifiers {
 }
 
 export abstract class Modifier {
-    apply(result: SkillResult): any {}
-}
-
-export class RangeModifier extends Modifier {
     Player: Player;
     Skill: Skill;
 
     constructor(Player: Player, Skill: Skill){
-        super();
         this.Player = Player;
         this.Skill = Skill;
     }
 
+    apply(result: SkillResult): any {}
+}
+
+export class RangeModifier extends Modifier {
+    constructor(Player: Player, Skill: Skill){
+        super(Player, Skill);
+    }
+
     apply(result: SkillResult): SkillResult {
         for(let i = 0; i < result.damaged.length; i++){
-            if(_.isEqual(result.damaged[i].source, this.Player)){
-                if(this.Skill.damageType == DAMAGETYPES.RANGED){
-                    const randomized = this.Player.team.Odenne.Rarity.rand(this.Skill.skill.min as number, this.Skill.skill.max as number);
-                    result.damaged[i].damage = randomized as number;
-                }
-                
+
+            if(this.Skill.damageType == DAMAGETYPES.RANGED){
+                const randomized = this.calculateDamage();
+                result.damaged[i].damage = randomized;
             }
+
         }
 
         return result;
+    }
+
+    private calculateDamage(){
+        const attackBonus = this.Player.player.stats.attack;
+        const accuracy = this.Player.player.stats.accuracy >= 100 ? 100 : this.Player.player.stats.accuracy;
+
+        const min = (this.Skill.skill.min as number) + (attackBonus / 2);
+        const max = ((this.Skill.skill.max as number) + (attackBonus * accuracy / 100));
+        const randomized = this.Player.team.Odenne.Rarity.rand(min, max, -2);
+
+        if(!randomized) return min;
+        return randomized;
     }
 }

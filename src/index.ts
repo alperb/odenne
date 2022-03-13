@@ -106,7 +106,7 @@ let player1 = {
         },
         "skills": [
             0,
-            0,
+            40,
             0,
             0,
             0
@@ -302,8 +302,8 @@ let player2 = {
         },
         "skills": [
             0,
-            0,
-            0,
+            40,
+            50,
             0,
             0
         ],
@@ -405,10 +405,15 @@ try{
     let battle = new Odenne(options);
 
     battle.start();
-    while(battle.status.get() !== 'ended'){
+    while(battle.status.get() !== 'FINISHED'){
+        console.log('=======================');
         battle.advance();
+        
     }
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
 }
 catch(e){
     console.log(e);
+    
 }

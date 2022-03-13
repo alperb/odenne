@@ -5,5 +5,17 @@
         "min": 5,
         "max": 15,
         "level": 1
+    },
+    {
+        "id": 40,
+        "name": "Dodge",
+        "level": 1
+    },
+    {
+        "id": 50,
+        "name": "Arrow Rain",
+        "min": 5,
+        "max": 20,
+        "level": 1
     }
 ]

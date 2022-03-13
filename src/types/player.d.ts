@@ -79,6 +79,7 @@ export interface OriginalSkill {
     name: string;
     min?: number;
     max?: number;
+    damage?: number;
 }
 
 export interface SkillArtifact {

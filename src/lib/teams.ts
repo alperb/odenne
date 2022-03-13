@@ -92,33 +92,47 @@ export class Member {
         this.effects = [];
     }
 
-    getRandomSkill(): Skill{
+    getRandomSkill(): Skill | undefined{
         const maxAttackTryCount = 2;
         const maxDefenseTryCount = 1;
         let count = 0;
-        const usingCount = this.team.Odenne.Referee.turn.type == TurnTypes.ATTACK ? maxAttackTryCount : maxDefenseTryCount;
+        const usingCount = this.team.Odenne.Referee.turn.player.player as Member === this ? maxAttackTryCount : maxDefenseTryCount;
+        const totalChance = this.player.skills.reduce((prev, curr) => prev += curr.chance, 0);
 
         while(count < usingCount){
-            const randomized = Math.floor(Math.random() * this.player.skills.length);
-            let randomSkill = this.player.skills[ randomized ];
+            const randomized = this.team.Odenne.Rarity.rand(0, totalChance, -2) as number;
+
+            let randomSkill = this.findSkillByRandom(randomized);
             if(this.isSkillValid(randomSkill)){
                 return randomSkill;
             }
             count++;
         }
 
-        if(this.team.Odenne.Referee.turn.type !== TurnTypes.ATTACK){
+        if(this.team.Odenne.Referee.turn.player.player as Member === this){
             return this.player.skills[0];
         }
-        else throw this.team.Odenne.exceptions.COULDNT_RANDOMIZE_SKILL;
+    }
+
+    private findSkillByRandom(random: number): Skill{
+        let sum = 0;
+
+        for(const skill of this.player.skills){
+            if(random >= sum && random < (sum + skill.chance)){
+                return skill;
+            }
+            else sum += skill.chance;
+        }
+
+        return this.player.skills[0];
     }
 
     private isSkillValid(skill: Skill): boolean {
-        if(this.team.Odenne.Referee.turn.type === TurnTypes.ATTACK){
+        if(this.team.Odenne.Referee.turn.player.player as Member === this){
             return skill instanceof AttackSkill;
         }
         else {
-            return skill instanceof DefenseSkill
+            return skill instanceof DefenseSkill;
         }
     }
 }

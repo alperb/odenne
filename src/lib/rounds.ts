@@ -1,5 +1,6 @@
 import Odenne from "../odenne";
 import { DeciderSummary, STATUSCODES, TurnTypes } from "../types/types";
+import { Member } from "./teams";
 
 export default class Rounds {
     Odenne: Odenne;
@@ -48,9 +49,14 @@ export class AttackRound extends Round {
     run() {
         try{
             const usedSkill = this.Odenne.Referee.turn.player.player?.getRandomSkill();
+            console.log({n: this.Odenne.Referee.turn.player.player?.original.name});
             if(usedSkill){
                 const result = usedSkill.run();
-                console.log({r: result.damaged});
+
+                for(const damage of result.damaged){
+                    this.doDefense(damage.target);
+                }
+                
                 //TODO DEFENSE icin kontroller burda yapilacak.
 
                 let summaries: DeciderSummary[] = [];
@@ -72,6 +78,15 @@ export class AttackRound extends Round {
             console.log(e);
         }
         
+    }
+
+    private doDefense(player: Member){
+        const defSkill = player.getRandomSkill();
+        console.log({defSkill});
+        if(defSkill){
+
+            defSkill.run();
+        }
     }
 }
 

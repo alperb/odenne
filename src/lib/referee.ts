@@ -18,10 +18,11 @@ class Referee {
         const round = this.Odenne.Rounds.create(this.turn.type);
         this.currentRound = round;
         this.roundCount++;
+        this.switchTurn();
     }
 
     switchTurn(){
-        const newtype = (this.turn.type === TurnTypes.ATTACK) ? TurnTypes.DEFENSE : TurnTypes.ATTACK;
+        const newtype = TurnTypes.ATTACK;
         const newteam = this.alternate(this.turn.team);
         const newplayer = this.getRandomPlayer(newteam);
 
