@@ -72,9 +72,8 @@ export default class Decider {
         this.applyEffects();
         this.runAfterEffects();
         this.applyTakenDamages();
-        
         // clear artifacts
-        this.clear();
+        // this.clear();
     }
 
     private runAfterEffects() {
@@ -97,25 +96,17 @@ export default class Decider {
     }
 
     private applyTakenDamages(){
-        console.log({d: this.Current.damageTaken});
         for(const damage of this.Current.damageTaken){
-            console.log({old: this.Player.player.stats.health})
-
-
             if(!damage.cancel.isCancelled){
                 
                 
                 this.Player.player.stats.health -= this.calculateTakenDamage(damage);
             }
-
-
-            console.log({new: this.Player.player.stats.health})
         }
     }
 
     private calculateTakenDamage(damage: DamageDone): number {
         let dmg = damage.damage;
-        console.log({dmg, d: this.Player.player.stats.defense});
         dmg -= this.Player.player.stats.defense;
         if(dmg <= 0) {
             if(damage.source.source instanceof Skill){

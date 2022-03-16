@@ -70,6 +70,12 @@ export class Team {
             player.Decider.apply();
         }
     }
+
+    clear(){
+        for(const player of this.players){
+            player.Decider.clear();
+        }
+    }
 }
 
 export class Member {

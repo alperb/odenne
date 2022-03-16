@@ -15,10 +15,10 @@ class Referee {
     }
 
     createRound() {
+        this.switchTurn();
         const round = this.Odenne.Rounds.create(this.turn.type);
         this.currentRound = round;
         this.roundCount++;
-        this.switchTurn();
     }
 
     switchTurn(){
@@ -72,6 +72,12 @@ class Referee {
         }
     }
 
+    clearRound(){
+        for(const team of this.Odenne.teams){
+            team.clear();
+        }
+    }
+
     cleanUpGameVariables(){
 
     }
@@ -79,8 +85,8 @@ class Referee {
     prepareStart(){
         this.turn = {
             type: TurnTypes.ATTACK,
-            team: 0,
-            player: this.getRandomPlayer(0)
+            team: 1,
+            player: this.getRandomPlayer(1)
         };
 
         this.Odenne.status.set(STATUSCODES.STARTED);

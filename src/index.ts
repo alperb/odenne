@@ -408,7 +408,7 @@ try{
     while(battle.status.get() !== 'FINISHED'){
         console.log('=======================');
         battle.advance();
-        
+        console.log(battle.UI.getCurrentRoundLog());
     }
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
     console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);

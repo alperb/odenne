@@ -204,7 +204,6 @@ export class DodgeI extends DefenseSkill {
 
     do(): SkillResult {
         const result = new SkillResult(this.player);
-        console.log("DODGE GELDI")
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
         const dodgeEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
         this.applyEffects([dodgeEffect]);

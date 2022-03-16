@@ -29,6 +29,7 @@ import Modifiers from './lib/modifiers';
 import SkillConfig from './config/skills.json';
 import { STATUSCODES } from './types/types';
 import { OriginalSkill } from './types/player';
+import Narrator from './lib/narrator';
 
 // External helpers
 // import Rarity from './helpers/rarity';
@@ -48,6 +49,7 @@ export class Odenne {
     UI: OdenneUI;
     Modifiers: Modifiers;
     SkillConfig: OriginalSkill[];
+    Narrator: Narrator;
 
     teams: Array<Team> = [];
 
@@ -74,6 +76,7 @@ export class Odenne {
         this.Rounds = new Rounds(this);
         this.UI = new OdenneUI(this);
         this.Modifiers = new Modifiers(this);
+        this.Narrator = new Narrator(this);
         this.SkillConfig = SkillConfig;
         
         this.prepare();
@@ -116,7 +119,7 @@ export class Odenne {
     start(){
         if(this.status.get() === STATUSCODES.PREPARING){
             this.Referee.prepareStart();
-            this.advance();
+            // this.advance();
         }
         else {
             this.status.set(this.status.codes.ERRORED);

@@ -59,6 +59,7 @@ export class AttackRound extends Round {
                 
                 //TODO DEFENSE icin kontroller burda yapilacak.
 
+                this.Odenne.Referee.applyRound();
                 let summaries: DeciderSummary[] = [];
                 for(const team of this.Odenne.teams){
                     //? Ben yapmadim hepsi alperin sucu yoksa ben n^4 yapmam
@@ -67,7 +68,8 @@ export class AttackRound extends Round {
 
                 const log = this.Odenne.Keeper.log(summaries);
                 this.Odenne.Keeper.save(log)
-                this.Odenne.Referee.applyRound();
+                this.Odenne.Narrator.generate();
+                this.Odenne.Referee.clearRound();
             }
             else{
                 // its nearly impossible to be here but safety first...
@@ -82,7 +84,6 @@ export class AttackRound extends Round {
 
     private doDefense(player: Member){
         const defSkill = player.getRandomSkill();
-        console.log({defSkill});
         if(defSkill){
 
             defSkill.run();
