@@ -29,6 +29,7 @@ export interface DamageDone {
     source: DamageSource;
     target: Player | Mob;
     cancel: CancelInfo;
+    critic?: CriticResult;
 }
 
 export interface DamageSource {
@@ -52,4 +53,10 @@ export interface EffectConfig {
     targetMember: Player | Mob;
     sourceMember: Player | Mob;
     source: Skill | Effect;
+}
+
+export interface CriticResult {
+    isCritic: boolean;
+    percentage?: number;
+    damage?: number;
 }

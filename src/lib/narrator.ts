@@ -101,7 +101,8 @@ export class DamageEvent extends Event{
     }
 
     getLog(): string {
-        return `${this.damageDone.source.player.original.name} dealt ${this.damageDone.damage} with ${(this.damageDone.source.source as Skill).skill.name}`;
+        const cancelledPart = this.damageDone.cancel.isCancelled ? `but ${this.damageDone.cancel.sourceMember?.original.name} dodged` : ``;
+        return `${this.damageDone.source.player.original.name} dealt ${this.damageDone.damage} with ${(this.damageDone.source.source as Skill).skill.name} ${cancelledPart}`;
     }
 
     isLogAvailable(): boolean {

@@ -2,20 +2,83 @@
     {
         "id": 0,
         "name": "Basic Attack",
-        "min": 5,
-        "max": 15,
+        "min": 2,
+        "max": 7,
         "level": 1
     },
     {
-        "id": 40,
+        "id": 10,
         "name": "Dodge",
         "level": 1
     },
     {
-        "id": 50,
+        "id": 20,
         "name": "Arrow Rain",
         "min": 5,
         "max": 20,
         "level": 1
+    },
+    {
+        "id": 30,
+        "name": "Arcane Shot",
+        "min": 10,
+        "max": 15,
+        "level": 1
+    },
+
+
+    {
+        "id": 1000,
+        "name": "Basic Attack",
+        "min": 2,
+        "max": 6,
+        "level": 1
+    },
+    {
+        "id": 1010,
+        "name": "Betrayal",
+        "min": 11,
+        "max": 13,
+        "level": 1
+    },
+    {
+        "id": 1020,
+        "name": "Blade Rain",
+        "min": 10,
+        "max": 27,
+        "level": 1
+    },
+
+
+    {
+        "id": 2000,
+        "name": "Basic Attack",
+        "min": 2,
+        "max": 6,
+        "level": 1
+    },
+    {
+        "id": 2010,
+        "name": "Fireball",
+        "min": 4,
+        "max": 15,
+        "level": 1
+    },
+
+
+    {
+        "id": 3000,
+        "name": "Basic Attack",
+        "min": 2,
+        "max": 6,
+        "level": 1
+    },
+    {
+        "id": 3010,
+        "name": "Bash",
+        "min": 8,
+        "max": 12,
+        "level": 1
     }
+    
 ]

@@ -99,8 +99,10 @@ export default class Decider {
         for(const damage of this.Current.damageTaken){
             if(!damage.cancel.isCancelled){
                 
-                
-                this.Player.player.stats.health -= this.calculateTakenDamage(damage);
+                const damageValue = this.calculateTakenDamage(damage);
+                this.Player.player.stats.health -= damageValue;
+                damage.damage = damageValue;
+
             }
         }
     }

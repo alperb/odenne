@@ -1,6 +1,7 @@
 import _ from "lodash";
 import Odenne from "../odenne";
 import { DAMAGETYPES, OriginalSkill } from "../types/player";
+import { CriticResult, DamageDone } from "../types/types";
 import { Skill, SkillResult } from "./skills";
 import { Player } from "./teams";
 
@@ -14,6 +15,8 @@ export default class Modifiers {
         switch(name){
             case 'RangeModifier':
                 return new RangeModifier(Player, Skill);
+            case 'CriticModifier':
+                return new CriticModifier(Player, Skill);
             default:
                 return undefined;
         }
@@ -29,7 +32,7 @@ export abstract class Modifier {
         this.Skill = Skill;
     }
 
-    apply(result: SkillResult): any {}
+    abstract apply(result: SkillResult): SkillResult;
 }
 
 export class RangeModifier extends Modifier {
@@ -60,5 +63,28 @@ export class RangeModifier extends Modifier {
 
         if(!randomized) return min;
         return randomized;
+    }
+}
+
+export class CriticModifier extends Modifier {
+    constructor(Player: Player, Skill: Skill){
+        super(Player, Skill);
+    }
+
+    apply(result: SkillResult): SkillResult {
+        for(let i = 0; i < result.damaged.length; i++){
+
+            if(this.Skill.damageType == DAMAGETYPES.RANGED){
+                result.damaged[i].critic = this.calculateDamage(result.damaged[i]);
+                result.damaged[i].damage += result.damaged[i].critic?.damage ?? 0;
+            }
+
+        }
+
+        return result;
+    }
+
+    private calculateDamage(damage: DamageDone): CriticResult {
+        return {isCritic: true, percentage: 100, damage: damage.damage}
     }
 }

@@ -98,7 +98,7 @@ export class Member {
         this.effects = [];
     }
 
-    getRandomSkill(): Skill | undefined{
+    getRandomSkill(): Skill | undefined {
         const maxAttackTryCount = 2;
         const maxDefenseTryCount = 1;
         let count = 0;
@@ -109,7 +109,7 @@ export class Member {
             const randomized = this.team.Odenne.Rarity.rand(0, totalChance, -2) as number;
 
             let randomSkill = this.findSkillByRandom(randomized);
-            if(this.isSkillValid(randomSkill)){
+            if(this.isSkillValid(randomSkill) && randomSkill.isAvailable()){
                 return randomSkill;
             }
             count++;

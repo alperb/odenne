@@ -1,5 +1,6 @@
 import Odenne from "../odenne";
 import { DeciderSummary, STATUSCODES, TurnTypes } from "../types/types";
+import { DefenseSkill } from "./skills";
 import { Member } from "./teams";
 
 export default class Rounds {
@@ -84,8 +85,7 @@ export class AttackRound extends Round {
 
     private doDefense(player: Member){
         const defSkill = player.getRandomSkill();
-        if(defSkill){
-
+        if(defSkill instanceof DefenseSkill){
             defSkill.run();
         }
     }

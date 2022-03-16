@@ -106,9 +106,9 @@ let player1 = {
         },
         "skills": [
             0,
-            40,
-            0,
-            0,
+            10,
+            1010,
+            1020,
             0
         ],
         "chest": {
@@ -302,9 +302,9 @@ let player2 = {
         },
         "skills": [
             0,
-            40,
-            50,
-            0,
+            10,
+            3010,
+            2010,
             0
         ],
         "chest": {
@@ -409,6 +409,7 @@ try{
         console.log('=======================');
         battle.advance();
         console.log(battle.UI.getCurrentRoundLog());
+        console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
     }
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
     console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);

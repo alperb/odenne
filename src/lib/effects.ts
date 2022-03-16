@@ -19,6 +19,8 @@ export default class Effects {
                 return new Dodge(config);
             case 'EdipinYarragi':
                 return new EdipinYarragi(config);
+            case 'WaffleinHukmu':
+                return new WaffleinHukmu(config);
             default:
                 return undefined;
         }
@@ -112,6 +114,32 @@ export class EdipinYarragi extends ActiveEffect {
     do(): void {
         const min = 7;
         const max = 15;
+        let dmg = this.config.sourceMember.team.Odenne.Rarity.rand(min, max, -2);
+        if(!dmg) dmg = min;
+
+        this.config.targetMember.Decider.takeDamage({
+            source: {player: this.config.sourceMember, source: this},
+            target: this.config.targetMember,
+            cancel: {isCancelled: false},
+            damage: dmg
+        })
+    }
+
+    afterDo(): void {}
+}
+
+export class WaffleinHukmu extends ActiveEffect {
+    
+    constructor(config: EffectConfig){
+        super(config);
+        this.count = 4;
+    }
+
+    init(): void {}
+
+    do(): void {
+        const min = 14;
+        const max = 18;
         let dmg = this.config.sourceMember.team.Odenne.Rarity.rand(min, max, -2);
         if(!dmg) dmg = min;
 
