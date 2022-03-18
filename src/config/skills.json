@@ -25,6 +25,35 @@
         "max": 15,
         "level": 1
     },
+    {
+        "id": 40,
+        "name": "On The Hunt",
+        "min": 7,
+        "max": 19,
+        "level": 1
+    },
+    {
+        "id": 50,
+        "name": "Focus",
+        "level": 1
+    },
+    {
+        "id": 60,
+        "name": "Cold Blood",
+        "level": 1
+    },
+    {
+        "id": 70,
+        "name": "Snipe",
+        "min": 10,
+        "max": 25,
+        "level": 1
+    },
+    {
+        "id": 80,
+        "name": "Head Start",
+        "level": 1
+    },
 
 
     {
@@ -46,6 +75,18 @@
         "name": "Blade Rain",
         "min": 10,
         "max": 27,
+        "level": 1
+    },
+    {
+        "id": 1030,
+        "name": "Thin Armor",
+        "min": 5,
+        "max": 10,
+        "level": 1
+    },
+    {
+        "id": 1040,
+        "name": "Stealth",
         "level": 1
     },
 

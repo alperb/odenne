@@ -100,4 +100,5 @@ export interface SkillPipe {
 export interface OdennePlayer {
     stats: Stats;
     skills: Array<Skill>;
+    baseStats: Stats;
 }

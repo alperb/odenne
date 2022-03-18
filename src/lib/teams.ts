@@ -1,9 +1,10 @@
+import _ from "lodash";
 import Odenne from "../odenne";
 import { Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
 import { DamageDone, DeciderSummary, TurnTypes } from "../types/types";
 import Decider from "./decider";
-import { Effect } from "./effects";
-import { AttackSkill, DefenseSkill, Skill } from "./skills";
+import { AttackBonus, Effect, StatBonus } from "./effects";
+import { AttackSkill, DefenseSkill, PassiveSkill, Skill } from "./skills";
 
 export class Teams {
     Odenne: Odenne;
@@ -76,6 +77,12 @@ export class Team {
             player.Decider.clear();
         }
     }
+
+    runPassiveSkills(){
+        for(const player of this.players){
+            player.preparePassiveSkills();
+        }
+    }
 }
 
 export class Member {
@@ -90,6 +97,9 @@ export class Member {
         this.original = original;
         this.player = {
             stats: {
+
+            },
+            baseStats: {
 
             },
             skills: []
@@ -118,6 +128,18 @@ export class Member {
         if(this.team.Odenne.Referee.turn.player.player as Member === this){
             return this.player.skills[0];
         }
+    }
+
+    // for temporary effects
+    getStat(type: string): number{
+        let sum = this.player.stats[type];
+
+        for(const effect of this.effects){
+            if(effect instanceof StatBonus){
+                sum += effect.get(type);
+            }
+        }
+        return sum;
     }
 
     private findSkillByRandom(random: number): Skill{
@@ -181,6 +203,8 @@ export class Player extends Member {
         for(const key of Object.keys(this.player.stats)){
             this.player.stats[key] = Math.floor(this.player.stats[key] / this.DIVIDERS[key]);
         }
+
+        this.player.baseStats = _.cloneDeep(this.player.stats);
     }
 
     calculateItemStats(){
@@ -223,6 +247,12 @@ export class Player extends Member {
         for(const skillId of (this.original.wearings.skills as Array<number>)){
             const skill: OriginalSkill = this.findSkillFromConfig(skillId) as OriginalSkill;
             this.team.Odenne.Skills.create(this, skill);
+        }
+    }
+
+    preparePassiveSkills(){
+        for(const skill of this.player.skills){
+            if(skill instanceof PassiveSkill) skill.applyEffect();
         }
     }
 

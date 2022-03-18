@@ -82,6 +82,12 @@ class Referee {
 
     }
 
+    preparePassives(){
+        for(const team of this.Odenne.teams){
+            team.runPassiveSkills();
+        }
+    }
+
     prepareStart(){
         this.turn = {
             type: TurnTypes.ATTACK,
@@ -89,6 +95,8 @@ class Referee {
             player: this.getRandomPlayer(1)
         };
 
+
+        this.preparePassives();
         this.Odenne.status.set(STATUSCODES.STARTED);
     }
 }

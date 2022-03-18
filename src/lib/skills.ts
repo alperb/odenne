@@ -1,6 +1,6 @@
 import Odenne from "../odenne";
 import { DAMAGETYPES, OriginalSkill, SkillPipe } from "../types/player";
-import { DamageDone, EffectConfig } from "../types/types";
+import { BonusDetails, DamageDone, EffectConfig } from "../types/types";
 import { Effect } from "./effects";
 import { CriticModifier, Modifier, RangeModifier } from "./modifiers";
 import { Round } from "./rounds";
@@ -33,6 +33,21 @@ export default class Skills {
             case 30:
                 Player.player.skills.push(new ArcaneShotI(Player, skill));
                 return;
+            case 40:
+                Player.player.skills.push(new OneTheHuntI(Player, skill));
+                return;
+            case 50:
+                Player.player.skills.push(new FocusI(Player, skill));
+                return;
+            case 60:
+                Player.player.skills.push(new ColdBloodI(Player, skill));
+                return;
+            case 70:
+                Player.player.skills.push(new SnipeI(Player, skill));
+                return;
+            case 80:
+                Player.player.skills.push(new HeadStartI(Player, skill));
+                return;
 
 
             case 1000:
@@ -43,6 +58,12 @@ export default class Skills {
                 return;
             case 1020:
                 Player.player.skills.push(new BladeRainI(Player, skill));
+                return;
+            case 1030:
+                Player.player.skills.push(new ThinArmorI(Player, skill));
+                return;
+            case 1040:
+                Player.player.skills.push(new StealthI(Player, skill));
                 return;
 
 
@@ -75,6 +96,7 @@ export abstract class Skill {
     chance!: number;
     maxUseCount: number = -1;
     usedRounds: number[] = [];
+    effects: string[] = [];
 
     registerModifier(modifier: Modifier){
         this.modifiers.push(modifier);
@@ -136,6 +158,14 @@ export class SkillResult {
     }
 }
 
+export abstract class PassiveSkill extends Skill {
+    skill!: OriginalSkill;
+    player!: Player;
+    damageType!: DAMAGETYPES;
+
+    abstract applyEffect(): void;
+}
+
 export abstract class ActiveSkill extends Skill {
     skill!: OriginalSkill;
     roundType: string = 'attack';
@@ -186,7 +216,7 @@ export class ArcherBasicAttackI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
@@ -229,7 +259,7 @@ export class AssassinBasicAttackI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
@@ -272,7 +302,7 @@ export class MageBasicAttackI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
@@ -315,7 +345,7 @@ export class WarriorBasicAttackI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
@@ -363,7 +393,7 @@ export class ArcaneShotI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
@@ -408,7 +438,7 @@ export class ArrowRainI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
@@ -461,6 +491,165 @@ export class DodgeI extends DefenseSkill {
     }
 }
 
+export class OneTheHuntI extends AttackSkill {
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.prepare();
+        this.effects = ['SamuraiinCuku'];
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+
+        const target = this.findTarget();
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
+        
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
+        const samuraiEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyDamage(result.damaged);
+        this.applyEffects([samuraiEffect]);
+
+        return result;
+    }
+}
+
+export class FocusI extends PassiveSkill {
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.player = Player;
+        this.skill = skill;
+
+        this.effects = ['Focus'];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player}
+        const focusEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([focusEffect]);
+    }
+
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+}
+
+export class ColdBloodI extends AttackSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.NONE;
+
+        this.chance = 100;
+
+        this.effects = [];
+    }
+
+    do(): SkillResult {
+        const missingHealth = this.player.player.baseStats.health - this.player.player.stats.health;
+        const percentage = missingHealth / this.player.player.baseStats.health * 100;
+        const gainIncrease = percentage / 100 * 40;
+
+        this.player.player.stats.attack += this.player.player.stats.attack * gainIncrease / 100;
+
+        return new SkillResult(this.player);
+    }
+    
+}
+
+export class SnipeI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.prepare();
+        this.effects = [];
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+        const target = this.findTarget();
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: true});
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        this.applyDamage(result.damaged);
+
+        return result;
+    }
+    
+}
+
+export class HeadStartI extends PassiveSkill {
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.player = Player;
+        this.skill = skill;
+
+        this.effects = ['SineminCizimTableti'];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player}
+        const sctEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([sctEffect]);
+    }
+
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+}
+
+
 //#endregion
 
 
@@ -497,7 +686,7 @@ export class BetrayalI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
@@ -542,7 +731,7 @@ export class BladeRainI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
@@ -557,6 +746,77 @@ export class BladeRainI extends AttackSkill {
 
         return result;
     }
+    
+}
+
+export class ThinArmorI extends AttackSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super()
+
+        this.player = Player;
+        this.skill = skill;
+        this.chance = 100;
+        this.damageType = DAMAGETYPES.RANGED;
+
+        this.maxUseCount = 3;
+
+        this.effects = ["DefenseBonus"];
+        this.prepare();
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+        const target = this.findTarget();
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
+        
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
+
+        const details: BonusDetails = {value: -35, type: 1, count: 3}
+        const breakEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig, details) as Effect;
+
+        this.applyDamage(result.damaged);
+        this.applyEffects([breakEffect]);
+
+        return result;
+    }
+    
+}
+
+export class StealthI extends PassiveSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.player = Player;
+        this.skill = skill;
+
+        this.effects = ["Invulnerable"];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player, count: -31} // Kimse sorgulayamaz bizi pussy boylar.
+        const invulEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([invulEffect]);
+    }
+
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+
     
 }
 
@@ -596,7 +856,7 @@ export class FireballI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }
@@ -644,7 +904,7 @@ export class BashI extends AttackSkill {
 
         let result = new SkillResult(this.player);
         const target = this.findTarget();
-        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}});
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
             result = modifier.apply(result) as SkillResult;
         }

@@ -108,8 +108,8 @@ let player1 = {
             0,
             10,
             1010,
-            1020,
-            0
+            60,
+            70
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -304,8 +304,8 @@ let player2 = {
             0,
             10,
             3010,
-            2010,
-            0
+            1040,
+            80
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -410,6 +410,8 @@ try{
         battle.advance();
         console.log(battle.UI.getCurrentRoundLog());
         console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
+        console.log({a: battle.teams[0].players[0].player.stats.attack});
+        console.log({a: battle.teams[1].players[0].player.stats.attack});
     }
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
     console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);

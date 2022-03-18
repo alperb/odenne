@@ -38,6 +38,7 @@ export default class Decider {
         const shouldTake = this.shouldTakeDamage(damage);
         if(!shouldTake.isCancelled){
             this.Current.damageTaken.push(damage);
+            damage.source.player.Decider.Current.damageDone.push(damage);
         }
         else{
             damage.cancel = shouldTake;
@@ -71,6 +72,7 @@ export default class Decider {
         this.runEffects(); 
         this.applyEffects();
         this.runAfterEffects();
+        console.log('a');
         this.applyTakenDamages();
         // clear artifacts
         // this.clear();
@@ -98,6 +100,7 @@ export default class Decider {
     private applyTakenDamages(){
         for(const damage of this.Current.damageTaken){
             if(!damage.cancel.isCancelled){
+                console.log({damage});
                 
                 const damageValue = this.calculateTakenDamage(damage);
                 this.Player.player.stats.health -= damageValue;
@@ -109,21 +112,23 @@ export default class Decider {
 
     private calculateTakenDamage(damage: DamageDone): number {
         let dmg = damage.damage;
-        dmg -= this.Player.player.stats.defense;
-        if(dmg <= 0) {
-            if(damage.source.source instanceof Skill){
-                if(damage.source.source.damageType == DAMAGETYPES.RANGED){
-                    dmg = damage.source.source.skill.min as number;
+        console.log({dmg});
+        if(!damage.isTrue){
+            dmg -= this.Player.getStat("defense");
+            if(dmg <= 0) {
+                if(damage.source.source instanceof Skill){
+                    if(damage.source.source.damageType == DAMAGETYPES.RANGED){
+                        dmg = damage.source.source.skill.min as number;
+                    }
+                    else{
+                        dmg = damage.source.source.skill.damage as number;
+                    }
+                } 
+                else if(damage.source.source instanceof Effect){
+                    dmg = damage.damage; // TODO: calculate effect's damage
                 }
-                else{
-                    dmg = damage.source.source.skill.damage as number;
-                }
-            } 
-            else if(damage.source.source instanceof Effect){
-                dmg = damage.damage; // TODO: calculate effect's damage
             }
         }
-
         return dmg;
     }
 

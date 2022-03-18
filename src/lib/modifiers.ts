@@ -54,8 +54,8 @@ export class RangeModifier extends Modifier {
     }
 
     private calculateDamage(){
-        const attackBonus = this.Player.player.stats.attack;
-        const accuracy = this.Player.player.stats.accuracy >= 100 ? 100 : this.Player.player.stats.accuracy;
+        const attackBonus = this.Player.getStat("attack");
+        const accuracy = this.Player.getStat("accuracy") >= 100 ? 100 : this.Player.getStat("accuracy");
 
         const min = (this.Skill.skill.min as number) + (attackBonus / 2);
         const max = ((this.Skill.skill.max as number) + (attackBonus * accuracy / 100));
