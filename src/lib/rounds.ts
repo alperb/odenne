@@ -61,6 +61,7 @@ export class AttackRound extends Round {
                 //TODO DEFENSE icin kontroller burda yapilacak.
 
                 this.Odenne.Referee.applyRound();
+                this.Odenne.Referee.applyDamage();
                 let summaries: DeciderSummary[] = [];
                 for(const team of this.Odenne.teams){
                     //? Ben yapmadim hepsi alperin sucu yoksa ben n^4 yapmam

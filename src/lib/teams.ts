@@ -3,7 +3,7 @@ import Odenne from "../odenne";
 import { Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
 import { DamageDone, DeciderSummary, TurnTypes } from "../types/types";
 import Decider from "./decider";
-import { AttackBonus, Effect, StatBonus } from "./effects";
+import { AttackBonus, Blind, Effect, StatBonus } from "./effects";
 import { AttackSkill, DefenseSkill, PassiveSkill, Skill } from "./skills";
 
 export class Teams {
@@ -78,6 +78,12 @@ export class Team {
         }
     }
 
+    applyDamage(){
+        for(const player of this.players){
+            player.Decider.applyTakenDamages();
+        }
+    }
+
     runPassiveSkills(){
         for(const player of this.players){
             player.preparePassiveSkills();
@@ -106,6 +112,16 @@ export class Member {
         };
 
         this.effects = [];
+    }
+
+    hasEffect(effectType: string){
+        return this.effects.some(e => e.constructor.name === effectType);
+    }
+
+    hasCC(){
+        const CCs = ["Blind"];
+
+        return CCs.some(c => this.hasEffect(c));
     }
 
     getRandomSkill(): Skill | undefined {

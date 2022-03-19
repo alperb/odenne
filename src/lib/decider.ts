@@ -72,8 +72,7 @@ export default class Decider {
         this.runEffects(); 
         this.applyEffects();
         this.runAfterEffects();
-        console.log('a');
-        this.applyTakenDamages();
+        // this.applyTakenDamages();
         // clear artifacts
         // this.clear();
     }
@@ -97,11 +96,9 @@ export default class Decider {
         }
     }
 
-    private applyTakenDamages(){
+    applyTakenDamages(){
         for(const damage of this.Current.damageTaken){
             if(!damage.cancel.isCancelled){
-                console.log({damage});
-                
                 const damageValue = this.calculateTakenDamage(damage);
                 this.Player.player.stats.health -= damageValue;
                 damage.damage = damageValue;
@@ -112,7 +109,6 @@ export default class Decider {
 
     private calculateTakenDamage(damage: DamageDone): number {
         let dmg = damage.damage;
-        console.log({dmg});
         if(!damage.isTrue){
             dmg -= this.Player.getStat("defense");
             if(dmg <= 0) {
@@ -125,7 +121,7 @@ export default class Decider {
                     }
                 } 
                 else if(damage.source.source instanceof Effect){
-                    dmg = damage.damage; // TODO: calculate effect's damage
+                    dmg = 0; // TODO: calculate effect's damage
                 }
             }
         }

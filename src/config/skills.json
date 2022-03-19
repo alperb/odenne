@@ -54,6 +54,33 @@
         "name": "Head Start",
         "level": 1
     },
+    {
+        "id": 90,
+        "name": "Ranger",
+        "level": 1
+    },
+    {
+        "id": 100,
+        "name": "Tactical",
+        "level": 1
+    },
+    {
+        "id": 110,
+        "name": "Accuracy",
+        "min": 10,
+        "max": 17,
+        "level": 1
+    },
+    {
+        "id": 120,
+        "name": "Long Shots",
+        "level": 1
+    },
+    {
+        "id": 130,
+        "name": "Poison",
+        "level": 1
+    },
 
 
     {
@@ -87,6 +114,55 @@
     {
         "id": 1040,
         "name": "Stealth",
+        "level": 1
+    },
+    {
+        "id": 1050,
+        "name": "The Untouchable",
+        "level": 1
+    },
+    {
+        "id": 1060,
+        "name": "Blind",
+        "min": 5,
+        "max": 9,
+        "level": 1
+    },
+    {
+        "id": 1070,
+        "name": "Executioner",
+        "level": 1
+    },
+    {
+        "id": 1080,
+        "name": "Slaughter",
+        "level": 1
+    },
+    {
+        "id": 1090,
+        "name": "Catalyst",
+        "level": 1
+    },
+    {
+        "id": 1100,
+        "name": "Master Assassin",
+        "level": 1
+    },
+    {
+        "id": 1110,
+        "name": "Paralyze",
+        "min": 10,
+        "max": 35,
+        "level": 1
+    },
+    {
+        "id": 1120,
+        "name": "Deadly Mark",
+        "level": 1
+    },
+    {
+        "id": 1130,
+        "name": "Backstab",
         "level": 1
     },
 

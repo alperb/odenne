@@ -1,4 +1,5 @@
 import OdenneOptions from './helpers/options';
+import { HasmetliHatirati, Invulnerable } from './lib/effects';
 import Odenne from './odenne';
 
 
@@ -106,10 +107,10 @@ let player1 = {
         },
         "skills": [
             0,
-            10,
-            1010,
-            60,
-            70
+            0,
+            0,
+            1130,
+            0
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -132,7 +133,7 @@ let player1 = {
             },
             "stack": 1,
             "stats": {
-                "defense": 69
+                "critic": 0
             },
             "function": [],
             "class": "archer",
@@ -302,10 +303,10 @@ let player2 = {
         },
         "skills": [
             0,
-            10,
-            3010,
-            1040,
-            80
+            0,
+            0,
+            0,
+            0
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -412,6 +413,10 @@ try{
         console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
         console.log({a: battle.teams[0].players[0].player.stats.attack});
         console.log({a: battle.teams[1].players[0].player.stats.attack});
+        console.log({d: battle.teams[0].players[0].player.stats.defense});
+        console.log({d: battle.teams[1].players[0].player.stats.defense});
+        console.log({c: battle.teams[0].players[0].player.stats.critic});
+        console.log({c: battle.teams[1].players[0].player.stats.critic});
     }
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
     console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);

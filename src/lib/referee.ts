@@ -78,6 +78,12 @@ class Referee {
         }
     }
 
+    applyDamage(){
+        for(const team of this.Odenne.teams){
+            team.applyDamage();
+        }
+    }
+
     cleanUpGameVariables(){
 
     }
