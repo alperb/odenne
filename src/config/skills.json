@@ -196,6 +196,36 @@
         "min": 8,
         "max": 12,
         "level": 1
+    },
+    {
+        "id": 3020,
+        "name": "Shield Strike",
+        "min": 7,
+        "max": 15,
+        "shieldMin": 5,
+        "shieldMax": 12,
+        "level": 1
+    },
+    {
+        "id": 3030,
+        "name": "The Defender",
+        "min": 4,
+        "max": 8,
+        "level": 1
+    },
+    {
+        "id": 3040,
+        "name": "Shield Up",
+        "shieldMin": 10,
+        "shieldMax": 15,
+        "level": 1
+    },
+    {
+        "id": 3050,
+        "name": "Awaken",
+        "min": 4,
+        "max": 15,
+        "level": 1
     }
     
 ]

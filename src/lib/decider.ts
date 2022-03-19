@@ -1,5 +1,5 @@
-import { DAMAGETYPES } from "../types/player";
-import { CancelInfo, DamageDone, DeciderSummary } from "../types/types";
+import { DAMAGETYPES, SHIELDTYPES, TempShield } from "../types/player";
+import { CancelInfo, DamageDone, DeciderSummary, ShieldDone } from "../types/types";
 import { Effect } from "./effects";
 import { Skill } from "./skills";
 import { Player } from "./teams";
@@ -11,14 +11,16 @@ export default class Decider {
     Current: DeciderSummary;
     constructor(Player: Player){
         this.Player = Player;
-        this.Current = {damageTaken: [], damageDone: [], effects: []}
+        this.Current = {damageTaken: [], damageDone: [], effects: [], shieldTaken: []}
     }
 
     clear(){
         this.Current.damageDone = [];
         this.Current.damageTaken = [];
         this.Current.effects = [];
+        this.Current.shieldTaken = [];
         this.reduceEffects();
+        this.Player.reduceShields();
     }
 
     reduceEffects(){
@@ -36,14 +38,18 @@ export default class Decider {
 
     takeDamage(damage: DamageDone): CancelInfo {
         const shouldTake = this.shouldTakeDamage(damage);
-        if(!shouldTake.isCancelled){
-            this.Current.damageTaken.push(damage);
-            damage.source.player.Decider.Current.damageDone.push(damage);
-        }
-        else{
-            damage.cancel = shouldTake;
-        }
+        if(shouldTake.isCancelled) damage.cancel = shouldTake;
+        this.Current.damageTaken.push(damage);
+        damage.source.player.Decider.Current.damageDone.push(damage);
 
+        return shouldTake;
+    }
+
+    takeShield(shield: ShieldDone): CancelInfo {
+        const shouldTake = this.shouldTakeShield(shield);
+        if(shouldTake.isCancelled) shield.cancel = shouldTake;
+        this.Current.shieldTaken.push(shield);
+        
         return shouldTake;
     }
 
@@ -60,10 +66,23 @@ export default class Decider {
     }
 
     shouldTakeDamage(damage: DamageDone): CancelInfo {
+        const cc = damage.source.player.hasCC();
+        if(cc && !damage.bypass){
+            return {isCancelled: true, source: cc, sourceMember: cc.config.sourceMember};
+        }
+        return {isCancelled: false}
+    }
+
+    shouldTakeShield(shield: ShieldDone): CancelInfo {
+        const cc = shield.source.player.hasCC();
+        if(cc){
+            return {isCancelled: true, source: cc, sourceMember: cc.config.sourceMember};
+        }
         return {isCancelled: false}
     }
 
     shouldTakeEffect(effect: Effect): CancelInfo {
+        // TODO
         return {isCancelled: false}
     }
 
@@ -107,9 +126,46 @@ export default class Decider {
         }
     }
 
+    applyTakenShields(){
+        for(const shield of this.Current.shieldTaken){
+            if(!shield.cancel.isCancelled){
+                if(shield.type === SHIELDTYPES.PERM){
+                    this.Player.player.shields.permanent += shield.value;
+                }else if(shield.type === SHIELDTYPES.TEMP){
+                    const tempShield: TempShield = {value: shield.value, count: 2, source: shield.source}
+                    this.Player.player.shields.temporary.push(tempShield);
+                }
+            }
+        }
+    }
+
+    private applyShield(damage: number){
+        for(let i = 0; i < this.Player.player.shields.temporary.length; i++){
+            if(this.Player.player.shields.temporary[i].value >= damage){
+                this.Player.player.shields.temporary[i].value -= damage
+                return 0;
+            }
+            else{
+                damage -= this.Player.player.shields.temporary[i].value;
+                this.Player.player.shields.temporary[i].value = 0;
+            }
+        }
+
+        if(this.Player.player.shields.permanent >= damage){
+            this.Player.player.shields.permanent -= damage;
+            return 0;
+        }else{
+            damage -= this.Player.player.shields.permanent;
+            this.Player.player.shields.permanent = 0;
+        }
+
+        return damage;
+    }
+
     private calculateTakenDamage(damage: DamageDone): number {
         let dmg = damage.damage;
         if(!damage.isTrue){
+            dmg = this.applyShield(dmg);
             dmg -= this.Player.getStat("defense");
             if(dmg <= 0) {
                 if(damage.source.source instanceof Skill){

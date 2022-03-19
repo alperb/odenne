@@ -1,4 +1,6 @@
+import { Effect } from "../lib/effects";
 import { Skill, SkillResult } from "../lib/skills";
+import { DamageSource } from "./types";
 
 export interface OriginalPlayer {
     name: string;
@@ -79,6 +81,8 @@ export interface OriginalSkill {
     name: string;
     min?: number;
     max?: number;
+    shieldMin?: number;
+    shieldMax?: number; 
     damage?: number;
 }
 
@@ -93,6 +97,11 @@ export const enum DAMAGETYPES {
     NONE = 'none'
 }
 
+export const enum SHIELDTYPES {
+    TEMP = 'temporary',
+    PERM = 'permanent',
+}
+
 export interface SkillPipe {
     (skill: Skill): SkillResult;
 }
@@ -101,4 +110,14 @@ export interface OdennePlayer {
     stats: Stats;
     skills: Array<Skill>;
     baseStats: Stats;
+    shields: {
+        temporary: TempShield[],
+        permanent: number
+    }
+}
+
+export interface TempShield {
+    value: number;
+    count: number;
+    source: DamageSource;
 }

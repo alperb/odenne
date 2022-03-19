@@ -1,7 +1,7 @@
 import _ from "lodash";
 import Odenne from "../odenne";
 import { Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
-import { DamageDone, DeciderSummary, TurnTypes } from "../types/types";
+import { DamageDone, DeciderSummary, ShieldDone, TurnTypes } from "../types/types";
 import Decider from "./decider";
 import { AttackBonus, Blind, Effect, StatBonus } from "./effects";
 import { AttackSkill, DefenseSkill, PassiveSkill, Skill } from "./skills";
@@ -54,11 +54,11 @@ export class Team {
         }
         if(summaries.length === 1) return summaries[0];
         else{
-            let summary: DeciderSummary = {damageDone: [], damageTaken: [], effects: []};
+            let summary: DeciderSummary = {damageDone: [], damageTaken: [], effects: [], shieldTaken: []};
             for(const sum of summaries){
                 for(const key in sum){
                     for(const elem of sum[key as keyof DeciderSummary]){
-                        summary[key as keyof DeciderSummary].push(elem as DamageDone & Effect)
+                        summary[key as keyof DeciderSummary].push(elem as DamageDone & Effect & ShieldDone)
                     }
                 }
             }
@@ -84,6 +84,12 @@ export class Team {
         }
     }
 
+    applyShield(){
+        for(const player of this.players){
+            player.Decider.applyTakenShields();
+        }
+    }
+
     runPassiveSkills(){
         for(const player of this.players){
             player.preparePassiveSkills();
@@ -102,26 +108,40 @@ export class Member {
         this.team = Team;
         this.original = original;
         this.player = {
-            stats: {
-
+            stats: {},
+            baseStats: {},
+            skills: [],
+            shields: {
+                temporary: [],
+                permanent: 0
             },
-            baseStats: {
-
-            },
-            skills: []
         };
 
         this.effects = [];
     }
 
     hasEffect(effectType: string){
-        return this.effects.some(e => e.constructor.name === effectType);
+        let effects = this.effects.filter(e => e.constructor.name === effectType);
+        if(effects.length > 0) return effects[0]
     }
 
     hasCC(){
-        const CCs = ["Blind"];
+        const CCs = ["Blind", "Stun"];
 
-        return CCs.some(c => this.hasEffect(c));
+        for(const cc of CCs){
+            const effect = this.hasEffect(cc);
+            if(effect) return effect;
+        }
+    }
+
+    reduceShields(){
+        for(let i = 0; i < this.player.shields.temporary.length; i++){
+            this.player.shields.temporary[i].count -= 1;
+            if(this.player.shields.temporary[i].count === 0){
+                this.player.shields.temporary.splice(i, 1);
+                i--;
+            }
+        }
     }
 
     getRandomSkill(): Skill | undefined {

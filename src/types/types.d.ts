@@ -1,6 +1,7 @@
 import { Effect } from "../lib/effects";
 import { Skill } from "../lib/skills";
 import { Mob, Player } from "../lib/teams";
+import { SHIELDTYPES } from "./player";
 
 export interface OdenneTurn {
     type: TurnTypes;
@@ -31,6 +32,15 @@ export interface DamageDone {
     cancel: CancelInfo;
     critic?: CriticResult;
     isTrue: boolean;
+    bypass?: boolean;
+}
+
+export interface ShieldDone{
+    value: number;
+    type: SHIELDTYPES;
+    source: DamageSource;
+    target: Player | Mob;
+    cancel: CancelInfo;
 }
 
 export interface DamageSource {
@@ -48,6 +58,7 @@ export interface DeciderSummary {
     damageTaken: DamageDone[]
     damageDone: DamageDone[]
     effects: Effect[]
+    shieldTaken: ShieldDone[]
 }
 
 export interface EffectConfig {

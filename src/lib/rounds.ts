@@ -62,9 +62,10 @@ export class AttackRound extends Round {
 
                 this.Odenne.Referee.applyRound();
                 this.Odenne.Referee.applyDamage();
+                this.Odenne.Referee.applyShield();
+
                 let summaries: DeciderSummary[] = [];
                 for(const team of this.Odenne.teams){
-                    //? Ben yapmadim hepsi alperin sucu yoksa ben n^4 yapmam
                     summaries.push(team.getSummaries());
                 }
 

@@ -58,6 +58,10 @@ export default class Effects {
                 return new HakimBey(config);
             case 'RuhsarinIntikami':
                 return new RuhsarinIntikami(config);
+            case 'Stun':
+                return new Stun(config);
+            case 'Awaken':
+                return new Awaken(config);
             default:
                 return undefined;
         }
@@ -124,6 +128,10 @@ export class EffectResult {
     setSource(player: Player){
         this.source = player;
     }
+}
+
+export abstract class CrowdControlEffect extends ActiveEffect {
+
 }
 
 //#region Stat Bonuses
@@ -372,7 +380,7 @@ export class Invulnerable extends ActiveEffect {
     
 }
 
-export class Blind extends ActiveEffect {
+export class Blind extends CrowdControlEffect {
     constructor(config: EffectConfig){
         super(config);
 
@@ -592,7 +600,7 @@ export class MakarnaCanavari extends PassiveEffect {
     }
 
     private shouldDealBonus(damage: DamageDone): boolean {
-        return damage.target.hasCC();
+        return !damage.target.hasCC();
     }
 
     private increaseDamage(){
@@ -733,4 +741,69 @@ export class RuhsarinIntikami extends PassiveEffect {
     afterDo(): void {
         this.reflectDamages();
     }
+}
+
+export class Stun extends CrowdControlEffect {
+    constructor(config: EffectConfig){
+        super(config);
+
+        this.count = config.count ?? 2;
+    }
+
+    init(): void {}
+
+    do(): void {
+
+    }
+
+    private removeDamages(){
+        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
+            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
+                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+                }
+            }
+        }
+    }
+
+    private checkIfDamageDealt(){
+        for(const damage of this.config.targetMember.Decider.Current.damageDone){
+            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
+        }
+
+        return false;
+    }
+
+    afterDo(): void {
+        if(this.checkIfDamageDealt()) this.removeDamages();
+    }
+
+    
+}
+
+export class Awaken extends ActiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+
+        this.count = config.count ?? 1;
+    }
+
+    private removeCCs(){
+        for(let i = 0; i < this.config.targetMember.effects.length; i++){
+            if(this.config.targetMember.effects[i] instanceof CrowdControlEffect){
+                this.config.targetMember.effects.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
+    init(): void {
+        this.removeCCs();
+    }
+
+    do(): void {}
+
+    afterDo(): void {}
+
+    
 }

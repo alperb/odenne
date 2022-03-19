@@ -1,6 +1,6 @@
 import Odenne from "../odenne";
-import { DAMAGETYPES, OriginalSkill, SkillPipe } from "../types/player";
-import { BonusDetails, DamageDone, EffectConfig } from "../types/types";
+import { DAMAGETYPES, OriginalSkill, SHIELDTYPES, SkillPipe } from "../types/player";
+import { BonusDetails, DamageDone, EffectConfig, ShieldDone } from "../types/types";
 import { Effect } from "./effects";
 import { CriticModifier, Modifier, RangeModifier } from "./modifiers";
 import { Round } from "./rounds";
@@ -127,6 +127,18 @@ export default class Skills {
             case 3010:
                 Player.player.skills.push(new BashI(Player, skill));
                 return;
+            case 3020:
+                Player.player.skills.push(new ShieldStrikeI(Player, skill));
+                return;
+            case 3030:
+                Player.player.skills.push(new TheDefenderI(Player, skill));
+                return;
+            case 3040:
+                Player.player.skills.push(new ShieldUpI(Player, skill));
+                return;
+            case 3050:
+                Player.player.skills.push(new AwakenI(Player, skill));
+                return;
             //#endregion
             
             default:
@@ -174,6 +186,13 @@ export abstract class Skill {
         }
     }
 
+    applyShield(shields: ShieldDone[]){
+        for(const shield of shields){
+            shield.target.Decider.takeShield(shield);
+        }
+    }
+
+
     saveUse(){
         this.usedRounds.push(this.player.team.Odenne.Referee.roundCount);
     }
@@ -196,14 +215,20 @@ export abstract class Skill {
 export class SkillResult {
     Player: Player;
     damaged: DamageDone[];
+    shields: ShieldDone[];
 
     constructor(Player: Player){
         this.Player = Player;
         this.damaged = [];
+        this.shields = [];
     }
 
     addDamage(damage: DamageDone){
         this.damaged.push(damage);
+    }
+
+    addShield(shield: ShieldDone){
+        this.shields.push(shield);
     }
 }
 
@@ -1371,6 +1396,191 @@ export class BashI extends AttackSkill {
     
 }
 
+export class ShieldStrikeI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.prepare();
+        this.effects = [];
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+        const target = this.findTarget();
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
+        result.addShield({value: this.skill.shieldMin as number, source: {player: this.player, source: this}, target: this.player, type: SHIELDTYPES.TEMP, cancel: {isCancelled: false}});
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        this.applyDamage(result.damaged);
+        this.applyShield(result.shields);
+
+        return result;
+    }
+}
+
+
+export class TheDefenderI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.prepare();
+        this.effects = ["Stun"];
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+        const target = this.findTarget();
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
+        const stunEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyDamage(result.damaged);
+        this.applyEffects([stunEffect]);
+        
+
+        return result;
+    }
+}
+
+export class ShieldUpI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.prepare();
+        this.effects = ["DefenseBonus"];
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+        result.addShield({value: this.skill.shieldMin as number, source: {player: this.player, source: this}, target: this.player, type: SHIELDTYPES.TEMP, cancel: {isCancelled: false}});
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        // context ayni
+        const details: BonusDetails = {value: 50, type: 1, count: 2};
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
+        const dbEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig, details) as Effect;
+
+        this.applyShield(result.shields);
+        this.applyEffects([dbEffect]);
+        
+        return result;
+    }
+}
+
+export class AwakenI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.prepare();
+        this.effects = ["Awaken"];
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+        const target = this.findTarget();
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false, bypass: true});
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        // context ayni
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
+        const awEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyDamage(result.damaged);
+        this.applyEffects([awEffect]);
+        
+        return result;
+    }
+}
 //#endregion
 
 
