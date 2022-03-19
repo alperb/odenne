@@ -70,6 +70,12 @@ export default class Effects {
                 return new ValenianinAdaleti(config);
             case 'Taunt':
                 return new Taunt(config);
+            case 'HakFive':
+                return new HakFive(config);
+            case 'Ataturk':
+                return new Ataturk(config);
+            case 'BumBeYarrag':
+                return new BumBeYarrag(config);
             default:
                 return undefined;
         }
@@ -82,6 +88,7 @@ export abstract class Effect {
     config: EffectConfig;
     count!: number;
     cancel: CancelInfo;
+    emoji: string = "";
 
     constructor(config: EffectConfig){
         this.config = config;
@@ -890,4 +897,101 @@ export class Taunt extends ActiveEffect {
     afterDo(): void {}
 
     
+}
+
+export class HakFive extends PassiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+    private calculateDefenseBonus(): number{
+        let sum = 0;
+        for(const clothKey of Object.keys(this.config.targetMember.original.wearings)){
+            if(clothKey == 'skills') continue;
+
+            const item: Item = this.config.targetMember.original.wearings[clothKey] as Item;
+            sum += item.stats.defense ?? 0;
+        }
+
+        return sum * 30 / 100 / (this.config.targetMember as Player).DIVIDERS.defense;
+    }
+
+    init(): void {
+        this.config.targetMember.player.stats.defense += this.calculateDefenseBonus();
+    }
+
+    do(): void {
+        
+    }
+
+    afterDo(): void {
+        
+    }
+}
+
+export class Ataturk extends PassiveEffect {
+    hasWorked: boolean = false;
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+    private calculateDefenseBonus(): number{
+        const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.player.stats.health;
+        const percentage = missingHealth / this.config.targetMember.player.baseStats.health * 100;
+        if(percentage > 50){
+            this.hasWorked = true;
+            return this.config.targetMember.player.baseStats.health / 2;
+        }
+
+        return 0;
+    }
+
+    init(): void {}
+
+    do(): void {
+        if(!this.hasWorked){
+            this.config.targetMember.player.shields.permanent += this.calculateDefenseBonus();
+        }
+    }
+
+    afterDo(): void {
+        
+    }
+}
+
+export class BumBeYarrag extends PassiveEffect {
+    hasWorked: boolean = false;
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+    private placeDamage(damage: DamageDone){
+        damage.target.Decider.takeDamage(damage);
+    }
+
+    private reflectDamages(){
+        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
+            let takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
+            
+            let reflectedDamage = takenDamage * .2;
+            let reflected: DamageDone = {
+                damage: reflectedDamage, 
+                source: {player: this.config.targetMember, source: this}, 
+                target: this.config.targetMember.Decider.Current.damageTaken[i].source.player, 
+                cancel: {isCancelled: false}, 
+                isTrue: false
+            }
+            this.placeDamage(reflected);
+        }
+
+    }
+
+    init(): void {}
+
+    do(): void {
+    }
+
+    afterDo(): void {
+        this.reflectDamages();
+    }
 }

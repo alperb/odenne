@@ -248,6 +248,26 @@
         "min": 5,
         "max": 17,
         "level": 1
+    },
+    {
+        "id": 3100,
+        "name": "Brute Force",
+        "level": 1
+    },
+    {
+        "id": 3110,
+        "name": "Rage",
+        "level": 1
+    },
+    {
+        "id": 3120,
+        "name": "Magma Armor",
+        "level": 1
+    },
+    {
+        "id": 3130,
+        "name": "Evolve",
+        "level": 1
     }
     
 ]

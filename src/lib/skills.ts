@@ -151,6 +151,18 @@ export default class Skills {
             case 3090:
                 Player.player.skills.push(new TauntI(Player, skill));
                 return;
+            case 3100:
+                Player.player.skills.push(new BruteForceI(Player, skill));
+                return;
+            case 3110:
+                Player.player.skills.push(new RageI(Player, skill));
+                return;
+            case 3120:
+                Player.player.skills.push(new MagmaArmorI(Player, skill));
+                return;
+            case 3130:
+                Player.player.skills.push(new EvolveI(Player, skill));
+                return;
             //#endregion
             
             default:
@@ -1718,6 +1730,103 @@ export class TauntI extends AttackSkill {
         this.applyEffects([dbEffect]);
         
         return result;
+    }
+}
+
+export class BruteForceI extends PassiveSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.player = Player;
+        this.skill = skill;
+        this.chance = 100;
+
+        this.effects = ['HakFive'];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player}
+        const hfEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([hfEffect]);
+    }
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+}
+
+export class RageI extends PassiveSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.player = Player;
+        this.skill = skill;
+        this.chance = 100;
+
+        this.effects = ['Ataturk'];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player}
+        const ataEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([ataEffect]);
+    }
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+}
+
+export class MagmaArmorI extends PassiveSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.player = Player;
+        this.skill = skill;
+        this.chance = 100;
+
+        this.effects = ['BumBeYarrag'];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player}
+        const maEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([maEffect]);
+    }
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+}
+
+export class EvolveI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.effects = [];
+    }
+
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        const missingHealth = this.player.player.baseStats.health - this.player.player.stats.health;
+        const percentage = missingHealth / this.player.player.baseStats.health * 100;
+        const gainIncrease = percentage / 100 * 50;
+
+        this.player.player.stats.defense += this.player.player.stats.defense * gainIncrease / 100;
+
+        return new SkillResult(this.player);
     }
 }
 //#endregion

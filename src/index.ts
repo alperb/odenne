@@ -107,10 +107,10 @@ let player1 = {
         },
         "skills": [
             0,
-            3090,
-            3090,
-            3090,
-            3090
+            3130,
+            3130,
+            3130,
+            3130
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -133,7 +133,7 @@ let player1 = {
             },
             "stack": 1,
             "stats": {
-                "critic": 0
+                "defense": 100
             },
             "function": [],
             "class": "archer",
@@ -499,9 +499,9 @@ let player2 = {
         },
         "skills": [
             3000,
-            3000,
-            3000,
-            3000,
+            20,
+            20,
+            20,
             3080
         ],
         "chest": {
