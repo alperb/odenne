@@ -1,5 +1,5 @@
 import Odenne from '../odenne';
-import { OdenneTurn, STATUSCODES, TurnTypes } from '../types/types';
+import { GetRandomPlayerOptions, OdenneTurn, STATUSCODES, TurnTypes } from '../types/types';
 import { Round } from './rounds';
 import { Player } from './teams';
 
@@ -39,12 +39,23 @@ class Referee {
         else return 0;
     }
 
-    getRandomPlayer(teamIndex: number): {id: number, player: Player} {
-        const playerCount = this.Odenne.teams[teamIndex].players.length;
+    getRandomPlayer(teamIndex: number, options: GetRandomPlayerOptions = {considerTaunt: false}): {id: number, player: Player} {
+        if(options.considerTaunt){
+            for(let i = 0; i < this.Odenne.teams[teamIndex].players.length; i++){
+                if(this.Odenne.teams[teamIndex].players[i].hasEffect("Taunt")){
+                    return {
+                        id: i,
+                        player: this.Odenne.teams[ teamIndex ].players[ i ]
+                    }
+                }
+            }
+        }
+        
+        const playerCount = this.Odenne.teams[ teamIndex ].players.length;
         const randomized = Math.floor(Math.random() * playerCount);
         return {
             id: randomized,
-            player: this.Odenne.teams[teamIndex].players[ randomized ]
+            player: this.Odenne.teams[ teamIndex ].players[ randomized ]
         }
     }
 

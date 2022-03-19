@@ -139,6 +139,18 @@ export default class Skills {
             case 3050:
                 Player.player.skills.push(new AwakenI(Player, skill));
                 return;
+            case 3060:
+                Player.player.skills.push(new UnstoppableI(Player, skill));
+                return;
+            case 3070:
+                Player.player.skills.push(new FuryI(Player, skill));
+                return;
+            case 3080:
+                Player.player.skills.push(new CircleOfProtectionI(Player, skill));
+                return;
+            case 3090:
+                Player.player.skills.push(new TauntI(Player, skill));
+                return;
             //#endregion
             
             default:
@@ -170,7 +182,7 @@ export abstract class Skill {
 
     findTarget(): {id: number, player: Player} {
         const opponentIndex = (this.player.team.index + 1) % 2;
-        const p = this.player.team.Odenne.Referee.getRandomPlayer(opponentIndex);
+        const p = this.player.team.Odenne.Referee.getRandomPlayer(opponentIndex, {considerTaunt: true});
         return p;
     }
 
@@ -1577,6 +1589,133 @@ export class AwakenI extends AttackSkill {
 
         this.applyDamage(result.damaged);
         this.applyEffects([awEffect]);
+        
+        return result;
+    }
+}
+
+export class UnstoppableI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.effects = ["CrowdControlImmunity"];
+    }
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
+        const immEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyDamage(result.damaged);
+        this.applyEffects([immEffect]);
+        
+        return result;
+    }
+}
+
+export class FuryI extends PassiveSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.player = Player;
+        this.skill = skill;
+        this.chance = 100;
+        this.effects = ["FastAndFurious"];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player} // Kimse sorgulayamaz bizi pussy boylar.
+        const invulEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([invulEffect]);
+    }
+
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+
+    
+}
+
+export class CircleOfProtectionI extends PassiveSkill {
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.player = Player;
+        this.skill = skill;
+        this.chance = 100;
+        this.effects = ["ValenianinAdaleti"];
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player}
+        const vaEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([vaEffect]);
+    }
+
+    do(): SkillResult {
+        return new SkillResult(this.player);
+    }
+
+    
+}
+
+export class TauntI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.RANGED;
+        this.chance = 100;
+
+        this.prepare();
+        this.effects = ["Taunt"];
+    }
+
+    prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
+
+    
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+        const target = this.findTarget();
+
+        result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
+        for(const modifier of this.modifiers){
+            result = modifier.apply(result) as SkillResult;
+        }
+
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
+        const dbEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyDamage(result.damaged);
+        this.applyEffects([dbEffect]);
         
         return result;
     }

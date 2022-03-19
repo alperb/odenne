@@ -62,6 +62,14 @@ export default class Effects {
                 return new Stun(config);
             case 'Awaken':
                 return new Awaken(config);
+            case 'CrowdControlImmunity':
+                return new CrowdControlImmunity(config);
+            case 'FastAndFurious':
+                return new FastAndFurious(config);
+            case 'ValenianinAdaleti':
+                return new ValenianinAdaleti(config);
+            case 'Taunt':
+                return new Taunt(config);
             default:
                 return undefined;
         }
@@ -799,6 +807,82 @@ export class Awaken extends ActiveEffect {
 
     init(): void {
         this.removeCCs();
+    }
+
+    do(): void {}
+
+    afterDo(): void {}
+
+    
+}
+
+export class CrowdControlImmunity extends ActiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+
+        this.count = config.count ?? 3;
+    }
+
+    init(): void {
+    }
+
+    do(): void {}
+
+    afterDo(): void {}
+
+    
+}
+
+export class FastAndFurious extends PassiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+
+    init(): void {
+    }
+
+    do(): void {
+        
+    }
+
+    afterDo(): void {
+        
+    }
+}
+
+export class ValenianinAdaleti extends PassiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+
+    init(): void {}
+        
+
+    do(): void {
+        // TODO: burayi anlamadik
+        if(this.config.targetMember !== this.config.targetMember.team.Odenne.Referee.turn.player.player as Player){
+            const bonusDetails: BonusDetails = {value: 150, type: 1, count: 2};
+            const effconfig: EffectConfig = {source: this, sourceMember: this.config.targetMember, targetMember: this.config.targetMember}
+            const vaEffect = this.config.targetMember.team.Odenne.Effects.new("DefenseBonus", effconfig, bonusDetails) as Effect;
+            this.config.targetMember.Decider.takeEffect(vaEffect);
+        }
+    }
+
+    afterDo(): void {
+        
+    }
+}
+
+export class Taunt extends ActiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+
+        this.count = config.count ?? 4;
+    }
+
+    init(): void {
     }
 
     do(): void {}

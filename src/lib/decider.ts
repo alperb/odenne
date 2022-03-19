@@ -1,6 +1,6 @@
 import { DAMAGETYPES, SHIELDTYPES, TempShield } from "../types/player";
 import { CancelInfo, DamageDone, DeciderSummary, ShieldDone } from "../types/types";
-import { Effect } from "./effects";
+import { CrowdControlEffect, Effect } from "./effects";
 import { Skill } from "./skills";
 import { Player } from "./teams";
 
@@ -70,6 +70,8 @@ export default class Decider {
         if(cc && !damage.bypass){
             return {isCancelled: true, source: cc, sourceMember: cc.config.sourceMember};
         }
+
+
         return {isCancelled: false}
     }
 
@@ -78,11 +80,18 @@ export default class Decider {
         if(cc){
             return {isCancelled: true, source: cc, sourceMember: cc.config.sourceMember};
         }
+
+
         return {isCancelled: false}
     }
 
     shouldTakeEffect(effect: Effect): CancelInfo {
-        // TODO
+        const CCImmunity = effect.config.targetMember.hasEffect("CrowdControlImmunity");
+        if(effect instanceof CrowdControlEffect && !!CCImmunity){
+            return {isCancelled: true, source: CCImmunity, sourceMember: effect.config.targetMember};
+        }
+
+
         return {isCancelled: false}
     }
 
@@ -129,7 +138,7 @@ export default class Decider {
     applyTakenShields(){
         for(const shield of this.Current.shieldTaken){
             if(!shield.cancel.isCancelled){
-                if(shield.type === SHIELDTYPES.PERM){
+                if(shield.type === SHIELDTYPES.PERM || shield.target.hasEffect("FastAndFurious")){
                     this.Player.player.shields.permanent += shield.value;
                 }else if(shield.type === SHIELDTYPES.TEMP){
                     const tempShield: TempShield = {value: shield.value, count: 2, source: shield.source}

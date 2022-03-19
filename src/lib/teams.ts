@@ -35,6 +35,13 @@ export class Team {
         this.index = 0;
     }
 
+    checkIfMember(player: Player){
+        for(const p of this.players){
+            if(p === player) return true;
+        }
+        return false;
+    }
+
     addPlayer(originalPlayer: OriginalPlayer){
         const player = new Player(this, originalPlayer);
         this.players.push(player);

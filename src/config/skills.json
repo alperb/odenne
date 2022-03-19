@@ -226,6 +226,28 @@
         "min": 4,
         "max": 15,
         "level": 1
+    },
+    {
+        "id": 3060,
+        "name": "Unstoppable",
+        "level": 1
+    },
+    {
+        "id": 3070,
+        "name": "Fury",
+        "level": 1
+    },
+    {
+        "id": 3080,
+        "name": "Circle of Protection",
+        "level": 1
+    },
+    {
+        "id": 3090,
+        "name": "Taunt",
+        "min": 5,
+        "max": 17,
+        "level": 1
     }
     
 ]

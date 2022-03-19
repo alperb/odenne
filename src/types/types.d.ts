@@ -79,3 +79,7 @@ export interface BonusDetails {
     type: number;
     count: number;
 }
+
+export interface GetRandomPlayerOptions {
+    considerTaunt: boolean;
+}
