@@ -32,6 +32,7 @@ class OdenneOptions {
      */
     setRoundLimit(val: number){
         this.roundLimit = val;
+        return this;
     }
 
     /**
@@ -51,6 +52,7 @@ class OdenneOptions {
      */
     calculateItemStats(index: number, value: boolean){
         this.shouldCalculateItems[index] = value;
+        return this;
     }
 
     shouldCalculateItemStats(index: number){

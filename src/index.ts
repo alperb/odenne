@@ -1,6 +1,5 @@
-import OdenneOptions from './helpers/options';
-import { HasmetliHatirati, Invulnerable } from './lib/effects';
-import Odenne from './odenne';
+import OdenneOptions from './odenne/helpers/options';
+import Odenne from './odenne/odenne';
 
 
 let player1 = {
