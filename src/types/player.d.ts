@@ -3,6 +3,8 @@ import { Skill, SkillResult } from "../lib/skills";
 import { DamageSource } from "./types";
 
 export interface OriginalPlayer {
+    snowflake: string;
+    characterId: string;
     name: string;
     discriminator: string;
     stats: Stats;

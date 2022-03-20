@@ -102,7 +102,7 @@ class Referee {
     }
 
     cleanUpGameVariables(){
-
+        this.Odenne.Statistics.processEndGame();
     }
 
     preparePassives(){

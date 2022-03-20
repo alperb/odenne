@@ -107,10 +107,10 @@ let player1 = {
         },
         "skills": [
             0,
-            3130,
-            3130,
-            3130,
-            3130
+            10,
+            20,
+            30,
+            40
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -197,10 +197,14 @@ let player1 = {
     "name": "Waffle",
     "isDead": false,
     "skills": [],
-    discriminator: '#1234'
+    discriminator: '#1234',
+    snowflake: '123',
+    characterId: '123'
 }
 let player15 = {
     "class": "archer",
+    snowflake: '123',
+    characterId: '1234',
     "wearings": {
         "leggings": {
             "placement": "leggings",
@@ -498,11 +502,11 @@ let player2 = {
             "crafting": []
         },
         "skills": [
-            3000,
-            20,
-            20,
-            20,
-            3080
+            1000,
+            1010,
+            1020,
+            1030,
+            1040
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -589,9 +593,13 @@ let player2 = {
     "name": "Edip",
     "isDead": false,
     "skills": [],
-    discriminator: '#1234'
+    discriminator: '#1234',
+    snowflake: '1234',
+    characterId: '1234'
 }
 let player25 = {
+    snowflake: '12345',
+    characterId: 'alper',
     "class": "archer",
     "wearings": {
         "leggings": {
@@ -791,38 +799,48 @@ let player25 = {
 const options = new OdenneOptions();
 options
     .addToTeam(0, player1)
-    //.addToTeam(0, player15)
+    .addToTeam(0, player15)
     .addToTeam(1, player2)
-    //.addToTeam(1, player25);
+    .addToTeam(1, player25);
 
-    
+import fs from 'fs';
+
 try{
     let battle = new Odenne(options);
 
     battle.start();
-    while(battle.status.get() !== 'FINISHED'){
-        console.log('=======================');
+    setInterval(() => {
+        // console.log('=======================');
+       try{
         battle.advance();
-        console.log(battle.UI.getCurrentRoundLog());
-        console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
+       }
+       catch(e){
+        const used = process.memoryUsage().heapUsed / 1024 / 1024;
+        console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+        console.log(e);
+       }
+        // console.log(battle.UI.getCurrentRoundLog());
+        // console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
 
-        console.log({a: battle.teams[0].players[0].player.stats.attack});
-        console.log({a: battle.teams[1].players[0].player.stats.attack});
+        // console.log({a: battle.teams[0].players[0].player.stats.attack});
+        // console.log({a: battle.teams[1].players[0].player.stats.attack});
 
-        console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
-        console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
+        // console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
+        // console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
 
-        console.log({c: battle.teams[0].players[0].player.stats.critic});
-        console.log({c: battle.teams[1].players[0].player.stats.critic});
+        // console.log({c: battle.teams[0].players[0].player.stats.critic});
+        // console.log({c: battle.teams[1].players[0].player.stats.critic});
 
-        console.log({s: battle.teams[0].players[0].player.shields});
-        console.log({s: battle.teams[1].players[0].player.shields});
-        
-    }
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+        // console.log({s: battle.teams[0].players[0].player.shields});
+        // console.log({s: battle.teams[1].players[0].player.shields});
+    }, 2500);
+    // console.log('=======================');
+    // console.log(battle.Statistics.teams[1][0].totalDamageDone);
+    // console.log('=======================');
+    
 }
 catch(e){
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
     console.log(e);
-    
 }
