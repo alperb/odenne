@@ -1,6 +1,6 @@
 /**
  * Odenne
- * Author: Alper Berber <berber@sabanciuniv.edu>
+ * Authors: Alper Berber <berber@sabanciuniv.edu> & Edip Emre Bodur <edipemre.bodur@bahcesehir.edu.tr>
  * Version: 1.0.0
  * ----------------
  * Note:
