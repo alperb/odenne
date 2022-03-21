@@ -181,6 +181,66 @@
         "max": 15,
         "level": 1
     },
+    {
+        "id": 2020,
+        "name": "The Mirror",
+        "level": 1
+    },
+    {
+        "id": 2030,
+        "name": "Ignite",
+        "min": 6,
+        "max": 13,
+        "level": 1
+    },
+    {
+        "id": 2040,
+        "name": "Freeze",
+        "min": 7,
+        "max": 15,
+        "level": 1
+    },
+    {
+        "id": 2050,
+        "name": "Iceborn",
+        "level": 1
+    },
+    {
+        "id": 2060,
+        "name": "Blizzard",
+        "min": 15,
+        "max": 21,
+        "level": 1
+    },
+    {
+        "id": 2070,
+        "name": "Foresight",
+        "level": 1
+    },
+    {
+        "id": 2080,
+        "name": "Destruction",
+        "level": 1
+    },
+    {
+        "id": 2090,
+        "name": "Mage Adept",
+        "min": 5,
+        "max": 19,
+        "level": 1
+    },
+    {
+        "id": 2100,
+        "name": "Magelight",
+        "level": 1
+    },
+    {
+        "id": 2110,
+        "name": "Meteor Rain",
+        "min": 15,
+        "max": 75,
+        "level": 1
+    },
 
 
     {

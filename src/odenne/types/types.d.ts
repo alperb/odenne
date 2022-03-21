@@ -83,3 +83,9 @@ export interface BonusDetails {
 export interface GetRandomPlayerOptions {
     considerTaunt: boolean;
 }
+
+export const enum SKILLTYPES {
+    BASIC = 'basicattack',
+    ABILITY = 'ability',
+    ULTIMATE = 'ultimate'
+}

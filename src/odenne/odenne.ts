@@ -21,7 +21,7 @@ import Keeper from './lib/keeper';
 import Referee from './lib/referee';
 import Environments from './lib/environments';
 import Effects from './lib/effects';    
-import Skills, { Skill } from './lib/skills';
+import Skills from './lib/skills';
 import Rounds from './lib/rounds';
 import OdenneUI from './lib/ui';
 import Rarity from './helpers/rarity';
@@ -32,8 +32,13 @@ import { OriginalSkill } from './types/player';
 import Narrator from './lib/narrator';
 import Statistics from './lib/statistics';
 
-// External helpers
-// import Rarity from './helpers/rarity';
+/**
+ * TODO List
+ * [] Set Bonuses
+ * [] Mage Mimic & Illusion
+ * [] Critic Modifier
+ * [] UI Bulk Log
+ */
 
 export class Odenne {
     exceptions: {[key: string]: string};

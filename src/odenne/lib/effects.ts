@@ -76,6 +76,18 @@ export default class Effects {
                 return new Ataturk(config);
             case 'BumBeYarrag':
                 return new BumBeYarrag(config);
+            case 'TheMirror':
+                return new TheMirror(config);
+            case 'Frozen':
+                return new Frozen(config);
+            case 'FrozenCut':
+                return new FrozenCut(config);
+            case 'Destructor':
+                return new Destructor(config);
+            case 'SineminAnnelikIcgudusu':
+                return new SineminAnnelikIcgudusu(config);
+            case 'MeteorRain':
+                return new MeteorRain(config);
             default:
                 return undefined;
         }
@@ -223,13 +235,131 @@ export class CriticBonus extends StatBonus {
     afterDo(): void {}
 }
 
+//#region CrowdControlEffects
+
+export class Stun extends CrowdControlEffect {
+    constructor(config: EffectConfig){
+        super(config);
+
+        this.count = config.count ?? 2;
+    }
+
+    init(): void {}
+
+    do(): void {
+
+    }
+
+    private removeDamages(){
+        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
+            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
+                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+                }
+            }
+        }
+    }
+
+    private checkIfDamageDealt(){
+        for(const damage of this.config.targetMember.Decider.Current.damageDone){
+            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
+        }
+
+        return false;
+    }
+
+    afterDo(): void {
+        if(this.checkIfDamageDealt()) this.removeDamages();
+    }
+
+    
+}
+
+export class Blind extends CrowdControlEffect {
+    constructor(config: EffectConfig){
+        super(config);
+
+        this.count = config.count ?? 2;
+    }
+
+    init(): void {}
+
+    do(): void {
+
+    }
+
+    private removeDamages(){
+        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
+            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
+                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+                }
+            }
+        }
+    }
+
+    private checkIfDamageDealt(){
+        for(const damage of this.config.targetMember.Decider.Current.damageDone){
+            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
+        }
+
+        return false;
+    }
+
+    afterDo(): void {
+        if(this.checkIfDamageDealt()) this.removeDamages();
+    }
+
+    
+}
+
+export class Frozen extends CrowdControlEffect {
+    constructor(config: EffectConfig){
+        super(config);
+
+        this.count = config.count ?? 2;
+    }
+
+    init(): void {}
+
+    do(): void {
+
+    }
+
+    private removeDamages(){
+        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
+            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
+                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+                }
+            }
+        }
+    }
+
+    private checkIfDamageDealt(){
+        for(const damage of this.config.targetMember.Decider.Current.damageDone){
+            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
+        }
+
+        return false;
+    }
+
+    afterDo(): void {
+        if(this.checkIfDamageDealt()) this.removeDamages();
+    }
+
+    
+}
+
+//#endregion
+
 //#endregion
 
 export class Ignite extends ActiveEffect {
     
     constructor(config: EffectConfig){
         super(config);
-        this.count = 2;
+        this.count = 3;
     }
 
     init(): void {}
@@ -240,7 +370,7 @@ export class Ignite extends ActiveEffect {
             target: this.config.targetMember,
             cancel: {isCancelled: false},
             damage: 5,
-            isTrue: false
+            isTrue: false,
         })
     }
 
@@ -390,44 +520,6 @@ export class Invulnerable extends ActiveEffect {
         this.removeDamages();
 
         if(this.count < 0 && this.checkIfDamageDealt()) this.count = 1;
-    }
-
-    
-}
-
-export class Blind extends CrowdControlEffect {
-    constructor(config: EffectConfig){
-        super(config);
-
-        this.count = config.count ?? 2;
-    }
-
-    init(): void {}
-
-    do(): void {
-
-    }
-
-    private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
-                }
-            }
-        }
-    }
-
-    private checkIfDamageDealt(){
-        for(const damage of this.config.targetMember.Decider.Current.damageDone){
-            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
-        }
-
-        return false;
-    }
-
-    afterDo(): void {
-        if(this.checkIfDamageDealt()) this.removeDamages();
     }
 
     
@@ -758,44 +850,6 @@ export class RuhsarinIntikami extends PassiveEffect {
     }
 }
 
-export class Stun extends CrowdControlEffect {
-    constructor(config: EffectConfig){
-        super(config);
-
-        this.count = config.count ?? 2;
-    }
-
-    init(): void {}
-
-    do(): void {
-
-    }
-
-    private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
-                }
-            }
-        }
-    }
-
-    private checkIfDamageDealt(){
-        for(const damage of this.config.targetMember.Decider.Current.damageDone){
-            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
-        }
-
-        return false;
-    }
-
-    afterDo(): void {
-        if(this.checkIfDamageDealt()) this.removeDamages();
-    }
-
-    
-}
-
 export class Awaken extends ActiveEffect {
     constructor(config: EffectConfig){
         super(config);
@@ -994,4 +1048,147 @@ export class BumBeYarrag extends PassiveEffect {
     afterDo(): void {
         this.reflectDamages();
     }
+}
+
+export class TheMirror extends ActiveEffect {
+    
+    constructor(config: EffectConfig){
+        super(config);
+        this.count = 1;
+    }
+
+    init(): void {}
+
+    do(): void {}
+
+    afterDo(): void {
+        this.removeDamages();
+    }
+
+    private removeDamages(){
+        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
+            this.config.targetMember.Decider.Current.damageTaken[i].damage *= 0.6;
+        }
+    }
+}
+
+export class FrozenCut extends PassiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+    private shouldDealBonus(damage: DamageDone): boolean {
+        return !damage.source.player.hasEffect("FrozenCut");
+    }
+
+    private increaseDamage(){
+        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
+            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
+                if(this.config.sourceMember === this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player ){
+                    const gainMultiplier = this.shouldDealBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]) ? 2 : 1;
+                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
+                }   
+            }
+        }
+    }
+
+    init(): void {}
+
+    do(): void {}
+
+    afterDo(): void {
+        this.increaseDamage();
+    }
+}
+
+export class Destructor extends PassiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+    private calculateAttackBonus(): number{
+        let sum = 0;
+        for(const clothKey of Object.keys(this.config.targetMember.original.wearings)){
+            if(clothKey == 'skills') continue;
+
+            const item: Item = this.config.targetMember.original.wearings[clothKey] as Item;
+            sum += item.stats.penetration ?? 0;
+        }
+
+        return sum * 30 / 100 / (this.config.targetMember as Player).DIVIDERS.penetration;
+    }
+
+    init(): void {
+        this.config.targetMember.player.stats.penetration += this.calculateAttackBonus();
+    }
+
+    do(): void {
+        
+    }
+
+    afterDo(): void {
+        
+    }
+}
+
+export class SineminAnnelikIcgudusu extends ActiveEffect {
+    
+    isActivated: boolean = false;
+
+    constructor(config: EffectConfig){
+        super(config);
+        this.count = config.count ?? 1;
+    }
+
+    init(): void {}
+
+    do(): void {
+        if(!this.isActivated) this.shouldActivate();
+    }
+
+    private shouldActivate(){
+        for(const damage of this.config.targetMember.Decider.Current.damageTaken){
+            if(damage.damage > 0 && !damage.cancel.isCancelled){
+                this.isActivated = true;
+                this.count = 2;
+            }
+        }
+    }
+
+    afterDo(): void {
+        if(this.isActivated) this.applyAbsorption();
+    }
+
+    private applyAbsorption(){
+        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
+            this.config.targetMember.Decider.Current.damageTaken[i].damage *= 0.5;
+        }
+    }
+}
+
+export class MeteorRain extends ActiveEffect {
+    
+    constructor(config: EffectConfig){
+        super(config);
+        this.count = 3;
+    }
+
+    init(): void {}
+
+    do(): void {
+        const min = 5;
+        const max = 40;
+        let dmg = this.config.sourceMember.team.Odenne.Rarity.rand(min, max, -2);
+        if(!dmg) dmg = min;
+
+        this.config.targetMember.Decider.takeDamage({
+            source: {player: this.config.sourceMember, source: this},
+            target: this.config.targetMember,
+            cancel: {isCancelled: false},
+            damage: dmg,
+            isTrue: false,
+        })
+    }
+
+    afterDo(): void {}
 }
