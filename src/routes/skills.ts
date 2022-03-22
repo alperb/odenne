@@ -1,10 +1,11 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { OriginalSkill } from "../odenne/types/player";
 
 const skillRouter = Router();
 import skillConfig from '../odenne/config/skills.json';
+import { GetSkillRequest } from "../types/requests";
 
-skillRouter.post('/get', (req, res, next) => {
+skillRouter.post('/get', (req: Request<{}, {}, GetSkillRequest>, res: Response, next) => {
     try{
         const wantedSkills: number[] = req.body.skills;
         const filtered = skillConfig.filter(s => wantedSkills.includes(s.id));
@@ -17,7 +18,7 @@ skillRouter.post('/get', (req, res, next) => {
     }
     catch(e){
         res.json({
-            response: 0
+            result: 0
         })
     }
 })
