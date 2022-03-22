@@ -1,18 +1,19 @@
 import Odenne from "../odenne";
 import { Stats } from "../types/player";
+import { EventLog } from "../types/types";
 import { Log } from "./keeper";
 import { Event } from "./narrator";
 
 export default class OdenneUI {
     Odenne: Odenne;
-    event!: Event;
+    event!: EventLog;
     log!: Log;
     constructor(Odenne: Odenne){
         this.Odenne = Odenne;
     }
 
     getCurrentRoundLog(){
-        return `${this.event.getLog()}`;
+        return `${this.event.log}`;
     }
 
     getHealth(teamIndex: number): number[] {
@@ -43,7 +44,7 @@ export default class OdenneUI {
         return shields;
     }
 
-    saveRound(event: Event, log: Log){
+    saveRound(event: EventLog, log: Log){
         this.event = event;
         this.log = log;
     }

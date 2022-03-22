@@ -1,5 +1,5 @@
 import { DAMAGETYPES, SHIELDTYPES, TempShield } from "../types/player";
-import { CancelInfo, DamageDone, DeciderSummary, ShieldDone } from "../types/types";
+import { CancelInfo, DamageDone, DeciderSummary, EventParameters, EventTypes, ShieldDone } from "../types/types";
 import { CrowdControlEffect, Effect } from "./effects";
 import { Skill } from "./skills";
 import { Player } from "./teams";
@@ -128,6 +128,17 @@ export default class Decider {
         for(const damage of this.Current.damageTaken){
             if(!damage.cancel.isCancelled){
                 const damageValue = this.calculateTakenDamage(damage);
+                if(damage.source.source instanceof Skill){
+                    const newEvent: EventParameters = {
+                        type: EventTypes.DAMAGE, 
+                        damage: damageValue, 
+                        attacker: damage.source.player.original.name,
+                        skill: damage.source.source.skill.name
+                    }
+
+                    this.Player.team.Odenne.Narrator.saveEvent(newEvent);
+                }
+
                 this.Player.player.stats.health -= damageValue;
                 damage.damage = damageValue;
 

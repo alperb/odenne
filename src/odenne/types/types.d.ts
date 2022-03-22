@@ -89,3 +89,22 @@ export const enum SKILLTYPES {
     ABILITY = 'ability',
     ULTIMATE = 'ultimate'
 }
+
+export const enum EventTypes {
+    DAMAGE = 0,
+    DODGE = 1
+}
+export interface EventLog {
+    type: EventTypes;
+    log: string;
+}
+
+export interface EventParameters {
+    type: EventTypes;
+    attacker?: string;
+    damage?: number;
+    skill?: string;
+    defender?: string;
+
+    [key: string] : string | number;
+}

@@ -1,6 +1,6 @@
 import Odenne from "../odenne";
 import { Item } from "../types/player";
-import { BonusDetails, CancelInfo, DamageDone, EffectConfig } from "../types/types";
+import { BonusDetails, CancelInfo, DamageDone, EffectConfig, EventParameters, EventTypes } from "../types/types";
 import { Environment } from "./environments";
 import { MimicI, Skill } from "./skills";
 import { Member, Player } from "./teams";
@@ -120,6 +120,10 @@ export abstract class Effect {
 
     hasExpired(){
         return this.count == 0;
+    }
+
+    saveEvent(event: EventParameters){
+        this.config.targetMember.team.Odenne.Narrator.saveEvent(event);
     }
 
     abstract init(): void;
@@ -489,6 +493,16 @@ export class Dodge extends ActiveEffect {
     private removeDamages(){
         for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
             this.config.targetMember.Decider.Current.damageTaken[i].cancel = {isCancelled: true, source: this.config.source, sourceMember: this.config.sourceMember}
+            if(this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+                const newEvent: EventParameters = {
+                    type: EventTypes.DODGE,
+                    attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
+                    damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
+                    defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
+                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name
+                }
+                this.saveEvent(newEvent);
+            }
         }
     }
 }

@@ -101,12 +101,12 @@ export class CriticModifier extends Modifier {
     }
 
     private isCrit(playerCritic: number){
-        const chance = Math.ceil(Math.random() * this.maxCritic);
-        return chance < playerCritic;
+        const chance = this.Player.team.Odenne.Rarity.rand(0, this.maxCritic) as number;
+        return chance <= playerCritic;
     }
 
     private playerCritPercentage(playerCritic: number){
-        return (playerCritic / this.maxCritic);
+        return (playerCritic / this.maxCritic) * 20;
     }
 
     private calculateDamage(damage: DamageDone): CriticResult {

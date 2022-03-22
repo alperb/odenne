@@ -610,12 +610,6 @@ export class DodgeI extends DefenseSkill {
         this.effects = ["Dodge"];
     }
 
-    private removeDamagesFromPlayer(){
-        for(let i = 0; i < this.player.Decider.Current.damageTaken.length; i++){
-            this.player.Decider.Current.damageTaken[i].cancel = {isCancelled: true, source: this, sourceMember: this.player};
-        }
-    }
-
     do(): SkillResult {
         this.saveUse();
 
@@ -623,7 +617,6 @@ export class DodgeI extends DefenseSkill {
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
         const dodgeEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
         this.applyEffects([dodgeEffect]);
-        this.removeDamagesFromPlayer();
 
         return result;
     }

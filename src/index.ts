@@ -304,8 +304,8 @@ let player2 = {
         },
         "skills": [
             0,
-            0,
-            0,
+            10,
+            10,
             0,
             0
         ],
@@ -445,7 +445,8 @@ try{
     // console.log('=======================');
     // console.log(battle.Statistics.teams[1][0].totalDamageDone);
     // console.log('=======================');
-    
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
 }
 catch(e){
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
