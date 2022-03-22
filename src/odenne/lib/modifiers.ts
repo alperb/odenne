@@ -82,6 +82,8 @@ export class RangeModifier extends Modifier {
 }
 
 export class CriticModifier extends Modifier {
+    maxCritic: number = 2000;
+
     constructor(Player: Player, Skill: Skill){
         super(Player, Skill);
     }
@@ -90,8 +92,7 @@ export class CriticModifier extends Modifier {
         for(let i = 0; i < result.damaged.length; i++){
 
             if(this.Skill.damageType == DAMAGETYPES.RANGED){
-                result.damaged[i].critic = this.calculateDamage(result.damaged[i]);
-                result.damaged[i].damage += result.damaged[i].critic?.damage ?? 0;
+                result.damaged[i].damage += (this.calculateDamage(result.damaged[i])).damage as number;
             }
 
         }
@@ -99,7 +100,22 @@ export class CriticModifier extends Modifier {
         return result;
     }
 
+    private isCrit(playerCritic: number){
+        const chance = Math.ceil(Math.random() * this.maxCritic);
+        return chance < playerCritic;
+    }
+
+    private playerCritPercentage(playerCritic: number){
+        return (playerCritic / this.maxCritic);
+    }
+
     private calculateDamage(damage: DamageDone): CriticResult {
-        return {isCritic: true, percentage: 100, damage: damage.damage}
+        const isCrit = this.isCrit(damage.source.player.original.stats.critic);
+        if(isCrit){
+            const percentage = this.playerCritPercentage(damage.source.player.original.stats.critic)
+            const totalDamage = damage.damage + (percentage * damage.damage);
+            return {isCritic: true, percentage: percentage, damage: totalDamage}
+        }
+        return {isCritic: false, percentage: 0, damage: damage.damage}
     }
 }

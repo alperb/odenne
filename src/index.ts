@@ -106,7 +106,7 @@ let player1 = {
         },
         "skills": [
             0,
-            2130,
+            0,
             0,
             0,
             0
@@ -189,7 +189,7 @@ let player1 = {
         "defense": 156,
         "attack": 150,
         "health": 120,
-        critic: 70,
+        critic: 400,
         penetration: 110,
         accuracy: 30
     },
@@ -307,7 +307,7 @@ let player2 = {
             0,
             0,
             0,
-            1050
+            0
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -387,7 +387,7 @@ let player2 = {
         "defense": 156,
         "attack": 150,
         "health": 120,
-        critic: 70,
+        critic: 1000,
         penetration: 110,
         accuracy: 30
     },
