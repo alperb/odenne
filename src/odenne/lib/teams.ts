@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _, { random } from "lodash";
 import Odenne from "../odenne";
 import { Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
 import { DamageDone, DeciderSummary, ShieldDone, TurnTypes } from "../types/types";
@@ -178,7 +178,7 @@ export class Member {
         let sum = this.player.stats[type];
 
         for(const effect of this.effects){
-            if(effect instanceof StatBonus){
+            if(effect instanceof StatBonus){ 
                 sum += effect.get(type);
             }
         }

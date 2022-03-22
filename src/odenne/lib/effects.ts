@@ -2,7 +2,7 @@ import Odenne from "../odenne";
 import { Item } from "../types/player";
 import { BonusDetails, CancelInfo, DamageDone, EffectConfig } from "../types/types";
 import { Environment } from "./environments";
-import { Skill } from "./skills";
+import { MimicI, Skill } from "./skills";
 import { Member, Player } from "./teams";
 
 export default class Effects {
@@ -88,6 +88,10 @@ export default class Effects {
                 return new SineminAnnelikIcgudusu(config);
             case 'MeteorRain':
                 return new MeteorRain(config);
+            case 'Illusion':
+                return new Illusion(config);
+            case 'Copycat':
+                return new Copycat(config);
             default:
                 return undefined;
         }
@@ -824,7 +828,6 @@ export class RuhsarinIntikami extends PassiveEffect {
 
     private reflectDamages(){
         for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            console.log('A');
             let takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
             
             let reflectedDamage = takenDamage * 0.4;
@@ -1191,4 +1194,49 @@ export class MeteorRain extends ActiveEffect {
     }
 
     afterDo(): void {}
+}
+
+export class Illusion extends ActiveEffect {
+    
+    constructor(config: EffectConfig){
+        super(config);
+        this.count = 3;
+    }
+
+    init(): void {}
+
+    do(): void {
+    }
+
+    afterDo(): void {}
+}
+
+export class Copycat extends PassiveEffect {
+    constructor(config: EffectConfig){
+        super(config);
+    }
+
+    private stealUltimate(){
+        const target = this.config.targetMember.team.Odenne.Referee.getRandomPlayer((this.config.targetMember.team.index + 1) % 2);
+        const stolenUltConfig = target.player.player.skills[4].skill;
+        const newSkill = this.config.targetMember.team.Odenne.Skills.create(this.config.targetMember as Player, stolenUltConfig) as Skill;
+        for(const skill of this.config.targetMember.player.skills){
+            if(skill instanceof MimicI){
+                skill.copiedSkill = newSkill;
+                skill.enabled = true;
+            }
+        }
+        this.config.targetMember.player.skills.splice(5, 1);   
+    }
+
+    init(): void {
+    }
+
+    do(): void {
+        this.stealUltimate();
+    }
+
+    afterDo(): void {
+        
+    }
 }

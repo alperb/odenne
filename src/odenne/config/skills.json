@@ -241,6 +241,16 @@
         "max": 75,
         "level": 1
     },
+    {
+        "id": 2120,
+        "name": "Illusion",
+        "level": 1
+    },
+    {
+        "id": 2130,
+        "name": "Mimic",
+        "level": 1
+    },
 
 
     {

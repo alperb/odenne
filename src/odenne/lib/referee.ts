@@ -22,15 +22,42 @@ class Referee {
     }
 
     switchTurn(){
-        const newtype = TurnTypes.ATTACK;
-        const newteam = this.alternate(this.turn.team);
-        const newplayer = this.getRandomPlayer(newteam);
-
-        this.turn = {
-            type: newtype,
-            team: newteam,
-            player: newplayer
+        const illusioned = this.checkForIllusion();
+        if(illusioned){
+            this.turn = {
+                type: TurnTypes.ATTACK,
+                team: illusioned.team,
+                player: illusioned.player
+            }
         }
+        else {
+            const newtype = TurnTypes.ATTACK;
+            const newteam = this.alternate(this.turn.team);
+            const newplayer = this.getRandomPlayer(newteam);
+
+            this.turn = {
+                type: newtype,
+                team: newteam,
+                player: newplayer
+            }
+        }
+    }
+
+    private checkForIllusion(){
+        for(const team of this.Odenne.teams){
+            for(const player of team.players){
+                if(player.hasEffect('Illusion')){
+                    return {
+                        team: team.index,
+                        player: {
+                            id: team.players.indexOf(player),
+                            player
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private alternate(val: number): number {

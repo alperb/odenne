@@ -20,184 +20,193 @@ export default class Skills {
      * 3000 - 4000: Warrior
      */
     create(Player: Player, skill: OriginalSkill){
+        let isCreated = false;
         switch(skill.id){
             //#region Archer Skills
             case 0:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                return;
+                isCreated = true; break;
             case 10:
                 Player.player.skills.push(new DodgeI(Player, skill));
-                return;
+                isCreated = true; break;
             case 20:
                 Player.player.skills.push(new ArrowRainI(Player, skill));
-                return;
+                isCreated = true; break;
             case 30:
                 Player.player.skills.push(new ArcaneShotI(Player, skill));
-                return;
+                isCreated = true; break;
             case 40:
                 Player.player.skills.push(new OneTheHuntI(Player, skill));
-                return;
+                isCreated = true; break;
             case 50:
                 Player.player.skills.push(new FocusI(Player, skill));
-                return;
+                isCreated = true; break;
             case 60:
                 Player.player.skills.push(new ColdBloodI(Player, skill));
-                return;
+                isCreated = true; break;
             case 70:
                 Player.player.skills.push(new SnipeI(Player, skill));
-                return;
+                isCreated = true; break;
             case 80:
                 Player.player.skills.push(new HeadStartI(Player, skill));
-                return;
+                isCreated = true; break;
             case 90:
                 Player.player.skills.push(new RangerI(Player, skill));
-                return;
+                isCreated = true; break;
             case 100:
                 Player.player.skills.push(new TacticalI(Player, skill));
-                return;
+                isCreated = true; break;
             case 110:
                 Player.player.skills.push(new AccuracyI(Player, skill));
-                return;
+                isCreated = true; break;
             case 120:
                 Player.player.skills.push(new LongShotsI(Player, skill));
-                return;
+                isCreated = true; break;
             case 130:
                 Player.player.skills.push(new PoisonI(Player, skill));
-                return;
+                isCreated = true; break;
             //#endregion
 
             //#region Assassin Skills
             case 1000:
                 Player.player.skills.push(new AssassinBasicAttackI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1010:
                 Player.player.skills.push(new BetrayalI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1020:
                 Player.player.skills.push(new BladeRainI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1030:
                 Player.player.skills.push(new ThinArmorI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1040:
                 Player.player.skills.push(new StealthI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1050:
                 Player.player.skills.push(new TheUntouchableI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1060:
                 Player.player.skills.push(new BlindI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1070:
                 Player.player.skills.push(new ExecutionerI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1080:
                 Player.player.skills.push(new SlaughterI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1090:
                 Player.player.skills.push(new CatalystI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1100:
                 Player.player.skills.push(new MasterAssassinI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1110:
                 Player.player.skills.push(new ParalyzeI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1120:
                 Player.player.skills.push(new DeadlyMarkI(Player, skill));
-                return;
+                isCreated = true; break;
             case 1130:
                 Player.player.skills.push(new BackstabI(Player, skill));
-                return;
+                isCreated = true; break;
             //#endregion
 
             //#region Mage Skills
             case 2000:
                 Player.player.skills.push(new MageBasicAttackI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2010:
                 Player.player.skills.push(new FireballI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2020:
                 Player.player.skills.push(new TheMirrorI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2030:
                 Player.player.skills.push(new IgniteI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2040:
                 Player.player.skills.push(new FreezeI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2050:
                 Player.player.skills.push(new IcebornI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2060:
                 Player.player.skills.push(new BlizzardI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2070:
                 Player.player.skills.push(new ForesightI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2080:
                 Player.player.skills.push(new DestructionI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2090:
                 Player.player.skills.push(new MageAdeptI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2100:
                 Player.player.skills.push(new MagelightI(Player, skill));
-                return;
+                isCreated = true; break;
             case 2110:
                 Player.player.skills.push(new MeteorI(Player, skill));
-                return;
+                isCreated = true; break;
+            case 2120:
+                Player.player.skills.push(new IllusionI(Player, skill));
+                isCreated = true; break;
+            case 2130:
+                Player.player.skills.push(new MimicI(Player, skill));
+                isCreated = true; break;
             //#endregion
 
             //#region Warrior Skills
             case 3000:
                 Player.player.skills.push(new WarriorBasicAttackI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3010:
                 Player.player.skills.push(new BashI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3020:
                 Player.player.skills.push(new ShieldStrikeI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3030:
                 Player.player.skills.push(new TheDefenderI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3040:
                 Player.player.skills.push(new ShieldUpI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3050:
                 Player.player.skills.push(new AwakenI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3060:
                 Player.player.skills.push(new UnstoppableI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3070:
                 Player.player.skills.push(new FuryI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3080:
                 Player.player.skills.push(new CircleOfProtectionI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3090:
                 Player.player.skills.push(new TauntI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3100:
                 Player.player.skills.push(new BruteForceI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3110:
                 Player.player.skills.push(new RageI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3120:
                 Player.player.skills.push(new MagmaArmorI(Player, skill));
-                return;
+                isCreated = true; break;
             case 3130:
                 Player.player.skills.push(new EvolveI(Player, skill));
-                return;
+                isCreated = true; break;
             //#endregion
             
             default:
                 break;
         }
+        if(isCreated) return Player.player.skills[Player.player.skills.length - 1];
+        else return undefined;
     }
 }
 
@@ -1775,6 +1784,70 @@ export class MeteorI extends AttackSkill {
 
         return result;
     }
+    
+}
+
+export class IllusionI extends AttackSkill {
+    skill!: OriginalSkill;
+    roundType: string = 'attack';
+    player: Player;
+    effects: string[];
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+        this.skill = skill;
+        this.player = Player;
+        this.damageType = DAMAGETYPES.NONE;
+        this.chance = 100;
+
+        this.effects = ['Illusion'];
+    }
+
+    do(): SkillResult {
+        this.saveUse();
+
+        let result = new SkillResult(this.player);
+
+        const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player, count: -1};
+        const effect = this.player.team.Odenne.Effects.new(this.effects[0], effConfig) as Effect;
+
+        this.applyEffects([effect]);
+
+        return result;
+    }
+    
+}
+
+export class MimicI extends AttackSkill {
+    copiedSkill: Skill | undefined;
+
+    constructor(Player: Player, skill: OriginalSkill){
+        super();
+
+        this.player = Player;
+        this.skill = skill;
+        this.chance = 100;
+        this.effects = ["Copycat"];
+        this.copiedSkill = undefined;
+        this.enabled = false;
+        this.applyEffect();
+        this.maxUseCount = -1;
+    }
+
+    applyEffect(): void {
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player}
+        const dbEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
+
+        this.applyEffects([dbEffect]);
+    }
+
+    do(): SkillResult {
+        if(this.copiedSkill){
+            return this.copiedSkill.do();
+        }
+        else return new SkillResult(this.player);
+    }
+
     
 }
 
