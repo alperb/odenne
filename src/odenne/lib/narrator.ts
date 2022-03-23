@@ -10,6 +10,8 @@ export default class Narrator {
     Log!: Log;
     events: EventLog[];
     templates: Map<number, string>;
+    priority: EventTypes[];
+
     constructor(Odenne: Odenne){
         this.Odenne = Odenne;
 
@@ -17,12 +19,23 @@ export default class Narrator {
         this.templates = new Map<number, string>([
             [EventTypes.DAMAGE, "{{attacker}} dealt {{damage}} with {{skill}}"],
             [EventTypes.DODGE, "{{attacker}} dealt {{damage}} with {{skill}} but {{defender}} dodged"]
-        ])
+        ]);
+
+        this.priority = [
+            EventTypes.DODGE,
+            EventTypes.DAMAGE
+        ]
     }
 
     private shouldAcceptLog(event: EventParameters){
-        // TODO: TBC
-        return true;
+        const eventTypeIndex = this.priority.indexOf(event.type);
+
+        for(const currentEvent of this.events){
+            if(eventTypeIndex <= this.priority.indexOf(currentEvent.type)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private createLog(event: EventParameters){
@@ -42,7 +55,22 @@ export default class Narrator {
             const log = this.createLog(event);
             const newEvent: EventLog = {type: event.type, log}
             this.events.push(newEvent);
+            this.sortByPriority();
         }
+    }
+
+    sortByPriority(){
+        this.events.sort(this.prioritySorter);
+    }
+
+    prioritySorter(a: EventLog, b: EventLog): number {
+        const indexA = this.priority.indexOf(a.type);
+        const indexB = this.priority.indexOf(b.type);
+
+        if(indexA > indexB) {
+            return 1;
+        }
+        else return -1;
     }
 
     generate(): void{
