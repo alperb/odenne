@@ -1,6 +1,6 @@
 import Odenne from "../odenne";
 import { DAMAGETYPES, OriginalSkill, SHIELDTYPES, SkillPipe } from "../types/player";
-import { BonusDetails, DamageDone, EffectConfig, ShieldDone, SKILLTYPES } from "../types/types";
+import { BonusDetails, DamageDone, EffectConfig, EventParameters, EventTypes, ShieldDone, SKILLTYPES } from "../types/types";
 import { Effect } from "./effects";
 import { CriticModifier, Modifier, RangeModifier } from "./modifiers";
 import { Round } from "./rounds";
@@ -259,6 +259,10 @@ export abstract class Skill {
 
     saveUse(){
         this.usedRounds.push(this.player.team.Odenne.Referee.roundCount);
+    }
+
+    saveEvent(event: EventParameters){
+        this.player.team.Odenne.Narrator.saveEvent(event);
     }
 
     isAvailable(): boolean {
@@ -707,8 +711,19 @@ export class ColdBloodI extends AttackSkill {
         const missingHealth = this.player.player.baseStats.health - this.player.player.stats.health;
         const percentage = missingHealth / this.player.player.baseStats.health * 100;
         const gainIncrease = percentage / 100 * 40;
+        const gainValue = this.player.player.stats.attack * gainIncrease / 100;
 
-        this.player.player.stats.attack += this.player.player.stats.attack * gainIncrease / 100;
+        this.player.player.stats.attack += gainValue;
+
+        const newEvent: EventParameters = {
+            type: EventTypes.STATS_INCREASE,
+            attacker: this.player.original.name,
+            stattype: "attack",
+            statvalue: gainValue,
+            skill: this.skill.name
+        }
+
+        this.saveEvent(newEvent);
 
         return new SkillResult(this.player);
     }

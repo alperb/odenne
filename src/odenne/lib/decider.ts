@@ -1,7 +1,7 @@
 import { DAMAGETYPES, SHIELDTYPES, TempShield } from "../types/player";
 import { CancelInfo, DamageDone, DeciderSummary, EventParameters, EventTypes, ShieldDone } from "../types/types";
-import { CrowdControlEffect, Effect } from "./effects";
-import { Skill } from "./skills";
+import { CrowdControlEffect, Effect, Stun } from "./effects";
+import { ParalyzeI, Skill } from "./skills";
 import { Player } from "./teams";
 
 
@@ -68,6 +68,16 @@ export default class Decider {
     shouldTakeDamage(damage: DamageDone): CancelInfo {
         const cc = damage.source.player.hasCC();
         if(cc && !damage.bypass){
+            if(cc instanceof Stun){
+                const newEvent: EventParameters = {
+                    type: EventTypes.CC,
+                    attacker: damage.source.player.original.name,
+                    skill: "stunned"
+                }
+
+                damage.source.player.team.Odenne.Narrator.saveEvent(newEvent);
+            }
+
             return {isCancelled: true, source: cc, sourceMember: cc.config.sourceMember};
         }
 
@@ -124,23 +134,38 @@ export default class Decider {
         }
     }
 
+    private checkEvent(damage: DamageDone){
+        if(damage.source.source instanceof ParalyzeI){
+            const newEvent: EventParameters = {
+                type: EventTypes.DAMAGE_AND, 
+                damage: damage.damage, 
+                attacker: damage.source.player.original.name,
+                skill: damage.source.source.skill.name,
+                reason: `disabled ${damage.source.source.disabledSkill.skill.name}`
+            }
+
+            this.Player.team.Odenne.Narrator.saveEvent(newEvent);
+        }else if(damage.source.source instanceof Skill){
+            const newEvent: EventParameters = {
+                type: EventTypes.DAMAGE, 
+                damage: damage.damage, 
+                attacker: damage.source.player.original.name,
+                skill: damage.source.source.skill.name
+            }
+
+            this.Player.team.Odenne.Narrator.saveEvent(newEvent);
+        }
+    }
+
     applyTakenDamages(){
         for(const damage of this.Current.damageTaken){
             if(!damage.cancel.isCancelled){
                 const damageValue = this.calculateTakenDamage(damage);
-                if(damage.source.source instanceof Skill){
-                    const newEvent: EventParameters = {
-                        type: EventTypes.DAMAGE, 
-                        damage: damageValue, 
-                        attacker: damage.source.player.original.name,
-                        skill: damage.source.source.skill.name
-                    }
-
-                    this.Player.team.Odenne.Narrator.saveEvent(newEvent);
-                }
-
+                
                 this.Player.player.stats.health -= damageValue;
                 damage.damage = damageValue;
+
+                this.checkEvent(damage)
 
             }
         }

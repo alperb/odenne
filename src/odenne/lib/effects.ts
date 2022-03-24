@@ -262,7 +262,11 @@ export class Stun extends CrowdControlEffect {
         for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
             for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
                 if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {
+                        isCancelled: true, 
+                        source: this, 
+                        sourceMember: this.config.sourceMember
+                    };
                 }
             }
         }
@@ -495,11 +499,12 @@ export class Dodge extends ActiveEffect {
             this.config.targetMember.Decider.Current.damageTaken[i].cancel = {isCancelled: true, source: this.config.source, sourceMember: this.config.sourceMember}
             if(this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
                 const newEvent: EventParameters = {
-                    type: EventTypes.DODGE,
+                    type: EventTypes.DAMAGE_CANCEL,
                     attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
                     damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
                     defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
-                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name
+                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
+                    reason: "dodged"
                 }
                 this.saveEvent(newEvent);
             }
@@ -522,7 +527,23 @@ export class Invulnerable extends ActiveEffect {
 
     private removeDamages(){
         for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {isCancelled: true, source: this.config.source, sourceMember: this.config.sourceMember}
+            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {
+                isCancelled: true, 
+                source: this.config.source, 
+                sourceMember: this.config.sourceMember
+            }
+
+            if(this.count === 1 && this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+                const newEvent: EventParameters = {
+                    type: EventTypes.DAMAGE_CANCEL,
+                    attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
+                    damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
+                    defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
+                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
+                    reason: "was invulnerable"
+                }
+                this.saveEvent(newEvent);
+            }
         }
     }
 
@@ -536,6 +557,14 @@ export class Invulnerable extends ActiveEffect {
 
     afterDo(): void {
         this.removeDamages();
+
+        if(this.count === 2){
+            const newEvent: EventParameters = {
+                type: EventTypes.INVULNERABLE,
+                attacker: this.config.targetMember.original.name,
+            }
+            this.saveEvent(newEvent);
+        }
 
         if(this.count < 0 && this.checkIfDamageDealt()) this.count = 1;
     }
@@ -836,8 +865,8 @@ export class RuhsarinIntikami extends PassiveEffect {
         super(config);
     }
 
-    private placeDamage(damage: DamageDone){
-        damage.target.Decider.takeDamage(damage);
+    private placeDamage(damage: DamageDone): CancelInfo{
+        return damage.target.Decider.takeDamage(damage);
     }
 
     private reflectDamages(){
@@ -845,7 +874,11 @@ export class RuhsarinIntikami extends PassiveEffect {
             let takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
             
             let reflectedDamage = takenDamage * 0.4;
-            this.config.targetMember.Decider.Current.damageTaken[i].damage *= 0.6;
+            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {
+                isCancelled: true,
+                source: this,
+                sourceMember: this.config.targetMember
+            }
             let reflected: DamageDone = {
                 damage: reflectedDamage, 
                 source: {player: this.config.targetMember, source: this}, 
@@ -853,7 +886,17 @@ export class RuhsarinIntikami extends PassiveEffect {
                 cancel: {isCancelled: false}, 
                 isTrue: false
             }
-            this.placeDamage(reflected);
+            const cancelInfo = this.placeDamage(reflected);
+            if(!cancelInfo.isCancelled && this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+                const newEvent: EventParameters = {
+                    type: EventTypes.REFLECT,
+                    defender: this.config.targetMember.original.name,
+                    damage: reflected.damage,
+                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name
+                }
+
+                this.saveEvent(newEvent);
+            }
         }
 
     }

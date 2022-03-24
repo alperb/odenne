@@ -92,7 +92,12 @@ export const enum SKILLTYPES {
 
 export const enum EventTypes {
     DAMAGE = 0,
-    DODGE = 1
+    DAMAGE_CANCEL = 1,
+    CC = 2,
+    STATS_INCREASE = 3,
+    INVULNERABLE = 4,
+    DAMAGE_AND = 5,
+    REFLECT = 6
 }
 export interface EventLog {
     type: EventTypes;
@@ -105,6 +110,9 @@ export interface EventParameters {
     damage?: number;
     skill?: string;
     defender?: string;
+    statvalue?: number;
+    stattype?: string;
+    reason?: string;
 
     [key: string] : string | number;
 }

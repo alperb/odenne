@@ -13,7 +13,7 @@ export default class OdenneUI {
     }
 
     getCurrentRoundLog(){
-        return `${this.event.log}`;
+        return `${this.event.log}` ;
     }
 
     getHealth(teamIndex: number): number[] {
