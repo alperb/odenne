@@ -1,25 +1,44 @@
+import _ from "lodash";
 import Odenne from "../odenne";
 import { Stats } from "../types/player";
-import { EventLog } from "../types/types";
+import { EventLog, UILog } from "../types/types";
 import { Log } from "./keeper";
-import { Event } from "./narrator";
 
 export default class OdenneUI {
     Odenne: Odenne;
     event!: EventLog;
     log!: Log;
+    bulkLog!: UILog[];
+
     constructor(Odenne: Odenne){
         this.Odenne = Odenne;
+        this.bulkLog = [];
+    }
+
+    getRound(){
+        let summ: UILog = {
+            log: this.getCurrentRoundLog(),
+            players: [[this.getName(0)], [this.getName(1)]],
+            healths: [this.getHealth(0), this.getHealth(1)],
+            shields: [this.getShields(0), this.getShields(1)],
+            turn: this.Odenne.Referee.turn.team
+        }
+        this.bulkLog.push(summ);
+        return summ;
+    }
+
+    getBulkLog(): UILog[] {
+        return this.bulkLog;
     }
 
     getCurrentRoundLog(){
-        return `${this.event.log}` ;
+        return this.event?.log ?? `Nothing happened in this round`;
     }
 
     getHealth(teamIndex: number): number[] {
         let healths: number[] = [];
         this.Odenne.teams[teamIndex].players.forEach(p => {
-            healths.push(p.player.stats.health);
+            healths.push(_.clone(p.player.stats.health));
         });
         return healths;
     }
@@ -47,5 +66,6 @@ export default class OdenneUI {
     saveRound(event: EventLog, log: Log){
         this.event = event;
         this.log = log;
+        this.getRound();
     }
 }

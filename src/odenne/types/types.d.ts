@@ -97,7 +97,10 @@ export const enum EventTypes {
     STATS_INCREASE = 3,
     INVULNERABLE = 4,
     DAMAGE_AND = 5,
-    REFLECT = 6
+    REFLECT = 6,
+    ROUND_STEAL = 7,
+    SHIELD_GAIN = 8,
+    GAIN_CC_IMMUNITY = 9
 }
 export interface EventLog {
     type: EventTypes;
@@ -113,6 +116,18 @@ export interface EventParameters {
     statvalue?: number;
     stattype?: string;
     reason?: string;
+    shieldValue?: number;
+    shieldType?: string;
 
     [key: string] : string | number;
+}
+
+// UI
+
+export interface UILog {
+    log: string;
+    players: string[][];
+    healths: number[][];
+    turn: number;
+    shields: number[][];
 }

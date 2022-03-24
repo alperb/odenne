@@ -1,6 +1,6 @@
 import Odenne from "../odenne";
 import { DAMAGETYPES, OriginalSkill, SHIELDTYPES, SkillPipe } from "../types/player";
-import { BonusDetails, DamageDone, EffectConfig, EventParameters, EventTypes, ShieldDone, SKILLTYPES } from "../types/types";
+import { BonusDetails, CancelInfo, DamageDone, EffectConfig, EventParameters, EventTypes, ShieldDone, SKILLTYPES } from "../types/types";
 import { Effect } from "./effects";
 import { CriticModifier, Modifier, RangeModifier } from "./modifiers";
 import { Round } from "./rounds";
@@ -244,10 +244,13 @@ export abstract class Skill {
         }
     }
 
-    applyEffects(effects: Effect[]){
+    applyEffects(effects: Effect[]): CancelInfo[] {
+        let cancels: CancelInfo[] = []
         for(const eff of effects){
-            eff.config.targetMember.Decider.takeEffect(eff);
+            const cancel = eff.config.targetMember.Decider.takeEffect(eff);
+            cancels.push(cancel);
         }
+        return cancels;
     }
 
     applyShield(shields: ShieldDone[]){
@@ -694,7 +697,7 @@ export class FocusI extends PassiveSkill {
     }
 }
 
-export class ColdBloodI extends AttackSkill {
+export class ColdBloodI extends PassiveSkill {
     constructor(Player: Player, skill: OriginalSkill){
         super();
 
@@ -703,28 +706,26 @@ export class ColdBloodI extends AttackSkill {
         this.damageType = DAMAGETYPES.NONE;
         this.type = SKILLTYPES.ULTIMATE;
         this.chance = 100;
+        this.effects = ["AttackBonus"];
+        this.applyEffect();
+    }
 
-        this.effects = [];
+    applyEffect() {
+        const bonusDetails: BonusDetails = {
+            value: 40,
+            type: 2,
+            count: -1
+        }
+        const effConfig: EffectConfig = {
+            source: this,
+            sourceMember: this.player,
+            targetMember: this.player
+        }
+        const effect = this.player.team.Odenne.Effects.new(this.effects[0], effConfig, bonusDetails) as Effect;
+        this.applyEffects([effect]);
     }
 
     do(): SkillResult {
-        const missingHealth = this.player.player.baseStats.health - this.player.player.stats.health;
-        const percentage = missingHealth / this.player.player.baseStats.health * 100;
-        const gainIncrease = percentage / 100 * 40;
-        const gainValue = this.player.player.stats.attack * gainIncrease / 100;
-
-        this.player.player.stats.attack += gainValue;
-
-        const newEvent: EventParameters = {
-            type: EventTypes.STATS_INCREASE,
-            attacker: this.player.original.name,
-            stattype: "attack",
-            statvalue: gainValue,
-            skill: this.skill.name
-        }
-
-        this.saveEvent(newEvent);
-
         return new SkillResult(this.player);
     }
     
@@ -1807,6 +1808,7 @@ export class IllusionI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.NONE;
         this.chance = 100;
+        this.maxUseCount = 1;
 
         this.effects = ['Illusion'];
     }
@@ -1820,6 +1822,12 @@ export class IllusionI extends AttackSkill {
         const effect = this.player.team.Odenne.Effects.new(this.effects[0], effConfig) as Effect;
 
         this.applyEffects([effect]);
+
+        const event: EventParameters = {
+            type: EventTypes.ROUND_STEAL,
+            attacker: this.player.original.name
+        }
+        this.saveEvent(event);
 
         return result;
     }
@@ -2119,7 +2127,15 @@ export class UnstoppableI extends AttackSkill {
         const immEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
 
         this.applyDamage(result.damaged);
-        this.applyEffects([immEffect]);
+        const cancelledEffects = this.applyEffects([immEffect]);
+        if(!cancelledEffects[0].isCancelled){
+            const event: EventParameters = {
+                type: EventTypes.GAIN_CC_IMMUNITY,
+                attacker: this.player.original.name,
+                skill: this.skill.name
+            }
+            this.saveEvent(event);
+        }
         
         return result;
     }
@@ -2210,7 +2226,7 @@ export class TauntI extends AttackSkill {
             result = modifier.apply(result) as SkillResult;
         }
 
-        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
+        const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
         const dbEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
 
         this.applyDamage(result.damaged);
@@ -2286,7 +2302,7 @@ export class MagmaArmorI extends PassiveSkill {
     }
 }
 
-export class EvolveI extends AttackSkill {
+export class EvolveI extends PassiveSkill {
     skill!: OriginalSkill;
     roundType: string = 'attack';
     player: Player;
@@ -2296,12 +2312,28 @@ export class EvolveI extends AttackSkill {
         super();
         this.skill = skill;
         this.player = Player;
-        this.damageType = DAMAGETYPES.RANGED;
+        this.damageType = DAMAGETYPES.NONE;
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
-        this.effects = [];
+        this.effects = ["DefenseBonus"];
+        this.applyEffect();
     }
 
+    applyEffect(): void {
+        const bonusDetails: BonusDetails = {
+            value: 50,
+            type: 2,
+            count: -1
+        }
+        const effConfig: EffectConfig = {
+            source: this,
+            sourceMember: this.player,
+            targetMember: this.player
+        }
+        const effect = this.player.team.Odenne.Effects.new(this.effects[0], effConfig, bonusDetails) as Effect;
+
+        this.applyEffects([effect]);
+    }
     
 
     do(): SkillResult {

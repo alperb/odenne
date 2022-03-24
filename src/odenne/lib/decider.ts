@@ -91,6 +91,16 @@ export default class Decider {
             return {isCancelled: true, source: cc, sourceMember: cc.config.sourceMember};
         }
 
+        if(shield.source.source instanceof Skill) {
+            const event: EventParameters = {
+                type: EventTypes.SHIELD_GAIN,
+                attacker: shield.target.original.name,
+                shieldType: (SHIELDTYPES.TEMP || shield.target.hasEffect("FastAndFurious")) ? 'permanent' : 'temporary',
+                shieldValue: shield.value
+            }
+            shield.source.source.saveEvent(event);
+        }
+
 
         return {isCancelled: false}
     }

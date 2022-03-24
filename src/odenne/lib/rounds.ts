@@ -50,7 +50,6 @@ export class AttackRound extends Round {
     run() {
         try{
             const usedSkill = this.Odenne.Referee.turn.player.player?.getRandomSkill();
-            console.log({n: this.Odenne.Referee.turn.player.player?.original.name});
             if(usedSkill){
                 const result = usedSkill.run();
 

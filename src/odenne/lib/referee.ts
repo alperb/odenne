@@ -1,5 +1,6 @@
 import Odenne from '../odenne';
-import { GetRandomPlayerOptions, OdenneTurn, STATUSCODES, TurnTypes } from '../types/types';
+import { EventParameters, EventTypes, GetRandomPlayerOptions, OdenneTurn, STATUSCODES, TurnTypes } from '../types/types';
+import { Taunt } from './effects';
 import { Round } from './rounds';
 import { Player } from './teams';
 
@@ -29,6 +30,7 @@ class Referee {
                 team: illusioned.team,
                 player: illusioned.player
             }
+            
         }
         else {
             const newtype = TurnTypes.ATTACK;
@@ -46,7 +48,8 @@ class Referee {
     private checkForIllusion(){
         for(const team of this.Odenne.teams){
             for(const player of team.players){
-                if(player.hasEffect('Illusion')){
+                const illusion = player.hasEffect('Illusion');
+                if(illusion){
                     return {
                         team: team.index,
                         player: {
@@ -69,10 +72,12 @@ class Referee {
     getRandomPlayer(teamIndex: number, options: GetRandomPlayerOptions = {considerTaunt: false}): {id: number, player: Player} {
         if(options.considerTaunt){
             for(let i = 0; i < this.Odenne.teams[teamIndex].players.length; i++){
-                if(this.Odenne.teams[teamIndex].players[i].hasEffect("Taunt")){
+                const taunt = this.Odenne.teams[teamIndex].players[i].hasEffect("Taunt");
+                if(taunt){
+                    const tplayer = (taunt as Taunt).targetPlayer;
                     return {
-                        id: i,
-                        player: this.Odenne.teams[ teamIndex ].players[ i ]
+                        id: tplayer.team.players.indexOf(tplayer),
+                        player: tplayer
                     }
                 }
             }

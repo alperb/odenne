@@ -179,11 +179,19 @@ export class AttackBonus extends StatBonus {
         this.count = this.details.count;
     }
 
+    private getIncreaseByMissingHealth(){
+        const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.player.stats.health;
+        const missingPercentage = missingHealth / this.config.targetMember.player.baseStats.health * 100;
+        const gain = missingPercentage / 100 * this.config.targetMember.player.stats.attack;
+        return gain / (this.config.targetMember as Player).DIVIDERS.attack;
+    }
+
     get(type: string): number {
         if(type !== "attack") return 0
 
         if(this.details.type === 0) return this.details.value;
         else if(this.details.type === 1) return this.details.value / 100 * this.config.targetMember.player.stats.attack;
+        else if(this.details.type === 2) return this.getIncreaseByMissingHealth();
 
         return 0;
     }
@@ -203,11 +211,19 @@ export class DefenseBonus extends StatBonus {
         this.count = this.details.count;
     }
 
+    private getIncreaseByMissingHealth(){
+        const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.player.stats.health;
+        const missingPercentage = missingHealth / this.config.targetMember.player.baseStats.health * 100;
+        const gain = missingPercentage / 100 * this.config.targetMember.player.stats.defense;
+        return gain / (this.config.targetMember as Player).DIVIDERS.defense;
+    }
+
     get(type: string): number {
         if(type !== "defense") return 0
 
         if(this.details.type === 0) return this.details.value;
         else if(this.details.type === 1) return this.details.value / 100 * this.config.targetMember.player.stats.defense;
+        else if(this.details.type === 2) return this.getIncreaseByMissingHealth();
 
         return 0;
     }
@@ -997,9 +1013,11 @@ export class ValenianinAdaleti extends PassiveEffect {
 }
 
 export class Taunt extends ActiveEffect {
+    targetPlayer!: Player;
+
     constructor(config: EffectConfig){
         super(config);
-
+        this.targetPlayer = this.config.sourceMember as Player;
         this.count = config.count ?? 4;
     }
 
@@ -1279,18 +1297,19 @@ export class Copycat extends PassiveEffect {
         const newSkill = this.config.targetMember.team.Odenne.Skills.create(this.config.targetMember as Player, stolenUltConfig) as Skill;
         for(const skill of this.config.targetMember.player.skills){
             if(skill instanceof MimicI){
-                skill.copiedSkill = newSkill;
-                skill.enabled = true;
+                this.config.targetMember.player.skills.splice(4, 1); 
+                this.config.targetMember.player.skills.push(newSkill);
             }
         }
-        this.config.targetMember.player.skills.splice(5, 1);   
+          
     }
 
     init(): void {
+        this.stealUltimate();
     }
 
     do(): void {
-        this.stealUltimate();
+        
     }
 
     afterDo(): void {

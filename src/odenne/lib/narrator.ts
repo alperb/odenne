@@ -23,16 +23,22 @@ export default class Narrator {
             [EventTypes.DAMAGE_CANCEL, "{{ attacker }} dealt {{ damage }} with {{ skill }} but {{ defender }} {{ reason }}"],
             [EventTypes.CC, "{{ attacker }} was {{ skill }}"],
             [EventTypes.STATS_INCREASE, "{{ attacker }} gained {{ statvalue }} {{ stattype }} with {{ skill }}"],
-            [EventTypes.INVULNERABLE, "{{ attacker }} became invulnerable"]
+            [EventTypes.INVULNERABLE, "{{ attacker }} became invulnerable"],
+            [EventTypes.ROUND_STEAL, "{{ attacker }} stole the next round"],
+            [EventTypes.SHIELD_GAIN, "{{ attacker }} gained {{ shieldValue }} {{ shieldType }} shield"],
+            [EventTypes.GAIN_CC_IMMUNITY, '{{ attacker }} gained immunity with {{ skill }}']
         ]);
 
         this.priority = [
+            EventTypes.ROUND_STEAL,
             EventTypes.CC,
             EventTypes.INVULNERABLE,
+            EventTypes.GAIN_CC_IMMUNITY,
             EventTypes.REFLECT,
             EventTypes.DAMAGE_CANCEL,
             EventTypes.DAMAGE_AND,
             EventTypes.DAMAGE,
+            EventTypes.SHIELD_GAIN,
             EventTypes.STATS_INCREASE
         ]
     }
@@ -75,7 +81,6 @@ export default class Narrator {
     }
 
     prioritySorter(a: EventLog, b: EventLog): number {
-        console.log({a, b})
         const indexA = this.priority.indexOf(a.type);
         const indexB = this.priority.indexOf(b.type);
 
@@ -87,82 +92,11 @@ export default class Narrator {
 
     generate(): void{
         this.Odenne.UI.saveRound(this.events[0], this.Log);
-
+        
         this.clear();
     }
 
-    // getPriorityEvent(){
-    //     for(const event of this.events){
-    //         if(event.isLogAvailable()) return event;
-    //     }
-
-    //     return new BilganEvent();
-    // }
-
-    // prioritize(){
-    //     this.sortBySourceType();
-    // }
-
-    // sortBySourceType(){
-    //     this.events = this.events.sort(this.sortHelper)
-    // }
-
-    // sortHelper(a: Event, b: Event): number{
-    //     if(a.source instanceof Skill){
-    //         return -1
-    //     }
-    //     else if(b.source instanceof Skill){
-    //         return 1
-    //     }
-
-    //     return -1
-    // }
-
     private clear(){
         this.events = [];
-    }
-}
-
-export abstract class Event{
-    source!: Skill | Effect;
-
-    constructor(){} 
-
-    abstract getLog(): string;
-
-    abstract isLogAvailable(): boolean;
-}
-
-export class BilganEvent extends Event{
-    constructor(){
-        super();
-    }
-
-    getLog(): string {
-        return "anan nasil moruk.";
-    }
-
-    isLogAvailable(): boolean {
-        return true
-    }
-}
-
-export class DamageEvent extends Event{
-    damageDone: DamageDone;
-
-    constructor(damageDone: DamageDone){
-        super();
-
-        this.damageDone = damageDone;
-        this.source = damageDone.source.source;
-    }
-
-    getLog(): string {
-        const cancelledPart = this.damageDone.cancel.isCancelled ? `but ${this.damageDone.cancel.sourceMember?.original.name} dodged` : ``;
-        return `${this.damageDone.source.player.original.name} dealt ${this.damageDone.damage} with ${(this.damageDone.source.source as Skill).skill?.name} ${cancelledPart}`;
-    }
-
-    isLogAvailable(): boolean {
-        return true;
     }
 }

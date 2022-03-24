@@ -17,13 +17,15 @@ battleRouter.post('/duel', (req, res, next) => {
             }
         }
 
+        const start = Date.now();
         const battle = new Odenne(battleOptions);
         battle.start();
         while(battle.status.get() === STATUSCODES.STARTED){
             battle.advance();
         }
+        console.log(`Took ${Date.now() - start}ms`);
 
-        const bulkLog = {} //battle.UI.getBulkLog();
+        const bulkLog = battle.UI.getBulkLog();
         const response = {
             result: 1,
             logs: bulkLog

@@ -289,7 +289,12 @@ export class Player extends Member {
     prepareSkills(){
         for(const skillId of (this.original.wearings.skills as Array<number>)){
             const skill: OriginalSkill = this.findSkillFromConfig(skillId) as OriginalSkill;
-            this.team.Odenne.Skills.create(this, skill);
+            try{
+                this.team.Odenne.Skills.create(this, skill);
+            }
+            catch(e){
+                // oops
+            }
         }
     }
 
