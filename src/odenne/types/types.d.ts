@@ -130,4 +130,8 @@ export interface UILog {
     healths: number[][];
     turn: number;
     shields: number[][];
+    critics: number[][];
+    attacks: number[][];
+    penetrations: number[][];
+    accuracies: number[][];
 }

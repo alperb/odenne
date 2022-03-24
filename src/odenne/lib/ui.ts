@@ -21,6 +21,11 @@ export default class OdenneUI {
             players: [[this.getName(0)], [this.getName(1)]],
             healths: [this.getHealth(0), this.getHealth(1)],
             shields: [this.getShields(0), this.getShields(1)],
+            critics: [this.getCritics(0), this.getCritics(1)],
+            attacks: [this.getAttacks(0), this.getAttacks(1)],
+            accuracies: [this.getAccuracies(0), this.getAccuracies(1)],
+            penetrations: [this.getPenetrations(0), this.getPenetrations(1)],
+
             turn: this.Odenne.Referee.turn.team
         }
         this.bulkLog.push(summ);
@@ -61,6 +66,38 @@ export default class OdenneUI {
             shields.push(p.player.shields.temporary.reduce((prev, next) => prev + next.value, 0) + p.player.shields.permanent);
         });
         return shields;
+    }
+
+    getCritics(teamIndex: number): number[] {
+        let critics: number[] = []
+        this.Odenne.teams[teamIndex].players.forEach(player => {
+            critics.push(player.player.stats.critic);
+        });
+        return critics;
+    }
+
+    getAttacks(teamIndex: number): number[] {
+        let attacks: number[] = []
+        this.Odenne.teams[teamIndex].players.forEach(player => {
+            attacks.push(player.player.stats.attack);
+        });
+        return attacks;
+    }
+
+    getPenetrations(teamIndex: number): number[] {
+        let penetrations: number[] = []
+        this.Odenne.teams[teamIndex].players.forEach(player => {
+            penetrations.push(player.player.stats.penetration);
+        });
+        return penetrations;
+    }
+
+    getAccuracies(teamIndex: number): number[] {
+        let accuracies: number[] = []
+        this.Odenne.teams[teamIndex].players.forEach(player => {
+            accuracies.push(player.player.stats.accuracy);
+        });
+        return accuracies;
     }
 
     saveRound(event: EventLog, log: Log){
