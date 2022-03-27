@@ -80,8 +80,20 @@ export default class Narrator {
     }
 
     prioritySorter(a: EventLog, b: EventLog): number {
-        const indexA = this.priority.indexOf(a.type);
-        const indexB = this.priority.indexOf(b.type);
+        const priority = [
+            EventTypes.ROUND_STEAL,
+            EventTypes.CC,
+            EventTypes.INVULNERABLE,
+            EventTypes.GAIN_CC_IMMUNITY,
+            EventTypes.REFLECT,
+            EventTypes.DAMAGE_CANCEL,
+            EventTypes.DAMAGE_AND,
+            EventTypes.DAMAGE,
+            EventTypes.SHIELD_GAIN,
+            EventTypes.STATS_INCREASE
+        ]
+        const indexA = priority.indexOf(a.type);
+        const indexB = priority.indexOf(b.type);
 
         if(indexA > indexB) {
             return 1;

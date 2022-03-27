@@ -52,6 +52,8 @@ export class AttackRound extends Round {
             const usedSkill = this.Odenne.Referee.turn.player.player?.getRandomSkill();
             if(usedSkill){
                 const result = usedSkill.run();
+                //console.log({usedSkill});
+                // TODO: shield strike log cikarmiyor
 
                 for(const damage of result.damaged){
                     this.doDefense(damage.target);

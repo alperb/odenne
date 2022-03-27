@@ -60,10 +60,9 @@ export class RangeModifier extends Modifier {
         const attackBonus = this.Player.getStat("attack");
         const accuracy = this.Player.getStat("accuracy") >= 100 ? 100 : this.Player.getStat("accuracy");
 
-        const min = (this.Skill.skill.min as number) + (attackBonus / 2);
-        const max = ((this.Skill.skill.max as number) + (attackBonus * accuracy / 100));
+        const min = Math.floor((this.Skill.skill.min as number) + (attackBonus / 2));
+        const max = Math.floor(((this.Skill.skill.max as number) + (attackBonus * accuracy / 100)));
         const randomized = this.Player.team.Odenne.Rarity.rand(min, max, -2);
-
         if(!randomized) return min;
         return randomized;
     }
@@ -72,8 +71,8 @@ export class RangeModifier extends Modifier {
         const defenseBonus = this.Player.getStat("defense");
         const accuracy = this.Player.getStat("accuracy") >= 100 ? 100 : this.Player.getStat("accuracy");
 
-        const min = (this.Skill.skill.shieldMin as number) + (defenseBonus / 2);
-        const max = ((this.Skill.skill.shieldMax as number) + (defenseBonus * accuracy / 100));
+        const min = Math.floor((this.Skill.skill.shieldMin as number) + (defenseBonus / 2));
+        const max = Math.floor(((this.Skill.skill.shieldMax as number) + (defenseBonus * accuracy / 100)));
         const randomized = this.Player.team.Odenne.Rarity.rand(min, max, -2);
 
         if(!randomized) return min;
@@ -82,7 +81,7 @@ export class RangeModifier extends Modifier {
 }
 
 export class CriticModifier extends Modifier {
-    maxCritic: number = 2000;
+    maxCritic: number = 100;
 
     constructor(Player: Player, Skill: Skill){
         super(Player, Skill);
@@ -106,7 +105,7 @@ export class CriticModifier extends Modifier {
     }
 
     private playerCritPercentage(playerCritic: number){
-        return (playerCritic / this.maxCritic) * 20;
+        return (playerCritic / this.maxCritic);
     }
 
     private calculateDamage(damage: DamageDone): CriticResult {
@@ -114,8 +113,9 @@ export class CriticModifier extends Modifier {
         if(isCrit){
             const percentage = this.playerCritPercentage(damage.source.player.original.stats.critic)
             const totalDamage = damage.damage + (percentage * damage.damage);
+            console.log({totalDamage});
             return {isCritic: true, percentage: percentage, damage: totalDamage}
         }
-        return {isCritic: false, percentage: 0, damage: damage.damage}
+        return {isCritic: false, percentage: 0, damage: 0}
     }
 }

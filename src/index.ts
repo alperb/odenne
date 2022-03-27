@@ -3,7 +3,7 @@ import Odenne from './odenne/odenne';
 
 
 let player1 = {
-    "class": "archer",
+    "class": "warrior",
     "wearings": {
         "leggings": {
             "placement": "leggings",
@@ -105,11 +105,11 @@ let player1 = {
             "crafting": []
         },
         "skills": [
-            0,
-            3130,
-            0,
-            0,
-            0
+            3000,
+            3010,
+            3020,
+            3040,
+            3110
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -132,7 +132,7 @@ let player1 = {
             },
             "stack": 1,
             "stats": {
-                "penetration": 10
+                "penetration": 0
             },
             "function": [],
             "class": "archer",
@@ -186,12 +186,12 @@ let player1 = {
         "boost": {}
     },
     "stats": {
-        "defense": 156,
-        "attack": 150,
-        "health": 120,
-        critic: 400,
-        penetration: 110,
-        accuracy: 30
+        "defense": 2250,
+        "attack": 5087,
+        "health": 1770,
+        critic: 500,
+        penetration: 0,
+        accuracy: 100
     },
     "name": "Waffle",
     "isDead": false,
@@ -304,10 +304,10 @@ let player2 = {
         },
         "skills": [
             0,
-            0,
-            0,
-            0,
-            20
+            10,
+            20,
+            30,
+            110
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -330,7 +330,7 @@ let player2 = {
             },
             "stack": 1,
             "stats": {
-                "defense": 69
+                "defense": 0
             },
             "function": [],
             "class": "archer",
@@ -384,12 +384,12 @@ let player2 = {
         "boost": {}
     },
     "stats": {
-        "defense": 156,
-        "attack": 150,
-        "health": 120,
-        critic: 1000,
-        penetration: 110,
-        accuracy: 30
+        "defense": 775,
+        "attack": 5550,
+        "health": 775,
+        critic: 4412,
+        penetration: 0,
+        accuracy: 100
     },
     "name": "Edip",
     "isDead": false,
@@ -408,6 +408,7 @@ options
 
 import fs from 'fs';
 import { STATUSCODES } from './odenne/types/types';
+import { StatBonus } from './odenne/lib/effects';
 
 try{
     let battle = new Odenne(options);
@@ -420,8 +421,8 @@ try{
             console.log(battle.UI.getCurrentRoundLog());
             console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
 
-            console.log({a: battle.teams[0].players[0].player.stats.attack});
-            console.log({a: battle.teams[1].players[0].player.stats.attack});
+            console.log({a: battle.teams[0].players[0].player.stats.attack, b: battle.teams[0].players[0].getStat("attack")});
+            console.log({a: battle.teams[1].players[0].player.stats.attack, b: battle.teams[1].players[0].getStat("attack")});
 
             console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
             console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});

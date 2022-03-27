@@ -708,7 +708,6 @@ export class ColdBloodI extends PassiveSkill {
         this.type = SKILLTYPES.ULTIMATE;
         this.chance = 100;
         this.effects = ["AttackBonus"];
-        this.applyEffect();
     }
 
     applyEffect() {
@@ -2317,7 +2316,6 @@ export class EvolveI extends PassiveSkill {
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
         this.effects = ["DefenseBonus"];
-        this.applyEffect();
     }
 
     applyEffect(): void {

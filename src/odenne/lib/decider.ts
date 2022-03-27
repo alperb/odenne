@@ -217,12 +217,15 @@ export default class Decider {
     private calculateTakenDamage(damage: DamageDone): number {
         let dmg = damage.damage;
         if(!damage.isTrue){
+            console.log({dmg});
             dmg = this.applyShield(dmg);
+            console.log({dmg});
             dmg -= this.Player.getStat("defense");
+            console.log({dmg});
             if(dmg <= 0) {
                 if(damage.source.source instanceof Skill){
                     if(damage.source.source.damageType == DAMAGETYPES.RANGED){
-                        dmg = damage.source.source.skill.min as number;
+                        dmg = (damage.source.source.skill.max as number) + (damage.source.player.getStat("attack") * damage.source.player.getStat("accuracy") / 1000);
                     }
                     else{
                         dmg = damage.source.source.skill.damage as number;
