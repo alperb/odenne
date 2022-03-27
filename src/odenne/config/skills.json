@@ -338,6 +338,116 @@
         "id": 3130,
         "name": "Evolve",
         "level": 1
+    },
+
+    {
+        "id": 10000,
+        "name": "Bite",
+        "min": 2,
+        "max": 5,
+        "level": 1
+    },
+    {
+        "id": 10010,
+        "name": "Claw",
+        "min": 5,
+        "max": 10,
+        "level": 1
+    },
+    {
+        "id": 10020,
+        "name": "Roar",
+        "min": 5,
+        "max": 15,
+        "level": 1
+    },
+
+    {
+        "id": 10030,
+        "name": "Swing",
+        "min": 5,
+        "max": 10,
+        "level": 1
+    },
+    {
+        "id": 10040,
+        "name": "Sneak",
+        "min": 5,
+        "max": 15,
+        "level": 1
+    },
+    {
+        "id": 10050,
+        "name": "Throw", 
+        "min": 10,
+        "max": 20,
+        "level": 1
+    },
+
+    {
+        "id": 10060,
+        "name": "Strike",
+        "min": 10,
+        "max": 20,
+        "level": 1
+    },
+    {
+        "id": 10070,
+        "name": "Charge",
+        "min": 15,
+        "max": 30,
+        "level": 1
+    },
+    {
+        "id": 10080,
+        "name": "Rumble",
+        "min": 20, 
+        "max": 40,
+        "level": 1
+    },
+
+    {
+        "id": 10090,
+        "name": "Ice", 
+        "min": 20,
+        "max": 30,
+        "level": 1
+    },
+    {
+        "id": 10100,
+        "name": "Glaze", 
+        "min": 25,
+        "max": 40,
+        "level": 1
+    },
+    {
+        "id": 10110,
+        "name": "Avalanche",
+        "min": 30,
+        "max": 50,
+        "level": 1
+    },
+
+    {
+        "id": 10120,
+        "name": "Firestorm",  
+        "min": 25,
+        "max": 40,
+        "level": 1
+    },
+    {
+        "id": 10130,
+        "name": "Volcano", 
+        "min": 25,
+        "max": 50,
+        "level": 1
+    },
+    {
+        "id": 10140,
+        "name": "Inferno",
+        "min": 50,
+        "max": 75,
+        "level": 1
     }
     
 ]

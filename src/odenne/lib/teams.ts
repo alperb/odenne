@@ -42,12 +42,7 @@ export class Team {
         return false;
     }
 
-    addPlayer(originalPlayer: OriginalPlayer, isMob: boolean = false){
-        if(isMob){
-            const player = new Player(this, originalPlayer);
-            player.playerize();
-            this.players.push(player);
-        }
+    addPlayer(originalPlayer: OriginalPlayer){
         const player = new Player(this, originalPlayer);
         this.players.push(player);
     }
@@ -132,17 +127,13 @@ export class Member {
         this.effects = [];
     }
 
-    playerize(){
-        // TODO: here is missing dude
-    }
-
     hasEffect(effectType: string){
         let effects = this.effects.filter(e => e.constructor.name === effectType);
         if(effects.length > 0) return effects[0]
     }
 
     hasCC(){
-        const CCs = ["Blind", "Stun"];
+        const CCs = ["Blind", "Stun", "Freeze"];
 
         for(const cc of CCs){
             const effect = this.hasEffect(cc);

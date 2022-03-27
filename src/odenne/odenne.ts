@@ -110,11 +110,6 @@ export class Odenne {
         
         for(let i = 0; i < this.options.teams.length; i++){
             for(let j = 0; j < this.options.teams[i].length; j++){
-                if(this.options.isPVE){
-                    if(i == this.options.PVETeamIndex){
-                        this.teams[i].addPlayer(this.options.teams[i][j], true);
-                    }
-                }
                 this.teams[i].addPlayer(this.options.teams[i][j]);
             }
         }
