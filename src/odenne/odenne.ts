@@ -16,7 +16,7 @@ import OdenneOptions from './helpers/options';
 // Odenne bound helpers
 import Exceptions from './helpers/exceptions';
 import Status from './helpers/status';
-import Teams, { Team } from './lib/teams';
+import Teams, { Mob, Team } from './lib/teams';
 import Keeper from './lib/keeper';
 import Referee from './lib/referee';
 import Environments from './lib/environments';
@@ -110,6 +110,11 @@ export class Odenne {
         
         for(let i = 0; i < this.options.teams.length; i++){
             for(let j = 0; j < this.options.teams[i].length; j++){
+                if(this.options.isPVE){
+                    if(i == this.options.PVETeamIndex){
+                        this.teams[i].addPlayer(this.options.teams[i][j], true);
+                    }
+                }
                 this.teams[i].addPlayer(this.options.teams[i][j]);
             }
         }

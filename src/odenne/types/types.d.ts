@@ -135,3 +135,19 @@ export interface UILog {
     penetrations: number[][];
     accuracies: number[][];
 }
+
+export const enum WINNER {
+    TEAM1 = 0,
+    TEAM2 = 1,
+    DRAW = 2
+}
+
+export const enum EndResult {
+    TEAM_DEAD = 'team_dead',
+    LIMIT_EXCEEDED = 'limit_exceeded'
+}
+
+export interface MatchResult {
+    winner: number;
+    reason: EndResult
+}

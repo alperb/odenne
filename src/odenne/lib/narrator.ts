@@ -62,7 +62,6 @@ export default class Narrator {
 
             template = template.replace(`{{ ${key} }}`, event[key].toString());
         }
-        console.log({template})
         return template;
     }
 
@@ -92,7 +91,7 @@ export default class Narrator {
 
     generate(): void{
         this.Odenne.UI.saveRound(this.events[0], this.Log);
-        
+
         this.clear();
     }
 

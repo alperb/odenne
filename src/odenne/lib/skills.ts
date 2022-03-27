@@ -27,43 +27,43 @@ export default class Skills {
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
                 isCreated = true; break;
             case 10:
-                Player.player.skills.push(new DodgeI(Player, skill));
-                isCreated = true; break;
-            case 20:
-                Player.player.skills.push(new ArrowRainI(Player, skill));
-                isCreated = true; break;
-            case 30:
                 Player.player.skills.push(new ArcaneShotI(Player, skill));
                 isCreated = true; break;
+            case 20:
+                Player.player.skills.push(new DodgeI(Player, skill));
+                isCreated = true; break;
+            case 30:
+                Player.player.skills.push(new ArrowRainI(Player, skill));
+                isCreated = true; break;
             case 40:
-                Player.player.skills.push(new OneTheHuntI(Player, skill));
-                isCreated = true; break;
-            case 50:
-                Player.player.skills.push(new FocusI(Player, skill));
-                isCreated = true; break;
-            case 60:
-                Player.player.skills.push(new ColdBloodI(Player, skill));
-                isCreated = true; break;
-            case 70:
-                Player.player.skills.push(new SnipeI(Player, skill));
-                isCreated = true; break;
-            case 80:
-                Player.player.skills.push(new HeadStartI(Player, skill));
-                isCreated = true; break;
-            case 90:
-                Player.player.skills.push(new RangerI(Player, skill));
-                isCreated = true; break;
-            case 100:
                 Player.player.skills.push(new TacticalI(Player, skill));
                 isCreated = true; break;
-            case 110:
-                Player.player.skills.push(new AccuracyI(Player, skill));
+            case 50:
+                Player.player.skills.push(new OneTheHuntI(Player, skill));
                 isCreated = true; break;
-            case 120:
+            case 60:
                 Player.player.skills.push(new LongShotsI(Player, skill));
                 isCreated = true; break;
-            case 130:
+            case 70:
+                Player.player.skills.push(new AccuracyI(Player, skill));
+                isCreated = true; break;
+            case 80:
                 Player.player.skills.push(new PoisonI(Player, skill));
+                isCreated = true; break;
+            case 90:
+                Player.player.skills.push(new SnipeI(Player, skill));
+                isCreated = true; break;
+            case 100:
+                Player.player.skills.push(new RangerI(Player, skill));
+                isCreated = true; break;
+            case 110:
+                Player.player.skills.push(new ColdBloodI(Player, skill));
+                isCreated = true; break;
+            case 120:
+                Player.player.skills.push(new FocusI(Player, skill));
+                isCreated = true; break;
+            case 130:
+                Player.player.skills.push(new HeadStartI(Player, skill));
                 isCreated = true; break;
             //#endregion
 
@@ -75,19 +75,19 @@ export default class Skills {
                 Player.player.skills.push(new BetrayalI(Player, skill));
                 isCreated = true; break;
             case 1020:
-                Player.player.skills.push(new BladeRainI(Player, skill));
-                isCreated = true; break;
-            case 1030:
                 Player.player.skills.push(new ThinArmorI(Player, skill));
                 isCreated = true; break;
-            case 1040:
-                Player.player.skills.push(new StealthI(Player, skill));
+            case 1030:
+                Player.player.skills.push(new BladeRainI(Player, skill));
                 isCreated = true; break;
-            case 1050:
+            case 1040:
                 Player.player.skills.push(new TheUntouchableI(Player, skill));
                 isCreated = true; break;
-            case 1060:
+            case 1050:
                 Player.player.skills.push(new BlindI(Player, skill));
+                isCreated = true; break;
+            case 1060:
+                Player.player.skills.push(new StealthI(Player, skill));
                 isCreated = true; break;
             case 1070:
                 Player.player.skills.push(new ExecutionerI(Player, skill));
@@ -102,10 +102,10 @@ export default class Skills {
                 Player.player.skills.push(new MasterAssassinI(Player, skill));
                 isCreated = true; break;
             case 1110:
-                Player.player.skills.push(new ParalyzeI(Player, skill));
+                Player.player.skills.push(new DeadlyMarkI(Player, skill));
                 isCreated = true; break;
             case 1120:
-                Player.player.skills.push(new DeadlyMarkI(Player, skill));
+                Player.player.skills.push(new ParalyzeI(Player, skill));
                 isCreated = true; break;
             case 1130:
                 Player.player.skills.push(new BackstabI(Player, skill));
@@ -147,14 +147,15 @@ export default class Skills {
                 Player.player.skills.push(new MagelightI(Player, skill));
                 isCreated = true; break;
             case 2110:
-                Player.player.skills.push(new MeteorI(Player, skill));
+                Player.player.skills.push(new MimicI(Player, skill));
                 isCreated = true; break;
             case 2120:
                 Player.player.skills.push(new IllusionI(Player, skill));
                 isCreated = true; break;
             case 2130:
-                Player.player.skills.push(new MimicI(Player, skill));
+                Player.player.skills.push(new MeteorI(Player, skill));
                 isCreated = true; break;
+            
             //#endregion
 
             //#region Warrior Skills

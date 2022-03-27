@@ -8,7 +8,12 @@ import { GetSkillRequest } from "../types/requests";
 skillRouter.post('/get', (req: Request<{}, {}, GetSkillRequest>, res: Response, next) => {
     try{
         const wantedSkills: number[] = req.body.skills;
-        const filtered = skillConfig.filter(s => wantedSkills.includes(s.id));
+        let filtered: OriginalSkill[] = [];
+        for(const skillId of wantedSkills){
+            const skillFilter = skillConfig.filter(s => skillId === s.id);
+            if(skillFilter.length > 0) filtered.push(skillFilter[0]);
+            else filtered.push({id: -1, name: 'Not a Skill'})
+        }
 
         const response = {
             result: 1,

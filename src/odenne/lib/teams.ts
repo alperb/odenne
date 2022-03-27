@@ -42,7 +42,12 @@ export class Team {
         return false;
     }
 
-    addPlayer(originalPlayer: OriginalPlayer){
+    addPlayer(originalPlayer: OriginalPlayer, isMob: boolean = false){
+        if(isMob){
+            const player = new Player(this, originalPlayer);
+            player.playerize();
+            this.players.push(player);
+        }
         const player = new Player(this, originalPlayer);
         this.players.push(player);
     }
@@ -125,6 +130,10 @@ export class Member {
         };
 
         this.effects = [];
+    }
+
+    playerize(){
+        // TODO: here is missing dude
     }
 
     hasEffect(effectType: string){
@@ -217,7 +226,7 @@ export class Player extends Member {
         this.Decider = new Decider(this);
         this.DIVIDERS = {
             attack: 5,
-            defense: 10,
+            defense: 5,
             health: 1,
             accuracy: 1,
             critic: 20,

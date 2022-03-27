@@ -8,77 +8,77 @@
     },
     {
         "id": 10,
-        "name": "Dodge",
-        "level": 1
-    },
-    {
-        "id": 20,
-        "name": "Arrow Rain",
-        "min": 5,
-        "max": 20,
-        "level": 1
-    },
-    {
-        "id": 30,
         "name": "Arcane Shot",
         "min": 10,
         "max": 15,
         "level": 1
     },
     {
+        "id": 20,
+        "name": "Dodge",
+        "level": 1
+    },
+    {
+        "id": 30,
+        "name": "Arrow Rain",
+        "min": 5,
+        "max": 20,
+        "level": 1
+    },
+    {
         "id": 40,
+        "name": "Tactical",
+        "level": 1
+    },
+    {
+        "id": 50,
         "name": "On The Hunt",
         "min": 7,
         "max": 19,
         "level": 1
     },
     {
-        "id": 50,
-        "name": "Focus",
-        "level": 1
-    },
-    {
         "id": 60,
-        "name": "Cold Blood",
+        "name": "Long Shots",
         "level": 1
     },
     {
         "id": 70,
-        "name": "Snipe",
-        "min": 10,
-        "max": 25,
-        "level": 1
-    },
-    {
-        "id": 80,
-        "name": "Head Start",
-        "level": 1
-    },
-    {
-        "id": 90,
-        "name": "Ranger",
-        "level": 1
-    },
-    {
-        "id": 100,
-        "name": "Tactical",
-        "level": 1
-    },
-    {
-        "id": 110,
         "name": "Accuracy",
         "min": 10,
         "max": 17,
         "level": 1
     },
     {
+        "id": 80,
+        "name": "Poison",
+        "level": 1
+    },
+    {
+        "id": 90,
+        "name": "Snipe",
+        "min": 10,
+        "max": 25,
+        "level": 1
+    },
+    {
+        "id": 100,
+        "name": "Ranger",
+        "level": 1
+    },
+    {
+        "id": 110,
+        "name": "Cold Blood",
+        "level": 1
+    },
+    {
         "id": 120,
-        "name": "Long Shots",
+        "name": "Focus",
         "level": 1
     },
     {
         "id": 130,
-        "name": "Poison",
+        "name": "Head Start",
         "level": 1
     },
 
@@ -99,33 +99,33 @@
     },
     {
         "id": 1020,
-        "name": "Blade Rain",
-        "min": 10,
-        "max": 27,
-        "level": 1
-    },
-    {
-        "id": 1030,
         "name": "Thin Armor",
         "min": 5,
         "max": 10,
         "level": 1
     },
     {
-        "id": 1040,
-        "name": "Stealth",
+        "id": 1030,
+        "name": "Blade Rain",
+        "min": 10,
+        "max": 27,
         "level": 1
     },
     {
-        "id": 1050,
+        "id": 1040,
         "name": "The Untouchable",
         "level": 1
     },
     {
-        "id": 1060,
+        "id": 1050,
         "name": "Blind",
         "min": 5,
         "max": 9,
+        "level": 1
+    },
+    {
+        "id": 1060,
+        "name": "Stealth",
         "level": 1
     },
     {
@@ -150,14 +150,14 @@
     },
     {
         "id": 1110,
-        "name": "Paralyze",
-        "min": 10,
-        "max": 35,
+        "name": "Deadly Mark",
         "level": 1
     },
     {
         "id": 1120,
-        "name": "Deadly Mark",
+        "name": "Paralyze",
+        "min": 10,
+        "max": 35,
         "level": 1
     },
     {
@@ -235,20 +235,20 @@
         "level": 1
     },
     {
-        "id": 2110,
-        "name": "Meteor Rain",
-        "min": 15,
-        "max": 75,
-        "level": 1
-    },
-    {
         "id": 2120,
         "name": "Illusion",
         "level": 1
     },
     {
-        "id": 2130,
+        "id": 2110,
         "name": "Mimic",
+        "level": 1
+    },
+    {
+        "id": 2130,
+        "name": "Meteor Rain",
+        "min": 15,
+        "max": 75,
         "level": 1
     },
 

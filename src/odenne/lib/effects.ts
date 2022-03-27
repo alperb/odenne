@@ -397,7 +397,7 @@ export class Ignite extends ActiveEffect {
             source: {player: this.config.sourceMember, source: this},
             target: this.config.targetMember,
             cancel: {isCancelled: false},
-            damage: 5,
+            damage: 5 + (this.config.sourceMember.getStat('attack') / 2),
             isTrue: false,
         })
     }
@@ -424,7 +424,7 @@ export class EdipinYarragi extends ActiveEffect {
             source: {player: this.config.sourceMember, source: this},
             target: this.config.targetMember,
             cancel: {isCancelled: false},
-            damage: dmg,
+            damage: dmg + (this.config.sourceMember.getStat('attack') / 2),
             isTrue: false
         })
     }
@@ -451,7 +451,7 @@ export class WaffleinHukmu extends ActiveEffect {
             source: {player: this.config.sourceMember, source: this},
             target: this.config.targetMember,
             cancel: {isCancelled: false},
-            damage: dmg,
+            damage: dmg + (this.config.sourceMember.getStat('attack') / 2),
             isTrue: false
         })
     }
@@ -896,8 +896,8 @@ export class RuhsarinIntikami extends PassiveEffect {
                 sourceMember: this.config.targetMember
             }
             let reflected: DamageDone = {
-                damage: reflectedDamage, 
-                source: {player: this.config.targetMember, source: this}, 
+                damage: reflectedDamage + (this.config.sourceMember.getStat('attack') / 2), 
+                source: {player: this.config.sourceMember, source: this}, 
                 target: this.config.targetMember.Decider.Current.damageTaken[i].source.player, 
                 cancel: {isCancelled: false}, 
                 isTrue: false
@@ -1107,8 +1107,8 @@ export class BumBeYarrag extends PassiveEffect {
             
             let reflectedDamage = takenDamage * .2;
             let reflected: DamageDone = {
-                damage: reflectedDamage, 
-                source: {player: this.config.targetMember, source: this}, 
+                damage: reflectedDamage + (this.config.sourceMember.getStat('attack') / 2), 
+                source: {player: this.config.sourceMember, source: this}, 
                 target: this.config.targetMember.Decider.Current.damageTaken[i].source.player, 
                 cancel: {isCancelled: false}, 
                 isTrue: false
@@ -1263,7 +1263,7 @@ export class MeteorRain extends ActiveEffect {
             source: {player: this.config.sourceMember, source: this},
             target: this.config.targetMember,
             cancel: {isCancelled: false},
-            damage: dmg,
+            damage: dmg + (this.config.sourceMember.getStat('attack') / 2),
             isTrue: false,
         })
     }

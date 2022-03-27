@@ -120,9 +120,6 @@ export default class Decider {
         this.runEffects(); 
         this.applyEffects();
         this.runAfterEffects();
-        // this.applyTakenDamages();
-        // clear artifacts
-        // this.clear();
     }
 
     private runAfterEffects() {
@@ -236,7 +233,7 @@ export default class Decider {
                 }
             }
         }
-        return dmg;
+        return Math.floor(dmg);
     }
 
     getSummary(): DeciderSummary{
