@@ -182,8 +182,10 @@ export class AttackBonus extends StatBonus {
     private getIncreaseByMissingHealth(){
         const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.player.stats.health;
         const missingPercentage = missingHealth / this.config.targetMember.player.baseStats.health * 100;
-        const gain = missingPercentage / 100 * this.config.targetMember.player.stats.attack;
-        return gain / (this.config.targetMember as Player).DIVIDERS.attack;
+        if(missingPercentage >= this.details.value){
+            return this.config.targetMember.player.stats.attack * this.details.value / 100;
+        }
+        return this.config.targetMember.player.stats.attack * missingPercentage / 100;
     }
 
     get(type: string): number {
@@ -214,8 +216,10 @@ export class DefenseBonus extends StatBonus {
     private getIncreaseByMissingHealth(){
         const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.player.stats.health;
         const missingPercentage = missingHealth / this.config.targetMember.player.baseStats.health * 100;
-        const gain = missingPercentage / 100 * this.config.targetMember.player.stats.defense;
-        return gain / (this.config.targetMember as Player).DIVIDERS.defense;
+        if(missingPercentage >= this.details.value){
+            return this.config.targetMember.player.stats.defense * this.details.value / 100;
+        }
+        return this.config.targetMember.player.stats.defense * missingPercentage / 100;
     }
 
     get(type: string): number {
@@ -674,9 +678,11 @@ export class OmnininCocugu extends PassiveEffect {
     private calculateDamageBonus(damage: DamageDone): number{
         const missingHealth = damage.target.player.baseStats.health - damage.target.player.stats.health;
         const percentage = missingHealth / damage.target.player.baseStats.health * 100;
-        const gainIncrease = percentage / 100 * 30;
+        if(percentage >= 30){
+            return damage.damage * 30 / 100;
+        }
 
-        return damage.damage * gainIncrease / 100;
+        return damage.damage * percentage / 100;
     }
 
     private increaseDamage(){
