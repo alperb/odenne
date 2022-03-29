@@ -17,13 +17,13 @@ export default class Narrator {
 
         this.events = [];
         this.templates = new Map<number, string>([
-            [EventTypes.DAMAGE, "**{{ attacker }}** dealt `{{ damage }}` with **{{ skill }}**"],
-            [EventTypes.REFLECT, "**{{ defender }}** reflected `{{ damage }}` with **{{ skill }}**"],
-            [EventTypes.DAMAGE_AND, "**{{ attacker }}** dealt `{{ damage }}` with **{{ skill }}** and {{ reason }}"],
-            [EventTypes.DAMAGE_CANCEL, "**{{ attacker }}** dealt `{{ damage }}` with **{{ skill }}** but **{{ defender }}** {{ reason }}"],
+            [EventTypes.DAMAGE, "**{{ attacker }}** dealt `{{ damage }}` damage with **{{ skill }}**"],
+            [EventTypes.REFLECT, "**{{ defender }}** reflected `{{ damage }}` damage with **{{ skill }}**"],
+            [EventTypes.DAMAGE_AND, "**{{ attacker }}** dealt `{{ damage }}` damage with **{{ skill }}** and {{ reason }}"],
+            [EventTypes.DAMAGE_CANCEL, "**{{ attacker }}** dealt `{{ damage }}` damage with **{{ skill }}** but **{{ defender }}** {{ reason }}"],
             [EventTypes.CC, "**{{ attacker }}** was **{{ skill }}**"],
             [EventTypes.STATS_INCREASE, "**{{ attacker }}** gained `{{ statvalue }}` {{ stattype }} with **{{ skill }}**"],
-            [EventTypes.INVULNERABLE, "**{{ attacker }}** became invulnerable"],
+            [EventTypes.INVULNERABLE, "**{{ attacker }}** became __invulnerable__"],
             [EventTypes.ROUND_STEAL, "**{{ attacker }}** stole the next round"],
             [EventTypes.SHIELD_GAIN, "**{{ attacker }}** gained `{{ shieldValue }}` {{ shieldType }} shield"],
             [EventTypes.GAIN_CC_IMMUNITY, '**{{ attacker }}** gained immunity with **{{ skill }}**']
