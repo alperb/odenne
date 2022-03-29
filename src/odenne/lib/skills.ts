@@ -329,11 +329,11 @@ export abstract class Skill {
     isAvailable(): boolean {
         if(!this.enabled) return false;
         if(this.maxUseCount === -1 || this.usedRounds.length === 0) return true;
-        if(this.player.team.Odenne.Referee.roundCount - this.usedRounds[this.usedRounds.length - 1] > 1) return true;
+        if(this.player.team.Odenne.Referee.roundCount - this.usedRounds[this.usedRounds.length - 1] > 2) return true;
 
         let usedCount = 1;
         for(let i = this.usedRounds.length - 2; i >= 0; i--){
-            if(this.usedRounds[i] === this.usedRounds[i+1] - 1) usedCount++;
+            if(this.usedRounds[i] === this.usedRounds[i+1] - 2) usedCount++;
             else break;
         }
 
