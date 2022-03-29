@@ -81,8 +81,6 @@
         "name": "Head Start",
         "level": 1
     },
-
-
     {
         "id": 1000,
         "name": "Basic Attack",
@@ -165,8 +163,6 @@
         "name": "Backstab",
         "level": 1
     },
-
-
     {
         "id": 2000,
         "name": "Basic Attack",
@@ -251,8 +247,6 @@
         "max": 75,
         "level": 1
     },
-
-
     {
         "id": 3000,
         "name": "Basic Attack",
@@ -339,7 +333,6 @@
         "name": "Evolve",
         "level": 1
     },
-
     {
         "id": 10000,
         "name": "Bite",
@@ -361,7 +354,6 @@
         "max": 15,
         "level": 1
     },
-
     {
         "id": 10030,
         "name": "Swing",
@@ -378,12 +370,11 @@
     },
     {
         "id": 10050,
-        "name": "Throw", 
+        "name": "Throw",
         "min": 10,
         "max": 20,
         "level": 1
     },
-
     {
         "id": 10060,
         "name": "Strike",
@@ -401,21 +392,20 @@
     {
         "id": 10080,
         "name": "Rumble",
-        "min": 20, 
+        "min": 20,
         "max": 40,
         "level": 1
     },
-
     {
         "id": 10090,
-        "name": "Ice", 
+        "name": "Ice",
         "min": 20,
         "max": 30,
         "level": 1
     },
     {
         "id": 10100,
-        "name": "Glaze", 
+        "name": "Glaze",
         "min": 25,
         "max": 40,
         "level": 1
@@ -427,17 +417,16 @@
         "max": 50,
         "level": 1
     },
-
     {
         "id": 10120,
-        "name": "Firestorm",  
+        "name": "Firestorm",
         "min": 25,
         "max": 40,
         "level": 1
     },
     {
         "id": 10130,
-        "name": "Volcano", 
+        "name": "Volcano",
         "min": 25,
         "max": 50,
         "level": 1
@@ -449,10 +438,9 @@
         "max": 75,
         "level": 1
     },
-
     {
         "id": 10150,
-        "name": "Inhale", 
+        "name": "Inhale",
         "min": 75,
         "max": 175,
         "level": 1
@@ -462,14 +450,153 @@
         "name": "Fiery Breath",
         "min": 175,
         "max": 275,
-        "level": 1 
+        "level": 1
     },
     {
         "id": 10170,
         "name": "Molten Flame",
         "min": 325,
         "max": 425,
-        "level": 1 
+        "level": 1
+    },
+    {
+        "id": 65128,
+        "name": "Bite",
+        "min": 3,
+        "max": 5,
+        "level": 1
+    },
+    {
+        "id": 65129,
+        "name": "Claw",
+        "min": 6,
+        "max": 10,
+        "level": 1
+    },
+    {
+        "id": 65130,
+        "name": "Howl",
+        "min": 12,
+        "max": 20,
+        "level": 1
+    },
+    {
+        "id": 65131,
+        "name": "Bite",
+        "min": 5,
+        "max": 10,
+        "level": 1
+    },
+    {
+        "id": 65132,
+        "name": "Claw",
+        "min": 10,
+        "max": 20,
+        "level": 1
+    },
+    {
+        "id": 65133,
+        "name": "Howl",
+        "min": 20,
+        "max": 30,
+        "level": 1
+    },
+    {
+        "id": 65134,
+        "name": "Bite",
+        "min": 12,
+        "max": 20,
+        "level": 1
+    },
+    {
+        "id": 65135,
+        "name": "Claw",
+        "min": 20,
+        "max": 30,
+        "level": 1
+    },
+    {
+        "id": 65136,
+        "name": "Howl",
+        "min": 30,
+        "max": 35,
+        "level": 1
+    },
+    {
+        "id": 65137,
+        "name": "Bite",
+        "min": 20,
+        "max": 30,
+        "level": 1
+    },
+    {
+        "id": 65138,
+        "name": "Claw",
+        "min": 30,
+        "max": 35,
+        "level": 1
+    },
+    {
+        "id": 65139,
+        "name": "Howl",
+        "min": 35,
+        "max": 40,
+        "level": 1
+    },
+    {
+        "id": 65140,
+        "name": "Bite",
+        "min": 30,
+        "max": 35,
+        "level": 1
+    },
+    {
+        "id": 65141,
+        "name": "Claw",
+        "min": 40,
+        "max": 45,
+        "level": 1
+    },
+    {
+        "id": 65142,
+        "name": "Howl",
+        "min": 40,
+        "max": 45,
+        "level": 1
+    },
+    {
+        "id": 65143,
+        "name": "Howl",
+        "min": 45,
+        "max": 50,
+        "level": 1
+    },
+    {
+        "id": 65144,
+        "name": "Bite",
+        "min": 35,
+        "max": 40,
+        "level": 1
+    },
+    {
+        "id": 65145,
+        "name": "Bite",
+        "min": 50,
+        "max": 55,
+        "level": 1
+    },
+    {
+        "id": 65146,
+        "name": "Claw",
+        "min": 55,
+        "max": 60,
+        "level": 1
+    },
+    {
+        "id": 65147,
+        "name": "Howl",
+        "min": 60,
+        "max": 65,
+        "level": 1
     }
-    
 ]
