@@ -69,6 +69,7 @@ export default class Decider {
         const cc = damage.source.player.hasCC();
         if(cc && !damage.bypass){
             if(cc instanceof Stun){
+                console.log({currentEffects: damage.source.player.effects});
                 const newEvent: EventParameters = {
                     type: EventTypes.CC,
                     attacker: damage.source.player.original.name,
@@ -148,7 +149,7 @@ export default class Decider {
                 damage: damage.damage, 
                 attacker: damage.source.player.original.name,
                 skill: damage.source.source.skill.name,
-                reason: `disabled ${damage.source.source.disabledSkill.skill.name}`
+                reason: `disabled __${damage.source.source.disabledSkill.skill.name}__`
             }
 
             this.Player.team.Odenne.Narrator.saveEvent(newEvent);
