@@ -32,6 +32,7 @@ export default class Decider {
             }
         }
         for(const effect of effectsToRemove){
+            console.log({effect});
             this.Player.effects.splice(this.Player.effects.indexOf(effect), 1);
         }
     }
