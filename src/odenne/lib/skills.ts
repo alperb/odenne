@@ -250,6 +250,15 @@ export default class Skills {
             case 10140:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
                 isCreated = true; break;
+            case 10150:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true; break;
+            case 10160:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true; break;
+            case 10170:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true; break;
             //#endregion
             default:
                 break;

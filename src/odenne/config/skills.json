@@ -448,6 +448,28 @@
         "min": 50,
         "max": 75,
         "level": 1
+    },
+
+    {
+        "id": 10150,
+        "name": "Inhale", 
+        "min": 75,
+        "max": 175,
+        "level": 1
+    },
+    {
+        "id": 10160,
+        "name": "Fiery Breath",
+        "min": 175,
+        "max": 275,
+        "level": 1 
+    },
+    {
+        "id": 10170,
+        "name": "Molten Flame",
+        "min": 325,
+        "max": 425,
+        "level": 1 
     }
     
 ]

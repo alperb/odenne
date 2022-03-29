@@ -51,7 +51,8 @@ battleRouter.post('/duel', (req, res, next) => {
         res.json(response);
     }
     catch(e){
-        response.json({
+        console.log(e);
+        res.json({
             result: 0
         })
     }
