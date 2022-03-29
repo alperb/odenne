@@ -68,7 +68,7 @@ export default class Decider {
 
     shouldTakeDamage(damage: DamageDone): CancelInfo {
         const cc = damage.source.player.hasCC();
-        if(cc && !damage.bypass){
+        if(cc && !damage.bypass && damage.source.player === this.Player.team.Odenne.Referee.turn.player.player){
             if(cc instanceof Stun){
                 console.log({currentEffects: damage.source.player.effects});
                 const newEvent: EventParameters = {
