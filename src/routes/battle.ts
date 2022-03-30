@@ -17,30 +17,30 @@ battleRouter.post('/duel', (req, res, next) => {
             }
         }
 
-        const start = Date.now();
+        // const start = Date.now();
         const battle = new Odenne(battleOptions);
         battle.start();
         while(battle.status.get() === STATUSCODES.STARTED){
             battle.advance();
-            console.log(battle.UI.getCurrentRoundLog());
-            console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
+            // console.log(battle.UI.getCurrentRoundLog());
+            // console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
 
-            console.log({a: battle.teams[0].players[0].player.stats.attack});
-            console.log({a: battle.teams[1].players[0].player.stats.attack});
+            // console.log({a: battle.teams[0].players[0].player.stats.attack});
+            // console.log({a: battle.teams[1].players[0].player.stats.attack});
 
-            console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
-            console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
+            // console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
+            // console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
 
-            console.log({c: battle.teams[0].players[0].player.stats.critic});
-            console.log({c: battle.teams[1].players[0].player.stats.critic});
+            // console.log({c: battle.teams[0].players[0].player.stats.critic});
+            // console.log({c: battle.teams[1].players[0].player.stats.critic});
 
-            console.log({p: battle.teams[0].players[0].player.stats.penetration});
-            console.log({p: battle.teams[1].players[0].player.stats.penetration});
+            // console.log({p: battle.teams[0].players[0].player.stats.penetration});
+            // console.log({p: battle.teams[1].players[0].player.stats.penetration});
 
-            console.log({s: battle.teams[0].players[0].player.shields});
-            console.log({s: battle.teams[1].players[0].player.shields});
+            // console.log({s: battle.teams[0].players[0].player.shields});
+            // console.log({s: battle.teams[1].players[0].player.shields});
         }
-        console.log(`Took ${Date.now() - start}ms`);
+        // console.log(`Took ${Date.now() - start}ms`);
 
         const bulkLog = battle.UI.getBulkLog();
         const response = {
@@ -52,7 +52,7 @@ battleRouter.post('/duel', (req, res, next) => {
     }
     catch(e){
         console.log(e);
-        res.json({
+        res.status(500).json({
             result: 0
         })
     }

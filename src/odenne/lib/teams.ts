@@ -290,7 +290,7 @@ export class Player extends Member {
         for(const skillId of (this.original.wearings.skills as Array<number>)){
             const skill: OriginalSkill = this.findSkillFromConfig(skillId) as OriginalSkill;
             try{
-                this.team.Odenne.Skills.create(this, skill);
+                this.team.Odenne.Skills.create(this, _.cloneDeep(skill));
             }
             catch(e){
                 // oops

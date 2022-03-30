@@ -22,7 +22,8 @@ skillRouter.post('/get', (req: Request<{}, {}, GetSkillRequest>, res: Response, 
         res.json(response);
     }
     catch(e){
-        res.json({
+        console.log(e);
+        res.status(500).json({
             result: 0
         })
     }
