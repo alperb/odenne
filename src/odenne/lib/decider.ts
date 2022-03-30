@@ -32,6 +32,7 @@ export default class Decider {
             }
         }
         for(const effect of effectsToRemove){
+            console.log({effect});
             this.Player.effects.splice(this.Player.effects.indexOf(effect), 1);
         }
     }
@@ -67,8 +68,9 @@ export default class Decider {
 
     shouldTakeDamage(damage: DamageDone): CancelInfo {
         const cc = damage.source.player.hasCC();
-        if(cc && !damage.bypass){
+        if(cc && !damage.bypass && damage.source.player === this.Player.team.Odenne.Referee.turn.player.player){
             if(cc instanceof Stun){
+                console.log({currentEffects: damage.source.player.effects});
                 const newEvent: EventParameters = {
                     type: EventTypes.CC,
                     attacker: damage.source.player.original.name,
@@ -148,7 +150,7 @@ export default class Decider {
                 damage: damage.damage, 
                 attacker: damage.source.player.original.name,
                 skill: damage.source.source.skill.name,
-                reason: `disabled ${damage.source.source.disabledSkill.skill.name}`
+                reason: `disabled __${damage.source.source.disabledSkill.skill.name}__`
             }
 
             this.Player.team.Odenne.Narrator.saveEvent(newEvent);

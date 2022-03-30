@@ -340,7 +340,7 @@ export abstract class Skill {
     modifiers!: Modifier[];
     player!: Player;
     chance!: number;
-    maxUseCount: number = -1;
+    maxUseCount: number = 1;
     usedRounds: number[] = [];
     effects: string[] = [];
     enabled: boolean = true;
@@ -395,11 +395,11 @@ export abstract class Skill {
     isAvailable(): boolean {
         if(!this.enabled) return false;
         if(this.maxUseCount === -1 || this.usedRounds.length === 0) return true;
-        if(this.player.team.Odenne.Referee.roundCount - this.usedRounds[this.usedRounds.length - 1] > 1) return true;
+        if(this.player.team.Odenne.Referee.roundCount - this.usedRounds[this.usedRounds.length - 1] > 2) return true;
 
         let usedCount = 1;
         for(let i = this.usedRounds.length - 2; i >= 0; i--){
-            if(this.usedRounds[i] === this.usedRounds[i+1] - 1) usedCount++;
+            if(this.usedRounds[i] === this.usedRounds[i+1] - 2) usedCount++;
             else break;
         }
 
@@ -467,6 +467,7 @@ export class ArcherBasicAttackI extends AttackSkill {
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
         this.type = SKILLTYPES.BASIC;
+        this.maxUseCount = -1;
         this.prepare();
         this.effects = [];
     }
@@ -509,6 +510,7 @@ export class AssassinBasicAttackI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
+        this.maxUseCount = -1;
         this.type = SKILLTYPES.BASIC;
         this.prepare();
         this.effects = [];
@@ -552,6 +554,7 @@ export class MageBasicAttackI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
+        this.maxUseCount = -1;
         this.type = SKILLTYPES.BASIC;
         this.prepare();
         this.effects = [];
@@ -595,6 +598,7 @@ export class WarriorBasicAttackI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
+        this.maxUseCount = -1;
         this.type = SKILLTYPES.BASIC;
         this.prepare();
         this.effects = [];
@@ -686,7 +690,7 @@ export class ArrowRainI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 500;
-        this.maxUseCount = 3;
+        this.maxUseCount = 1;
         this.prepare();
         
 
@@ -866,7 +870,7 @@ export class SnipeI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
-        this.maxUseCount = 2;
+        this.maxUseCount = 1;
 
         this.prepare();
         this.effects = [];
@@ -974,7 +978,7 @@ export class AccuracyI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
-        this.maxUseCount = 2;
+        this.maxUseCount = 1;
 
         this.effects = [];
         this.prepare();
@@ -1112,7 +1116,7 @@ export class BladeRainI extends AttackSkill {
         this.player = Player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 500;
-        this.maxUseCount = 3;
+        this.maxUseCount = 1;
         this.prepare();
         
 
@@ -1160,7 +1164,7 @@ export class ThinArmorI extends AttackSkill {
         this.chance = 100;
         this.damageType = DAMAGETYPES.RANGED;
 
-        this.maxUseCount = 3;
+        this.maxUseCount = 1;
 
         this.effects = ["DefenseBonus"];
         this.prepare();
@@ -1231,7 +1235,7 @@ export class TheUntouchableI extends AttackSkill {
         this.chance = 100;
         this.damageType = DAMAGETYPES.NONE;
 
-        this.maxUseCount = 2;
+        this.maxUseCount = 1;
         this.effects = ["CriticBonus", "Invulnerable"];
     }
 
@@ -1264,7 +1268,7 @@ export class BlindI extends AttackSkill {
         this.chance = 100;
         this.damageType = DAMAGETYPES.RANGED;
 
-        this.maxUseCount = 2;
+        this.maxUseCount = 1;
         this.effects = ["Blind"];
         this.prepare();
     }
@@ -1399,7 +1403,7 @@ export class ParalyzeI extends AttackSkill {
         this.chance = 100;
         this.damageType = DAMAGETYPES.RANGED;
         this.type = SKILLTYPES.ULTIMATE;
-        this.maxUseCount = 2;
+        this.maxUseCount = 1;
         this.prepare();
     }
 
