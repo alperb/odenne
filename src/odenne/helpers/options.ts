@@ -7,6 +7,8 @@ class OdenneOptions {
     PVETeamIndex: number | undefined;
     shouldCalculateItems: Array<boolean>;
     roundLimit: number;
+    shouldOverwriteHealth: boolean;
+    healthOverwrite: number[];
 
     constructor(){
         this.teams = [[], []];
@@ -14,6 +16,8 @@ class OdenneOptions {
         this.PVETeamIndex = undefined;
         this.shouldCalculateItems = [true, true];
         this.roundLimit = 11;
+        this.shouldOverwriteHealth = false;
+        this.healthOverwrite = [];
     }
 
     /**
@@ -57,6 +61,11 @@ class OdenneOptions {
 
     shouldCalculateItemStats(index: number){
         return this.shouldCalculateItems[index];
+    }
+
+    overwriteHealth(teamIndex: number, playerIndex: number, health: number){
+        this.shouldOverwriteHealth = true;
+        this.healthOverwrite = [teamIndex, playerIndex, health];
     }
 }
 export default OdenneOptions;
