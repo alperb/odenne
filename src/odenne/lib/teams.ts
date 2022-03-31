@@ -240,9 +240,8 @@ export class Player extends Member {
 
     createStats(){
         this.player.stats = this.original.stats;
-        
         if(this.team.Odenne.options.shouldOverwriteHealth){
-            if(this.team.index === this.team.Odenne.options.healthOverwrite[0] && this.team.players.indexOf(this) === this.team.Odenne.options.healthOverwrite[1]){
+            if(this.team.index === this.team.Odenne.options.healthOverwrite[0]){
                 this.player.stats.health = this.team.Odenne.options.healthOverwrite[2];
             }
         }

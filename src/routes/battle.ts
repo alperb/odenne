@@ -11,7 +11,7 @@ battleRouter.post('/duel', (req, res, next) => {
         const battleOptions = new OdenneOptions().setRoundLimit(11);
         if(req.body.options){
             if(req.body.options.overwriteHealth){
-                battleOptions.overwriteHealth(0, 0, req.body.options.overwriteHealth);
+                battleOptions.overwriteHealth(0, 0, req.body.options.overwriteHealth[2]);
             }
         }
         // prepare teams
