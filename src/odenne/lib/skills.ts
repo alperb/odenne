@@ -19,317 +19,760 @@ export default class Skills {
      * 2000 - 3000: Mage
      * 3000 - 4000: Warrior
      */
-    create(Player: Player, skill: OriginalSkill){
+    create(Player: Player, skill: OriginalSkill) {
         let isCreated = false;
-        switch(skill.id){
+        switch (skill.id) {
             //#region Archer Skills
             case 0:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10:
                 Player.player.skills.push(new ArcaneShotI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 20:
                 Player.player.skills.push(new DodgeI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 30:
                 Player.player.skills.push(new ArrowRainI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 40:
                 Player.player.skills.push(new TacticalI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 50:
                 Player.player.skills.push(new OneTheHuntI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 60:
                 Player.player.skills.push(new LongShotsI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 70:
                 Player.player.skills.push(new AccuracyI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 80:
                 Player.player.skills.push(new PoisonI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 90:
                 Player.player.skills.push(new SnipeI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 100:
                 Player.player.skills.push(new RangerI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 110:
                 Player.player.skills.push(new ColdBloodI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 120:
                 Player.player.skills.push(new FocusI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 130:
                 Player.player.skills.push(new HeadStartI(Player, skill));
-                isCreated = true; break;
-            //#endregion
+                isCreated = true;
+                break;
+                //#endregion
 
-            //#region Assassin Skills
+                //#region Assassin Skills
             case 1000:
                 Player.player.skills.push(new AssassinBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1010:
                 Player.player.skills.push(new BetrayalI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1020:
                 Player.player.skills.push(new ThinArmorI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1030:
                 Player.player.skills.push(new BladeRainI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1040:
                 Player.player.skills.push(new TheUntouchableI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1050:
                 Player.player.skills.push(new BlindI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1060:
                 Player.player.skills.push(new StealthI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1070:
                 Player.player.skills.push(new ExecutionerI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1080:
                 Player.player.skills.push(new SlaughterI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1090:
                 Player.player.skills.push(new CatalystI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1100:
                 Player.player.skills.push(new MasterAssassinI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1110:
                 Player.player.skills.push(new DeadlyMarkI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1120:
                 Player.player.skills.push(new ParalyzeI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 1130:
                 Player.player.skills.push(new BackstabI(Player, skill));
-                isCreated = true; break;
-            //#endregion
+                isCreated = true;
+                break;
+                //#endregion
 
-            //#region Mage Skills
+                //#region Mage Skills
             case 2000:
                 Player.player.skills.push(new MageBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2010:
                 Player.player.skills.push(new FireballI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2020:
                 Player.player.skills.push(new TheMirrorI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2030:
                 Player.player.skills.push(new IgniteI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2040:
                 Player.player.skills.push(new FreezeI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2050:
                 Player.player.skills.push(new IcebornI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2060:
                 Player.player.skills.push(new BlizzardI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2070:
                 Player.player.skills.push(new ForesightI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2080:
                 Player.player.skills.push(new DestructionI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2090:
                 Player.player.skills.push(new MageAdeptI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2100:
                 Player.player.skills.push(new MagelightI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2110:
                 Player.player.skills.push(new MimicI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2120:
                 Player.player.skills.push(new IllusionI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 2130:
                 Player.player.skills.push(new MeteorI(Player, skill));
-                isCreated = true; break;
-            
-            //#endregion
+                isCreated = true;
+                break;
 
-            //#region Warrior Skills
+                //#endregion
+
+                //#region Warrior Skills
             case 3000:
                 Player.player.skills.push(new WarriorBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3010:
                 Player.player.skills.push(new BashI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3020:
                 Player.player.skills.push(new ShieldStrikeI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3030:
                 Player.player.skills.push(new TheDefenderI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3040:
                 Player.player.skills.push(new ShieldUpI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3050:
                 Player.player.skills.push(new AwakenI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3060:
                 Player.player.skills.push(new UnstoppableI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3070:
                 Player.player.skills.push(new FuryI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3080:
                 Player.player.skills.push(new CircleOfProtectionI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3090:
                 Player.player.skills.push(new TauntI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3100:
                 Player.player.skills.push(new BruteForceI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3110:
                 Player.player.skills.push(new RageI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3120:
                 Player.player.skills.push(new MagmaArmorI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 3130:
                 Player.player.skills.push(new EvolveI(Player, skill));
-                isCreated = true; break;
-            //#endregion
-            
+                isCreated = true;
+                break;
+                //#endregion
 
-            //#region Enemy Skills
+
+                //#region Enemy Skills
             case 10000:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10010:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10020:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10030:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10040:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10050:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10060:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10070:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10080:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10090:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10100:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10110:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10120:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10130:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10140:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10150:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10160:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 10170:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
-            //#endregion
+                isCreated = true;
+                break;
+                //#endregion
 
-            //#region Dungeon Skills
+                //#region Dungeon Skills
             case 65128:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65129:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65130:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65131:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65132:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65133:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65134:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65134:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65135:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65136:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65137:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65138:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65139:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65140:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65141:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65142:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65143:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65144:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65145:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65146:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
+                isCreated = true;
+                break;
             case 65147:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true; break;
-            //#endregion
+                isCreated = true;
+                break;
+            case 65148:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65149:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65150:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65151:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65152:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65153:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65154:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65155:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65156:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65157:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65158:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65159:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65160:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65161:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65162:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65163:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65164:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65165:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65166:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65167:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65168:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65169:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65170:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65171:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65172:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65173:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65174:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65175:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65176:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65177:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65178:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65179:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65180:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65181:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65182:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65183:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65184:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65185:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65186:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65187:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65188:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65189:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65190:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65191:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65192:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65193:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65194:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65195:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65196:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65197:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65198:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65199:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65200:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65201:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65202:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65203:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65204:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65205:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65206:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65207:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65208:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65209:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65210:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65211:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65212:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65213:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65214:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65215:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65216:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65217:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65218:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65219:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65220:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65221:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65222:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65223:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65224:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65225:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65226:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65227:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65228:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65229:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65230:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65231:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65232:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65233:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 65234:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+                //#endregion
             default:
                 break;
         }
-        if(isCreated) return Player.player.skills[Player.player.skills.length - 1];
+        if (isCreated) return Player.player.skills[Player.player.skills.length - 1];
         else return undefined;
     }
 }
