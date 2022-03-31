@@ -9,7 +9,11 @@ const battleRouter = Router();
 battleRouter.post('/duel', (req, res, next) => {
     try{
         const battleOptions = new OdenneOptions().setRoundLimit(11);
-
+        if(req.body.options){
+            if(req.body.options.overwriteHealth){
+                battleOptions.overwriteHealth(0, 0, req.body.options.overwriteHealth[2]);
+            }
+        }
         // prepare teams
         for(const team in req.body.teams){
             for(const player of req.body.teams[team]){
