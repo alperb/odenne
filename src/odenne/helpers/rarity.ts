@@ -59,7 +59,6 @@ export default class Rarity {
             map.set(valueRange, min+i);
 
             // for testing
-            // console.log({number: i+min, chance: ((valueRange[1] - valueRange[0] + 1) / (Math.pow(max, difficulty) - Math.pow(min, difficulty))).toFixed(7)})
         }
         return map;
     }

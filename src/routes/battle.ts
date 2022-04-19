@@ -12,6 +12,7 @@ battleRouter.post('/duel', (req, res, next) => {
         if(req.body.options){
             if(req.body.options.overwriteHealth){
                 battleOptions.overwriteHealth(0, 0, req.body.options.overwriteHealth[2]);
+                battleOptions.calculateItemStats(0, false);
             }
         }
         // prepare teams
@@ -26,23 +27,23 @@ battleRouter.post('/duel', (req, res, next) => {
         battle.start();
         while(battle.status.get() === STATUSCODES.STARTED){
             battle.advance();
-            console.log(battle.UI.getCurrentRoundLog());
-            console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
+            // console.log(battle.UI.getCurrentRoundLog());
+            // console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
 
-            console.log({a: battle.teams[0].players[0].player.stats.attack});
-            console.log({a: battle.teams[1].players[0].player.stats.attack});
+            // console.log({a: battle.teams[0].players[0].player.stats.attack});
+            // console.log({a: battle.teams[1].players[0].player.stats.attack});
 
-            console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
-            console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
+            // console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
+            // console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
 
-            console.log({c: battle.teams[0].players[0].player.stats.critic});
-            console.log({c: battle.teams[1].players[0].player.stats.critic});
+            // console.log({c: battle.teams[0].players[0].player.stats.critic});
+            // console.log({c: battle.teams[1].players[0].player.stats.critic});
 
-            console.log({p: battle.teams[0].players[0].player.stats.penetration});
-            console.log({p: battle.teams[1].players[0].player.stats.penetration});
+            // console.log({p: battle.teams[0].players[0].player.stats.penetration});
+            // console.log({p: battle.teams[1].players[0].player.stats.penetration});
 
-            console.log({s: battle.teams[0].players[0].player.shields});
-            console.log({s: battle.teams[1].players[0].player.shields});
+            // console.log({s: battle.teams[0].players[0].player.shields});
+            // console.log({s: battle.teams[1].players[0].player.shields});
         }
         console.log(`Took ${Date.now() - start}ms`);
 
