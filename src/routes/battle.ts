@@ -12,6 +12,7 @@ battleRouter.post('/duel', (req, res, next) => {
         if(req.body.options){
             if(req.body.options.overwriteHealth){
                 battleOptions.overwriteHealth(0, 0, req.body.options.overwriteHealth[2]);
+                battleOptions.calculateItemStats(0, false);
             }
         }
         // prepare teams
