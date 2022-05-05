@@ -41,7 +41,6 @@ export default class Statistics {
             
             for(const teamIndex in log.summaries){
                 this.saveDamages(parseInt(teamIndex), log.summaries[teamIndex]);
-
             }
         }
     }

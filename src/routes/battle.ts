@@ -51,7 +51,8 @@ battleRouter.post('/duel', (req, res, next) => {
         const response = {
             result: 1,
             logs: bulkLog,
-            end: battle.Referee.result
+            end: battle.Referee.result,
+            stats: battle.Statistics.teams
         }
         res.json(response);
     }
