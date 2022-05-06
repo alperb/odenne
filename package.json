@@ -1,6 +1,6 @@
 {
   "name": "odenne",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Odenne | Valenia Battle Module",
   "main": "src/index.ts",
   "repository": "https://github.com/alperb/odenne.git",
