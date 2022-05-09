@@ -81,7 +81,7 @@ export default class Skills {
                 break;
                 //#endregion
 
-                //#region Assassin Skills
+            //#region Assassin Skills
             case 1000:
                 Player.player.skills.push(new AssassinBasicAttackI(Player, skill));
                 isCreated = true;
@@ -140,7 +140,7 @@ export default class Skills {
                 break;
                 //#endregion
 
-                //#region Mage Skills
+            //#region Mage Skills
             case 2000:
                 Player.player.skills.push(new MageBasicAttackI(Player, skill));
                 isCreated = true;
@@ -200,7 +200,7 @@ export default class Skills {
 
                 //#endregion
 
-                //#region Warrior Skills
+            //#region Warrior Skills
             case 3000:
                 Player.player.skills.push(new WarriorBasicAttackI(Player, skill));
                 isCreated = true;
@@ -259,8 +259,7 @@ export default class Skills {
                 break;
                 //#endregion
 
-
-                //#region Enemy Skills
+            //#region Enemy Skills
             case 10000:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
                 isCreated = true;
@@ -335,7 +334,7 @@ export default class Skills {
                 break;
                 //#endregion
 
-                //#region Dungeon Skills
+            //#region Dungeon Skills
             case 65128:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
                 isCreated = true;
