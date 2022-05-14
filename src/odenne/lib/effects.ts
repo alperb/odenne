@@ -1299,12 +1299,15 @@ export class Copycat extends PassiveEffect {
 
     private stealUltimate(){
         const target = this.config.targetMember.team.Odenne.Referee.getRandomPlayer((this.config.targetMember.team.index + 1) % 2);
-        const stolenUltConfig = target.player.player.skills[4].skill;
-        const newSkill = this.config.targetMember.team.Odenne.Skills.create(this.config.targetMember as Player, stolenUltConfig) as Skill;
-        for(const skill of this.config.targetMember.player.skills){
-            if(skill instanceof MimicI){
-                this.config.targetMember.player.skills.splice(4, 1); 
-                this.config.targetMember.player.skills.push(newSkill);
+        const isStealable = target.player.player.skills.length === 5;
+        if(isStealable){
+            const stolenUltConfig = target.player.player.skills[4].skill;
+            const newSkill = this.config.targetMember.team.Odenne.Skills.create(this.config.targetMember as Player, stolenUltConfig) as Skill;
+            for(const skill of this.config.targetMember.player.skills){
+                if(skill instanceof MimicI){
+                    this.config.targetMember.player.skills.splice(4, 1); 
+                    this.config.targetMember.player.skills.push(newSkill);
+                }
             }
         }
           
