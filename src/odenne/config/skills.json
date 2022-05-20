@@ -1153,6 +1153,186 @@
         "min": 550,
         "max": 750,
         "level": 1
+    }, {
+        "id": 69001,
+        "name": "Bite",
+        "min":3,
+        "max": 5,
+        "level": 1
+    }, {
+        "id": 69002,
+        "name": "Claw",
+        "min":6,
+        "max": 10,
+        "level": 1
+    }, {
+        "id": 69003,
+        "name": "Howl",
+        "min":12,
+        "max": 20,
+        "level": 1
+    }, {
+        "id": 69004,
+        "name": "Strike",
+        "min":3,
+        "max": 5,
+        "level": 1
+    }, {
+        "id": 69005,
+        "name": "Anger",
+        "min":6,
+        "max": 10,
+        "level": 1
+    }, {
+        "id": 69006,
+        "name": "Charge",
+        "min":12,
+        "max": 20,
+        "level": 1
+    }, {
+        "id": 69007,
+        "name": "Sneak",
+        "min":3,
+        "max": 5,
+        "level": 1
+    }, {
+        "id": 69008,
+        "name": "Swing",
+        "min":6,
+        "max": 10,
+        "level": 1
+    }, {
+        "id": 69009,
+        "name": "Throw",
+        "min":12,
+        "max": 20,
+        "level": 1
+    }, {
+        "id": 69010,
+        "name": "Regret",
+        "min":3,
+        "max": 5,
+        "level": 1
+    }, {
+        "id": 69011,
+        "name": "Exhume",
+        "min":6,
+        "max": 10,
+        "level": 1
+    }, {
+        "id": 69012,
+        "name": "Corruption",
+        "min":12,
+        "max": 20,
+        "level": 1
+    }, {
+        "id": 69013,
+        "name": "Grasp",
+        "min":3,
+        "max": 5,
+        "level": 1
+    }, {
+        "id": 69014,
+        "name": "Choke",
+        "min":6,
+        "max": 10,
+        "level": 1
+    }, {
+        "id": 69015,
+        "name": "Venom",
+        "min":12,
+        "max": 20,
+        "level": 1
+    }, {
+        "id": 69016,
+        "name": "Crush",
+        "min":5,
+        "max": 10,
+        "level": 1
+    }, {
+        "id": 69017,
+        "name": "Stonefist",
+        "min":10,
+        "max": 20,
+        "level": 1
+    }, {
+        "id": 69018,
+        "name": "Shockwave",
+        "min":20,
+        "max": 30,
+        "level": 1
+    } , {
+        "id": 69019,
+        "name": "Crush",
+        "min":12,
+        "max": 20,
+        "level": 1
+    }, {
+        "id": 69020,
+        "name": "Stonefist",
+        "min":20,
+        "max": 30,
+        "level": 1
+    }, {
+        "id": 69021,
+        "name": "Shockwave",
+        "min":30,
+        "max": 40,
+        "level": 1
+    } , {
+        "id": 69022,
+        "name": "Regret",
+        "min":20,
+        "max": 30,
+        "level": 1
+    }, {
+        "id": 69023,
+        "name": "Exhume",
+        "min":30,
+        "max": 40,
+        "level": 1
+    }, {
+        "id": 69024,
+        "name": "Corruption",
+        "min":50,
+        "max": 75,
+        "level": 1
+    }, {
+        "id": 69025,
+        "name": "Regret",
+        "min":75,
+        "max": 100,
+        "level": 1
+    }, {
+        "id": 69026,
+        "name": "Exhume",
+        "min":100,
+        "max": 200,
+        "level": 1
+    }, {
+        "id": 69027,
+        "name": "Corruption",
+        "min":200,
+        "max": 350,
+        "level": 1
+    },{
+        "id": 69028,
+        "name": "Inhale",
+        "min":150,
+        "max": 250,
+        "level": 1
+    }, {
+        "id": 69029,
+        "name": "Exhume",
+        "min":250,
+        "max": 450,
+        "level": 1
+    }, {
+        "id": 69030,
+        "name": "Corruption",
+        "min":450,
+        "max": 750,
+        "level": 1
     }
 
 

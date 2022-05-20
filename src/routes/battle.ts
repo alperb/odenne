@@ -22,7 +22,7 @@ battleRouter.post('/duel', (req, res, next) => {
             }
         }
 
-        const start = Date.now();
+        // const start = Date.now();
         const battle = new Odenne(battleOptions);
         battle.start();
         while(battle.status.get() === STATUSCODES.STARTED){
@@ -45,7 +45,7 @@ battleRouter.post('/duel', (req, res, next) => {
             // console.log({s: battle.teams[0].players[0].player.shields});
             // console.log({s: battle.teams[1].players[0].player.shields});
         }
-        console.log(`Took ${Date.now() - start}ms`);
+        // console.log(`Took ${Date.now() - start}ms`);
 
         const bulkLog = battle.UI.getBulkLog();
         const response = {
@@ -58,7 +58,7 @@ battleRouter.post('/duel', (req, res, next) => {
     }
     catch(e){
         console.log(e);
-        res.json({
+        res.status(500).json({
             result: 0
         })
     }
