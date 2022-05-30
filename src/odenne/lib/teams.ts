@@ -261,8 +261,10 @@ export class Player extends Member {
                 if(clothKey == 'skills') continue;
 
                 const item: Item = this.original.wearings[clothKey] as Item;
-                for(const stat of Object.keys(item.stats)){
-                    this.player.stats[stat] += item.stats[stat];
+                if(item.durability > 0 ){
+                    for(const stat of Object.keys(item.stats)){
+                        this.player.stats[stat] += item.stats[stat];
+                    }
                 }
             }
         }
