@@ -16,7 +16,7 @@ jobs:
     machine: true
     resource_class: testservergames/vrpg
     steps:
-      - run: sudo /Users/mbilgehanertan/Documents/VRPG/odenne/build.sh
+      - run: /Users/mbilgehanertan/Documents/VRPG/odenne/build.sh
       - run: echo "Build success"
   start_odenne:
     machine: true
