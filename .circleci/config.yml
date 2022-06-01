@@ -32,4 +32,4 @@ jobs:
       - run: 
           name: Starting Odenne Worker 2
           command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:${<odenne.version}
-      -run: echo "Start success!"
+      - run: echo "Start success!"
