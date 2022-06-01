@@ -2,7 +2,7 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - build-odenne
+      - build_odenne
       - start_odenne:
           requires:
             - build_odenne
@@ -12,7 +12,7 @@ jobs:
     resource_class: testservergames/vrpg
     steps:
       - run: echo "Hi I'm on Runners!"
-  build-odenne:
+  build_odenne:
     machine: true
     resource_class: testservergames/vrpg
     steps:
