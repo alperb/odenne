@@ -17,7 +17,7 @@ jobs:
     working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
     resource_class: testservergames/vrpg
     steps:
-      - run: echo 'export ODENNE_VERSION=$(cat odenne.version)' >> $BASH_ENV
+      - run: export ODENNE_VERSION=$(cat odenne.version)
       - run: 
           name: Building odenne...
           command: docker build -t odenne:$ODENNE_VERSION
