@@ -2,10 +2,25 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - runner-test
+      - build-odenne
+      - start_odenne:
+          requires:
+            - build_odenne:
 jobs:
   runner-test:
     machine: true
     resource_class: testservergames/vrpg
     steps:
       - run: echo "Hi I'm on Runners!"
+  build-odenne:
+    machine: true
+    resource_class: testservergames/vrpg
+    steps:
+      - run: ./build.sh
+      - run: echo "Build success!"
+  start_odenne:
+    machine: true
+    resource_class: testservergames/vrpg
+    steps:
+      - run: ./start.sh
+      - run: echo "Start Success!"
