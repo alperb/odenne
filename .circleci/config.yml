@@ -22,7 +22,7 @@ jobs:
       - run: export ODENNE_VERSION=$(cat odenne.version)
       - run: 
           name: Building odenne...
-          command: docker build -t odenne:${ODENNE_VERSION}
+          command: docker build -t odenne:$ODENNE_VERSION
       - run: echo "Build success"
   start_odenne:
     machine: true
