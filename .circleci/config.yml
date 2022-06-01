@@ -24,5 +24,5 @@ jobs:
     working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
     resource_class: testservergames/vrpg
     steps:
-      - run: sudo ./start.sh
+      - run: ./start.sh
       - run: echo "Start Success!"
