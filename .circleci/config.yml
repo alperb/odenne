@@ -17,12 +17,19 @@ jobs:
     working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
     resource_class: testservergames/vrpg
     steps:
-      - run: ./build.sh
+      - run: 
+          name: Building odenne...
+          command: docker build -t odenne:${<odenne.version}
       - run: echo "Build success"
   start_odenne:
     machine: true
     working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
     resource_class: testservergames/vrpg
     steps:
-      - run: ./start.sh
-      - run: echo "Start Success!"
+      - run: 
+          name: Starting Odenne Worker 1
+          command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:${<odenne.version}
+      - run: 
+          name: Starting Odenne Worker 2
+          command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:${<odenne.version}
+      -run: echo "Start success!"
