@@ -5,7 +5,7 @@ workflows:
       - build-odenne
       - start_odenne:
           requires:
-            - build_odenne:
+            - build_odenne
 jobs:
   runner-test:
     machine: true
