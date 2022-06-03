@@ -116,8 +116,8 @@ export interface OdennePlayer {
 }
 
 export interface Boost {
-    name: string;
-    duration: float;
+    name?: string;
+    duration?: float;
     health?: int[];
     attack?: int[];
     defense?: int[];
