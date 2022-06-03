@@ -17,11 +17,7 @@ export interface OriginalPlayer {
 
 export interface PlayerBoostBonus{
     isBoost: boolean;
-    boost: {
-        boost?: boolean;
-        health?: Array<number>;
-        expiration?: number;
-    }
+    boost: Boost;
 }
 
 // export interface Wearings {[key: string]: (Item | {[key: number]: number})};
@@ -110,12 +106,24 @@ export interface SkillPipe {
 
 export interface OdennePlayer {
     stats: Stats;
+    boost?: Boost;
     skills: Array<Skill>;
     baseStats: Stats;
     shields: {
         temporary: TempShield[],
         permanent: number
     }
+}
+
+export interface Boost {
+    name: string;
+    duration: float;
+    health?: int[];
+    attack?: int[];
+    defense?: int[];
+    penetration?: int[];
+    accuracy?: int[];
+    critic?: int[];
 }
 
 export interface TempShield {
