@@ -1,6 +1,6 @@
 import _, { random } from "lodash";
 import Odenne from "../odenne";
-import { Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
+import { Boost, Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
 import { DamageDone, DeciderSummary, ShieldDone, TurnTypes } from "../types/types";
 import Decider from "./decider";
 import { AttackBonus, Blind, Effect, StatBonus } from "./effects";
@@ -122,6 +122,7 @@ export class Member {
                 temporary: [],
                 permanent: 0
             },
+            boost: this.original.boost.isBoost ? this.original.boost.boost : undefined
         };
 
         this.effects = [];
@@ -238,8 +239,25 @@ export class Player extends Member {
         this.prepareSkills();
     }
 
+    addBoost(){
+        if(this.player.boost){
+            for(const key of Object.keys(this.player.boost)){
+                if(key == 'name' || key == 'duration') continue;
+
+                if(this.player.boost[key as keyof Boost][0] === 0){
+                    this.player.stats[key] += this.player.boost[key as keyof Boost][1];
+                }
+                // implement % boosts
+            }
+        }
+    }
+
     createStats(){
         this.player.stats = this.original.stats;
+        console.log(this.player.stats);
+        console.log(this.player.boost);
+        this.addBoost();
+        console.log(this.player.stats);
         if(this.team.Odenne.options.shouldOverwriteHealth){
             if(this.team.index === this.team.Odenne.options.healthOverwrite[0]){
                 this.player.stats.health = this.team.Odenne.options.healthOverwrite[2];
