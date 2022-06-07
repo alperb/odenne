@@ -219,18 +219,20 @@ export default class Decider {
         if(!damage.isTrue){
             dmg = this.applyShield(dmg);
             dmg -= this.Player.getStat("defense");
-            if(dmg <= 0) {
-                if(damage.source.source instanceof Skill){
+            
+            if(damage.source.source instanceof Skill) {
+                const minPossibleDamage = (damage.source.source.skill.min as number) + (damage.source.player.getStat("attack") * damage.source.player.getStat("accuracy") / 1000);
+                if(dmg <= minPossibleDamage){
                     if(damage.source.source.damageType == DAMAGETYPES.RANGED){
-                        dmg = (damage.source.source.skill.max as number) + (damage.source.player.getStat("attack") * damage.source.player.getStat("accuracy") / 1000);
+                        dmg = minPossibleDamage;
                     }
                     else{
                         dmg = damage.source.source.skill.damage as number;
                     }
                 } 
-                else if(damage.source.source instanceof Effect){
-                    dmg = 0; // TODO: calculate effect's damage
-                }
+            }
+            else if(damage.source.source instanceof Effect){
+                dmg = 0; // TODO: calculate effect's damage
             }
         }
         return Math.floor(dmg);

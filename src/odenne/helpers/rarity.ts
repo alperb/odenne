@@ -80,7 +80,7 @@ export default class Rarity {
         // sum = Math.floor(sum / Math.pow(difficulty, difficulty));
         // return sum;
 
-        let randomNumber = (Math.random() * (Math.pow(max, difficulty) - Math.pow(min, difficulty))) + Math.pow(min, difficulty) + 1;
+        let randomNumber = (Math.random() * (Math.pow(max, difficulty) - Math.pow(min, difficulty))) + Math.pow(min, difficulty) + 0.1;
         return Math.floor(randomNumber)
     }
 }
