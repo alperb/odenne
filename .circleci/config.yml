@@ -14,7 +14,7 @@ jobs:
     steps:
       - run: 
           name: "Removing old dockers"
-          command: "docker rm -f odenne_worker_1 odenne_worker_2" 
+          command: "docker rm -f odenne_worker_1 odenne_worker_2 odenne_worker_3" 
       - run: 
           name: Building odenne...
           command: docker build -t odenne:$(<.version) .
@@ -30,4 +30,7 @@ jobs:
       - run: 
           name: Starting Odenne Worker 2
           command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:$(<.version)
+      - run: 
+          name: Starting Odenne Worker 2
+          command: docker run -d -p 3103:4999 --name odenne_worker_3 odenne:$(<.version)
       - run: echo "Start success!"
