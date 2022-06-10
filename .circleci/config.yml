@@ -1,32 +1,27 @@
 version: 2.1
 workflows:
-  testing:
+  odenne_production:
     jobs:
       - build_odenne
       - start_odenne:
           requires:
             - build_odenne
 jobs:
-  runner-test:
-    machine: true
-    resource_class: testservergames/vrpg
-    steps:
-      - run: echo "Hi I'm on Runners!"
   build_odenne:
     machine: true
-    working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
+    working_directory: /root/odenne
     resource_class: testservergames/vrpg
     steps:
       - run: 
           name: "Removing old dockers"
-          command: "docker rm -f odenne_worker_1 odenne_worker_2"
+          command: "docker rm -f odenne_worker_1 odenne_worker_2" 
       - run: 
           name: Building odenne...
           command: docker build -t odenne:1.0.2 .
       - run: echo "Build success"
   start_odenne:
     machine: true
-    working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
+    working_directory: /root/odenne
     resource_class: testservergames/vrpg
     steps:
       - run: 
