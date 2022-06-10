@@ -9,7 +9,7 @@ workflows:
 jobs:
   build_odenne:
     machine: true
-    working_directory: /root/odenne
+    working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
     resource_class: testservergames/vrpg
     steps:
       - run: 
@@ -17,17 +17,17 @@ jobs:
           command: "docker rm -f odenne_worker_1 odenne_worker_2" 
       - run: 
           name: Building odenne...
-          command: docker build -t odenne:1.0.2 .
+          command: docker build -t odenne:$(<.version) .
       - run: echo "Build success"
   start_odenne:
     machine: true
-    working_directory: /root/odenne
+    working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
     resource_class: testservergames/vrpg
     steps:
       - run: 
           name: Starting Odenne Worker 1
-          command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:1.0.2 .
+          command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:$(<.version) .
       - run: 
           name: Starting Odenne Worker 2
-          command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:1.0.2 .
+          command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:$(<.version) .
       - run: echo "Start success!"
