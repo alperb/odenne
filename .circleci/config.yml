@@ -9,7 +9,7 @@ workflows:
 jobs:
   build_odenne:
     machine: true
-    working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
+    working_directory: /root/odenne
     resource_class: testservergames/vrpg
     steps:
       - run: 
@@ -21,7 +21,7 @@ jobs:
       - run: echo "Build success"
   start_odenne:
     machine: true
-    working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
+    working_directory: /root/odenne
     resource_class: testservergames/vrpg
     steps:
       - run: 
