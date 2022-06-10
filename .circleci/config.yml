@@ -19,21 +19,19 @@ jobs:
     environment: 
       ODENNE_VERSION: cat odenne.version
     steps:
-      - run: export ODENNE_VERSION=$(cat odenne.version)
       - run: 
           name: Building odenne...
-          command: docker build -t odenne:$ODENNE_VERSION
+          command: docker build -t odenne:1.0.2
       - run: echo "Build success"
   start_odenne:
     machine: true
     working_directory: /Users/mbilgehanertan/Documents/VRPG/odenne
     resource_class: testservergames/vrpg
     steps:
-      - run: export ODENNE_VERSION=$(cat odenne.version)
       - run: 
           name: Starting Odenne Worker 1
-          command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:${ODENNE_VERSION}
+          command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:1.0.2
       - run: 
           name: Starting Odenne Worker 2
-          command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:${ODENNE_VERSION}
+          command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:1.0.2
       - run: echo "Start success!"
