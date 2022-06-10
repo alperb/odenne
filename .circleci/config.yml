@@ -15,6 +15,9 @@ jobs:
       - run: 
           name: "Removing old dockers"
           command: "docker rm -f odenne_worker_1 odenne_worker_2 odenne_worker_3" 
+      - run:
+          name: "Pulling repo"
+          command: "git pull"
       - run: 
           name: Building odenne...
           command: docker build -t odenne:$(<.version) .
