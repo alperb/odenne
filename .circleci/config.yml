@@ -18,6 +18,9 @@ jobs:
     resource_class: testservergames/vrpg
     steps:
       - run: 
+          name: "Removing old dockers"
+          command: "docker rm -f odenne_worker_1 odenne_worker_2"
+      - run: 
           name: Building odenne...
           command: docker build -t odenne:1.0.2 .
       - run: echo "Build success"
