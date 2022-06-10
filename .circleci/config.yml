@@ -26,8 +26,8 @@ jobs:
     steps:
       - run: 
           name: Starting Odenne Worker 1
-          command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:$(<.version) .
+          command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:$(<.version)
       - run: 
           name: Starting Odenne Worker 2
-          command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:$(<.version) .
+          command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:$(<.version)
       - run: echo "Start success!"
