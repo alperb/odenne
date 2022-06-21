@@ -1,0 +1,52 @@
+version: 2.1
+workflows:
+  odenne_production:
+    jobs:
+      - build_odenne
+      - start_odenne:
+          requires:
+            - build_odenne
+jobs:
+  build_odenne:
+    machine: true
+    shell: /bin/bash -leo pipefail
+    environment:
+      - BASH_ENV: /root/.bashrc
+    working_directory: /root/odenne
+    resource_class: testservergames/vrpg
+    steps:
+      - checkout
+      - when:
+          condition:
+              equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - run: 
+                name: "Removing old dockers"
+                command: "docker rm -f odenne_worker_1 odenne_worker_2 odenne_worker_3" 
+            - run: 
+                name: Building odenne...
+                command: docker build -t odenne:$(<.version) .
+            - run: echo "Build success"
+  start_odenne:
+    machine: true
+    shell: /bin/bash -leo pipefail
+    environment:
+      - BASH_ENV: /root/.bashrc
+    working_directory: /root/odenne
+    resource_class: testservergames/vrpg
+    steps:
+      - checkout
+      - when:
+          condition:
+              equal: [ main, << pipeline.git.branch >> ]
+          steps:       
+            - run: 
+                name: Starting Odenne Worker 1
+                command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:$(<.version)
+            - run: 
+                name: Starting Odenne Worker 2
+                command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:$(<.version)
+            - run: 
+                name: Starting Odenne Worker 2
+                command: docker run -d -p 3103:4999 --name odenne_worker_3 odenne:$(<.version)
+            - run: echo "Start success!"
