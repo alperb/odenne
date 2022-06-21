@@ -3,6 +3,7 @@ import { CancelInfo, DamageDone, DeciderSummary, EventParameters, EventTypes, Sh
 import { CrowdControlEffect, Effect, Stun } from "./effects";
 import { ParalyzeI, Skill } from "./skills";
 import { Player } from "./teams";
+import _ from "lodash";
 
 
 export default class Decider {
@@ -215,7 +216,7 @@ export default class Decider {
     }
 
     private calculateTakenDamage(damage: DamageDone): number {
-        let dmg = damage.damage;
+        let dmg = _.clone(damage.damage);
         if(!damage.isTrue){
             dmg = this.applyShield(dmg);
             dmg -= this.Player.getStat("defense");
@@ -224,7 +225,7 @@ export default class Decider {
                 const minPossibleDamage = (damage.source.source.skill.min as number) + (damage.source.player.getStat("attack") * damage.source.player.getStat("accuracy") / 1000);
                 if(dmg <= minPossibleDamage){
                     if(damage.source.source.damageType == DAMAGETYPES.RANGED){
-                        dmg = minPossibleDamage;
+                        dmg = damage.damage / 2;
                     }
                     else{
                         dmg = damage.source.source.skill.damage as number;
