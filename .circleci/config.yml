@@ -26,7 +26,7 @@ jobs:
                 command: "docker rm -f odenne_worker_1 odenne_worker_2 odenne_worker_3" 
             - run: 
                 name: Building odenne...
-                command: docker build -t odenne:$(<.version) .
+                command: docker build -t odenne:$(<odenne.version) .
             - run: echo "Build success"
   start_odenne:
     machine: true
