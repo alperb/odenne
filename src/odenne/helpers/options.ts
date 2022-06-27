@@ -1,4 +1,3 @@
-import { Player } from "../lib/teams";
 import { OriginalPlayer } from "../types/player";
 
 class OdenneOptions {

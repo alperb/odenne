@@ -1,9 +1,8 @@
 import Odenne from "../odenne";
-import { DAMAGETYPES, OriginalSkill, SHIELDTYPES, SkillPipe } from "../types/player";
+import { DAMAGETYPES, OriginalSkill, SHIELDTYPES } from "../types/player";
 import { BonusDetails, CancelInfo, DamageDone, EffectConfig, EventParameters, EventTypes, ShieldDone, SKILLTYPES } from "../types/types";
 import { Effect } from "./effects";
 import { CriticModifier, Modifier, RangeModifier } from "./modifiers";
-import { Round } from "./rounds";
 import { Player } from "./teams";
 
 
@@ -356,10 +355,6 @@ export default class Skills {
                 isCreated = true;
                 break;
             case 65133:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65134:
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
                 isCreated = true;
                 break;
@@ -902,10 +897,10 @@ export abstract class Skill {
     modifiers!: Modifier[];
     player!: Player;
     chance!: number;
-    maxUseCount: number = 1;
+    maxUseCount = 1;
     usedRounds: number[] = [];
     effects: string[] = [];
-    enabled: boolean = true;
+    enabled = true;
     type: SKILLTYPES = SKILLTYPES.ABILITY;
 
     registerModifier(modifier: Modifier){
@@ -931,7 +926,7 @@ export abstract class Skill {
     }
 
     applyEffects(effects: Effect[]): CancelInfo[] {
-        let cancels: CancelInfo[] = []
+        const cancels: CancelInfo[] = []
         for(const eff of effects){
             const cancel = eff.config.targetMember.Decider.takeEffect(eff);
             cancels.push(cancel);
@@ -999,7 +994,7 @@ export abstract class PassiveSkill extends Skill {
 
 export abstract class ActiveSkill extends Skill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player!: Player;
     damageType!: DAMAGETYPES;
 }
@@ -1018,7 +1013,7 @@ export abstract class DefenseSkill extends ActiveSkill {
 
 export class ArcherBasicAttackI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1062,7 +1057,7 @@ export class ArcherBasicAttackI extends AttackSkill {
 
 export class AssassinBasicAttackI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1106,7 +1101,7 @@ export class AssassinBasicAttackI extends AttackSkill {
 
 export class MageBasicAttackI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1150,7 +1145,7 @@ export class MageBasicAttackI extends AttackSkill {
 
 export class WarriorBasicAttackI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1199,7 +1194,7 @@ export class WarriorBasicAttackI extends AttackSkill {
 
 export class ArcaneShotI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1242,7 +1237,7 @@ export class ArcaneShotI extends AttackSkill {
 
 export class ArrowRainI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1293,7 +1288,7 @@ export class ArrowRainI extends AttackSkill {
 
 export class DodgeI extends DefenseSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1422,7 +1417,7 @@ export class ColdBloodI extends PassiveSkill {
 
 export class SnipeI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1625,7 +1620,7 @@ export class PoisonI extends PassiveSkill {
 
 export class BetrayalI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1668,7 +1663,7 @@ export class BetrayalI extends AttackSkill {
 
 export class BladeRainI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -1804,7 +1799,7 @@ export class TheUntouchableI extends AttackSkill {
     do(): SkillResult {
         this.saveUse();
         
-        let result = new SkillResult(this.player);
+        const result = new SkillResult(this.player);
 
         
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
@@ -1977,7 +1972,7 @@ export class ParalyzeI extends AttackSkill {
     }
 
     private disableTargetSkill(target: Player){
-        let targetSkillset: ActiveSkill[] = [];
+        const targetSkillset: ActiveSkill[] = [];
         for(let i = 1; i < target.player.skills.length; i++){
             if(target.player.skills[i] instanceof ActiveSkill){
                 targetSkillset.push(target.player.skills[i] as ActiveSkill);
@@ -1987,7 +1982,7 @@ export class ParalyzeI extends AttackSkill {
             for(const skill of targetSkillset){
                 if(!skill.enabled) skill.enabled = true;
             }
-            let random = Math.floor(Math.random() * targetSkillset.length);
+            const random = Math.floor(Math.random() * targetSkillset.length);
             targetSkillset[random].enabled = false;
             this.disabledSkill = targetSkillset[random];
         }
@@ -2037,7 +2032,7 @@ export class DeadlyMarkI extends PassiveSkill {
 
 export class BackstabI extends DefenseSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2070,7 +2065,7 @@ export class BackstabI extends DefenseSkill {
 
 export class FireballI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2113,7 +2108,7 @@ export class FireballI extends AttackSkill {
 
 export class TheMirrorI extends DefenseSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2141,7 +2136,7 @@ export class TheMirrorI extends DefenseSkill {
 
 export class IgniteI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2187,7 +2182,7 @@ export class IgniteI extends AttackSkill {
 
 export class FreezeI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2257,7 +2252,7 @@ export class IcebornI extends PassiveSkill {
 
 export class BlizzardI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2369,7 +2364,7 @@ export class DestructionI extends PassiveSkill {
 
 export class MageAdeptI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2441,7 +2436,7 @@ export class MagelightI extends PassiveSkill {
 
 export class MeteorI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2487,7 +2482,7 @@ export class MeteorI extends AttackSkill {
 
 export class IllusionI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2505,7 +2500,7 @@ export class IllusionI extends AttackSkill {
     do(): SkillResult {
         this.saveUse();
 
-        let result = new SkillResult(this.player);
+        const result = new SkillResult(this.player);
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player, count: -1};
         const effect = this.player.team.Odenne.Effects.new(this.effects[0], effConfig) as Effect;
@@ -2563,7 +2558,7 @@ export class MimicI extends AttackSkill {
 
 export class BashI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2606,7 +2601,7 @@ export class BashI extends AttackSkill {
 
 export class ShieldStrikeI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2651,7 +2646,7 @@ export class ShieldStrikeI extends AttackSkill {
 
 export class TheDefenderI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2698,7 +2693,7 @@ export class TheDefenderI extends AttackSkill {
 
 export class ShieldUpI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2745,7 +2740,7 @@ export class ShieldUpI extends AttackSkill {
 
 export class AwakenI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2792,7 +2787,7 @@ export class AwakenI extends AttackSkill {
 
 export class UnstoppableI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2810,7 +2805,7 @@ export class UnstoppableI extends AttackSkill {
     do(): SkillResult {
         this.saveUse();
 
-        let result = new SkillResult(this.player);
+        const result = new SkillResult(this.player);
 
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player};
         const immEffect = this.player.team.Odenne.Effects.new(this.effects[0], effconfig) as Effect;
@@ -2880,7 +2875,7 @@ export class CircleOfProtectionI extends PassiveSkill {
 
 export class TauntI extends AttackSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 
@@ -2993,7 +2988,7 @@ export class MagmaArmorI extends PassiveSkill {
 
 export class EvolveI extends PassiveSkill {
     skill!: OriginalSkill;
-    roundType: string = 'attack';
+    roundType = 'attack';
     player: Player;
     effects: string[];
 

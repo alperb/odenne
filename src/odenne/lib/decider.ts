@@ -25,7 +25,7 @@ export default class Decider {
     }
 
     reduceEffects(){
-        let effectsToRemove: Effect[] = [];
+        const effectsToRemove: Effect[] = [];
         for(const effect of this.Player.effects){
             effect.reduce();
             if(effect.hasExpired()){
@@ -93,10 +93,11 @@ export default class Decider {
         }
 
         if(shield.source.source instanceof Skill) {
+            const shieldType = shield.target.hasEffect('FastAndFurious') ? 'permanent' : (shield.type === SHIELDTYPES.TEMP ? 'temporary' : 'permanent');
             const event: EventParameters = {
                 type: EventTypes.SHIELD_GAIN,
                 attacker: shield.target.original.name,
-                shieldType: (SHIELDTYPES.TEMP || shield.target.hasEffect("FastAndFurious")) ? 'permanent' : 'temporary',
+                shieldType,
                 shieldValue: shield.value
             }
             shield.source.source.saveEvent(event);
@@ -168,10 +169,10 @@ export default class Decider {
     applyTakenDamages(){
         for(const damage of this.Current.damageTaken){
             if(!damage.cancel.isCancelled){
-                const damageValue = this.calculateTakenDamage(damage);
+                const {damageValue, damageWithoutShield} = this.calculateTakenDamage(damage);
                 
                 this.Player.player.stats.health -= damageValue;
-                damage.damage = damageValue;
+                damage.damage = damageWithoutShield;
 
                 this.checkEvent(damage)
 
@@ -192,33 +193,40 @@ export default class Decider {
         }
     }
 
-    private applyShield(damage: number){
+    private applyShield(damage: number): {damageApplied: number, shieldApplied: number} {
+        let shieldApplied = 0;
         for(let i = 0; i < this.Player.player.shields.temporary.length; i++){
             if(this.Player.player.shields.temporary[i].value >= damage){
                 this.Player.player.shields.temporary[i].value -= damage
-                return 0;
+                shieldApplied = damage;
+                return {damageApplied: 0, shieldApplied};
             }
             else{
                 damage -= this.Player.player.shields.temporary[i].value;
+                shieldApplied = this.Player.player.shields.temporary[i].value;
                 this.Player.player.shields.temporary[i].value = 0;
             }
         }
 
         if(this.Player.player.shields.permanent >= damage){
             this.Player.player.shields.permanent -= damage;
-            return 0;
+            return {damageApplied: 0, shieldApplied: damage};
         }else{
             damage -= this.Player.player.shields.permanent;
+            shieldApplied = this.Player.player.shields.permanent;
             this.Player.player.shields.permanent = 0;
         }
 
-        return damage;
+        return {damageApplied: damage, shieldApplied};
     }
 
-    private calculateTakenDamage(damage: DamageDone): number {
+    private calculateTakenDamage(damage: DamageDone): {damageValue: number, damageWithoutShield: number} {
         let dmg = _.clone(damage.damage);
+        let shield = 0;
         if(!damage.isTrue){
-            dmg = this.applyShield(dmg);
+            let {damageApplied, shieldApplied} = this.applyShield(dmg);
+            shield = shieldApplied;
+            dmg = damageApplied;
             dmg -= this.Player.getStat("defense");
             
             if(damage.source.source instanceof Skill) {
@@ -236,7 +244,7 @@ export default class Decider {
                 dmg = 0; // TODO: calculate effect's damage
             }
         }
-        return Math.floor(dmg);
+        return {damageValue: Math.floor(dmg), damageWithoutShield: Math.floor(dmg + shield)};
     }
 
     getSummary(): DeciderSummary{

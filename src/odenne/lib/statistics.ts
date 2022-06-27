@@ -16,7 +16,7 @@ export default class Statistics {
     prepareTeams(){
         for(let i = 0; i < this.teams.length; i++){
             for(let j = 0; j < this.Odenne.teams[i].players.length; j++){
-                let player: PlayerStatistics = {
+                const player: PlayerStatistics = {
                     snowflake: this.Odenne.teams[i].players[j].original.snowflake,
                     characterId: this.Odenne.teams[i].players[j].original.characterId,
                     skillUseCounts: [],
@@ -47,7 +47,7 @@ export default class Statistics {
 
     private saveDamages(teamIndex:number, summary: DeciderSummary){
         for(const damageDone of summary.damageDone){
-            let statPlayer = this.teams[teamIndex].filter(p => p.snowflake === damageDone.source.player.original.snowflake)[0]; // BISI OLURSA SUCLUSU BILGAN
+            const statPlayer = this.teams[teamIndex].filter(p => p.snowflake === damageDone.source.player.original.snowflake)[0]; // BISI OLURSA SUCLUSU BILGAN
             if(damageDone.source.source instanceof Skill){
                 statPlayer.totalDamageDone.skill += damageDone.damage;
             }
@@ -60,9 +60,9 @@ export default class Statistics {
     private saveSkillCounts(){
         for(const teamIndex in this.Odenne.teams){
             for(const playerIndex in this.Odenne.teams[teamIndex].players){
-                let statPlayer = this.teams[teamIndex][playerIndex];
+                const statPlayer = this.teams[teamIndex][playerIndex];
                 this.Odenne.teams[teamIndex].players[playerIndex].player.skills.forEach(skill => {
-                    let skillCount: UsedSkillCount = {
+                    const skillCount: UsedSkillCount = {
                         skillId: skill.skill.id,
                         count: skill.usedRounds.length
                     } 

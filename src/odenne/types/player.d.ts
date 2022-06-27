@@ -1,4 +1,3 @@
-import { Effect } from "../lib/effects";
 import { Skill, SkillResult } from "../lib/skills";
 import { DamageSource } from "./types";
 
@@ -11,7 +10,7 @@ export interface OriginalPlayer {
     wearings: Wearings;
     class: string;
     boost: PlayerBoostBonus;
-    skills: Array<Object>;
+    skills: Array<Record<string, unknown>>;
     isDead: boolean;
 }
 
@@ -26,7 +25,7 @@ export interface Wearings {
     [key: string]: Item | Array<number>,
 }
 
-export interface Stats {[key: string]: number};
+export interface Stats {[key: string]: number}
 
 export type Item = {
     id: string;
@@ -38,11 +37,11 @@ export type Item = {
     }
     set: string;
     placement: string;
-    function: Array<Object>; // TODO: not known yet
+    function: Array<Record<string, unknown>>; // TODO: not known yet
     stack: number;
     image: ItemImages;
-    crafting: Array<Object>; // TODO: now known yet
-    deconstruct: Array<Object>; // TODO: now known yet
+    crafting: Array<Record<string, unknown>>; // TODO: now known yet
+    deconstruct: Array<Record<string, unknown>>; // TODO: now known yet
     durability: number;
     rarity: number;
     isTradeable: boolean;
