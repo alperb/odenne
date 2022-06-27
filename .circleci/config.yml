@@ -15,17 +15,18 @@ jobs:
     working_directory: /root/odenne
     resource_class: testservergames/vrpg
     steps:
-      - checkout
+      - run: echo "Trying to build odenne..."
       - when:
           condition:
               equal: [ main, << pipeline.git.branch >> ]
           steps:
+            - checkout
             - run: 
                 name: "Removing old dockers"
                 command: "docker rm -f odenne_worker_1 odenne_worker_2 odenne_worker_3" 
             - run: 
                 name: Building odenne...
-                command: docker build -t odenne:$(<.version) .
+                command: docker build -t odenne:$(<odenne.version) .
             - run: echo "Build success"
   start_odenne:
     machine: true
@@ -35,18 +36,19 @@ jobs:
     working_directory: /root/odenne
     resource_class: testservergames/vrpg
     steps:
-      - checkout
+      - run: echo "Trying to start Odenne Worker"
       - when:
           condition:
               equal: [ main, << pipeline.git.branch >> ]
-          steps:       
+          steps:
+            - checkout       
             - run: 
                 name: Starting Odenne Worker 1
-                command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:$(<.version)
+                command: docker run -d -p 3101:4999 --name odenne_worker_1 odenne:$(<odenne.version)
             - run: 
                 name: Starting Odenne Worker 2
-                command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:$(<.version)
+                command: docker run -d -p 3102:4999 --name odenne_worker_2 odenne:$(<odenne.version)
             - run: 
                 name: Starting Odenne Worker 3
-                command: docker run -d -p 3103:4999 --name odenne_worker_3 odenne:$(<.version)
+                command: docker run -d -p 3103:4999 --name odenne_worker_3 odenne:$(<odenne.version)
             - run: echo "Start success!"
