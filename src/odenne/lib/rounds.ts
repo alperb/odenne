@@ -1,5 +1,5 @@
 import Odenne from "../odenne";
-import { DeciderSummary, STATUSCODES, TurnTypes } from "../types/types";
+import { DeciderSummary, TurnTypes } from "../types/types";
 import { DefenseSkill } from "./skills";
 import { Member } from "./teams";
 
@@ -61,7 +61,7 @@ export class AttackRound extends Round {
                 this.Odenne.Referee.applyDamage();
                 this.Odenne.Referee.applyShield();
 
-                let summaries: DeciderSummary[] = [];
+                const summaries: DeciderSummary[] = [];
                 for(const team of this.Odenne.teams){
                     summaries.push(team.getSummaries());
                 }

@@ -2,7 +2,7 @@ import OdenneOptions from './odenne/helpers/options';
 import Odenne from './odenne/odenne';
 
 
-let player1 = {
+const player1 = {
     "class": "warrior",
     "wearings": {
         "leggings": {
@@ -200,7 +200,7 @@ let player1 = {
     snowflake: '123',
     characterId: '123'
 }
-let player2 = {
+const player2 = {
     "class": "archer",
     "wearings": {
         "leggings": {
@@ -406,12 +406,10 @@ options
     .addToTeam(1, player2)
     //.addToTeam(1, player25);
 
-import fs from 'fs';
 import { STATUSCODES } from './odenne/types/types';
-import { StatBonus } from './odenne/lib/effects';
 
 try{
-    let battle = new Odenne(options);
+    const battle = new Odenne(options);
 
     battle.start();
         // console.log('=======================');

@@ -1,4 +1,4 @@
-import { response, Router } from "express";   
+import { Router } from "express";   
 import OdenneOptions from "../odenne/helpers/options";
 import Odenne from '../odenne/odenne';
 import { OriginalPlayer } from "../odenne/types/player";
@@ -6,7 +6,7 @@ import { STATUSCODES } from "../odenne/types/types";
 
 const battleRouter = Router();
 
-battleRouter.post('/duel', (req, res, next) => {
+battleRouter.post('/duel', (req, res) => {
     try{
         const battleOptions = new OdenneOptions().setRoundLimit(11);
         if(req.body.options){

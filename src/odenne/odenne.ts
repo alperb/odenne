@@ -10,13 +10,12 @@
  * Just read it
  */
 
-import _ from 'lodash';
 import OdenneOptions from './helpers/options';
 
 // Odenne bound helpers
 import Exceptions from './helpers/exceptions';
 import Status from './helpers/status';
-import Teams, { Mob, Team } from './lib/teams';
+import Teams, { Team } from './lib/teams';
 import Keeper from './lib/keeper';
 import Referee from './lib/referee';
 import Environments from './lib/environments';
@@ -97,6 +96,7 @@ export class Odenne {
         try{
             this.prepareTeams();
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         catch(err: any){
             console.log(err);
             this.status.set(this.status.codes.ERRORED);

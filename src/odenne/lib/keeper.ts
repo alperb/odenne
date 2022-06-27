@@ -1,7 +1,5 @@
-import _ from "lodash";
 import Odenne from "../odenne";
 import { DeciderSummary } from "../types/types";
-import { Round } from "./rounds";
 
 export default class Keeper {
     Odenne: Odenne;

@@ -3,7 +3,7 @@ import { Item } from "../types/player";
 import { BonusDetails, CancelInfo, DamageDone, EffectConfig, EventParameters, EventTypes } from "../types/types";
 import { Environment } from "./environments";
 import { MimicI, Skill } from "./skills";
-import { Member, Player } from "./teams";
+import { Player } from "./teams";
 
 export default class Effects {
     Odenne: Odenne;
@@ -104,7 +104,7 @@ export abstract class Effect {
     config: EffectConfig;
     count!: number;
     cancel: CancelInfo;
-    emoji: string = "";
+    emoji = "";
 
     constructor(config: EffectConfig){
         this.config = config;
@@ -893,15 +893,15 @@ export class RuhsarinIntikami extends PassiveEffect {
 
     private reflectDamages(){
         for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            let takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
+            const takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
             
-            let reflectedDamage = takenDamage * 0.4;
+            const reflectedDamage = takenDamage * 0.4;
             this.config.targetMember.Decider.Current.damageTaken[i].cancel = {
                 isCancelled: true,
                 source: this,
                 sourceMember: this.config.targetMember
             }
-            let reflected: DamageDone = {
+            const reflected: DamageDone = {
                 damage: reflectedDamage + (this.config.sourceMember.getStat('attack') / 2), 
                 source: {player: this.config.sourceMember, source: this}, 
                 target: this.config.targetMember.Decider.Current.damageTaken[i].source.player, 
@@ -1068,7 +1068,7 @@ export class HakFive extends PassiveEffect {
 }
 
 export class Ataturk extends PassiveEffect {
-    hasWorked: boolean = false;
+    hasWorked = false;
     constructor(config: EffectConfig){
         super(config);
     }
@@ -1098,7 +1098,7 @@ export class Ataturk extends PassiveEffect {
 }
 
 export class BumBeYarrag extends PassiveEffect {
-    hasWorked: boolean = false;
+    hasWorked = false;
     constructor(config: EffectConfig){
         super(config);
     }
@@ -1109,10 +1109,10 @@ export class BumBeYarrag extends PassiveEffect {
 
     private reflectDamages(){
         for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            let takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
+            const takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
             
-            let reflectedDamage = takenDamage * .2;
-            let reflected: DamageDone = {
+            const reflectedDamage = takenDamage * .2;
+            const reflected: DamageDone = {
                 damage: reflectedDamage + (this.config.sourceMember.getStat('attack') / 2), 
                 source: {player: this.config.sourceMember, source: this}, 
                 target: this.config.targetMember.Decider.Current.damageTaken[i].source.player, 
@@ -1217,7 +1217,7 @@ export class Destructor extends PassiveEffect {
 
 export class SineminAnnelikIcgudusu extends ActiveEffect {
     
-    isActivated: boolean = false;
+    isActivated = false;
 
     constructor(config: EffectConfig){
         super(config);

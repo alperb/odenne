@@ -1,9 +1,6 @@
 import Odenne from "../odenne";
-import { DamageDone, EventLog, EventParameters, EventTypes, TurnTypes } from "../types/types";
-import { Effect } from "./effects";
+import { EventLog, EventParameters, EventTypes } from "../types/types";
 import { Log } from "./keeper";
-import { Skill } from "./skills";
-import { Player } from "./teams";
 
 export default class Narrator {
     Odenne: Odenne;

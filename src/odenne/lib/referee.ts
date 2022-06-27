@@ -1,5 +1,5 @@
 import Odenne from '../odenne';
-import { EndResult, EventParameters, EventTypes, GetRandomPlayerOptions, MatchResult, OdenneTurn, STATUSCODES, TurnTypes, WINNER } from '../types/types';
+import { EndResult, GetRandomPlayerOptions, MatchResult, OdenneTurn, STATUSCODES, TurnTypes, WINNER } from '../types/types';
 import { Taunt } from './effects';
 import { Round } from './rounds';
 import { Player } from './teams';
@@ -114,7 +114,7 @@ class Referee {
         const roundLimitExceeded = this.roundCount >= this.Odenne.options.roundLimit;
         if(roundLimitExceeded){
             // round limit is exceeded so team with higher health wins
-            let healths = [0,0];
+            const healths = [0,0];
             healths[0] = this.Odenne.teams[0].players.reduce((prev, player) => prev + player.player.stats.health, 0);
             healths[1] = this.Odenne.teams[1].players.reduce((prev, player) => prev + player.player.stats.health, 0);
             if(healths[0] > healths[1]){

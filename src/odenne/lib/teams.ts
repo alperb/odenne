@@ -1,9 +1,9 @@
-import _, { random } from "lodash";
+import _ from "lodash";
 import Odenne from "../odenne";
 import { Boost, Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
-import { DamageDone, DeciderSummary, ShieldDone, TurnTypes } from "../types/types";
+import { DamageDone, DeciderSummary, ShieldDone } from "../types/types";
 import Decider from "./decider";
-import { AttackBonus, Blind, Effect, StatBonus } from "./effects";
+import { Effect, StatBonus } from "./effects";
 import { AttackSkill, DefenseSkill, PassiveSkill, Skill } from "./skills";
 
 export class Teams {
@@ -55,13 +55,13 @@ export class Team {
     }
 
     getSummaries(): DeciderSummary{
-        let summaries: DeciderSummary[] = []
+        const summaries: DeciderSummary[] = []
         for(const player of this.players){
             summaries.push(player.Decider.getSummary())
         }
         if(summaries.length === 1) return summaries[0];
         else{
-            let summary: DeciderSummary = {damageDone: [], damageTaken: [], effects: [], shieldTaken: []};
+            const summary: DeciderSummary = {damageDone: [], damageTaken: [], effects: [], shieldTaken: []};
             for(const sum of summaries){
                 for(const key in sum){
                     for(const elem of sum[key as keyof DeciderSummary]){
@@ -129,7 +129,7 @@ export class Member {
     }
 
     hasEffect(effectType: string){
-        let effects = this.effects.filter(e => e.constructor.name === effectType);
+        const effects = this.effects.filter(e => e.constructor.name === effectType);
         if(effects.length > 0) return effects[0]
     }
 
@@ -162,7 +162,7 @@ export class Member {
         while(count < usingCount){
             const randomized = this.team.Odenne.Rarity.rand(0, totalChance, -2) as number;
 
-            let randomSkill = this.findSkillByRandom(randomized);
+            const randomSkill = this.findSkillByRandom(randomized);
             if(this.isSkillValid(randomSkill) && randomSkill.isAvailable()){
                 return randomSkill;
             }
@@ -289,7 +289,7 @@ export class Player extends Member {
     }
 
     prepareSetBonuses(){
-        let sets: {[key: string]: number} = {};
+        const sets: {[key: string]: number} = {};
 
         for(const cloth of Object.keys(this.original.wearings)){
             if(cloth === 'skills') continue;

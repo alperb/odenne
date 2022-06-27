@@ -16,7 +16,7 @@ export default class OdenneUI {
     }
 
     getRound(){
-        let summ: UILog = {
+        const summ: UILog = {
             log: this.getCurrentRoundLog(),
             players: [[this.getName(0)], [this.getName(1)]],
             healths: [this.getHealth(0), this.getHealth(1)],
@@ -41,7 +41,7 @@ export default class OdenneUI {
     }
 
     getHealth(teamIndex: number): number[] {
-        let healths: number[] = [];
+        const healths: number[] = [];
         this.Odenne.teams[teamIndex].players.forEach(p => {
             healths.push(_.clone(p.player.stats.health));
         });
@@ -53,7 +53,7 @@ export default class OdenneUI {
     }
 
     getStats(teamIndex: number){
-        let stats: Stats[] = [];
+        const stats: Stats[] = [];
         this.Odenne.teams[teamIndex].players.forEach(p => {
             stats.push(p.player.stats);
         });
@@ -61,7 +61,7 @@ export default class OdenneUI {
     }
 
     getShields(teamIndex: number): number[] {
-        let shields: number[] = [];
+        const shields: number[] = [];
         this.Odenne.teams[teamIndex].players.forEach(p => {
             shields.push(p.player.shields.temporary.reduce((prev, next) => prev + next.value, 0) + p.player.shields.permanent);
         });
@@ -69,7 +69,7 @@ export default class OdenneUI {
     }
 
     getCritics(teamIndex: number): number[] {
-        let critics: number[] = []
+        const critics: number[] = []
         this.Odenne.teams[teamIndex].players.forEach(player => {
             critics.push(player.player.stats.critic);
         });
@@ -77,7 +77,7 @@ export default class OdenneUI {
     }
 
     getAttacks(teamIndex: number): number[] {
-        let attacks: number[] = []
+        const attacks: number[] = []
         this.Odenne.teams[teamIndex].players.forEach(player => {
             attacks.push(player.player.stats.attack);
         });
@@ -85,7 +85,7 @@ export default class OdenneUI {
     }
 
     getPenetrations(teamIndex: number): number[] {
-        let penetrations: number[] = []
+        const penetrations: number[] = []
         this.Odenne.teams[teamIndex].players.forEach(player => {
             penetrations.push(player.player.stats.penetration);
         });
@@ -93,7 +93,7 @@ export default class OdenneUI {
     }
 
     getAccuracies(teamIndex: number): number[] {
-        let accuracies: number[] = []
+        const accuracies: number[] = []
         this.Odenne.teams[teamIndex].players.forEach(player => {
             accuracies.push(player.player.stats.accuracy);
         });

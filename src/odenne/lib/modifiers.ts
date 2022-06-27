@@ -1,6 +1,5 @@
-import _ from "lodash";
 import Odenne from "../odenne";
-import { DAMAGETYPES, OriginalSkill } from "../types/player";
+import { DAMAGETYPES } from "../types/player";
 import { CriticResult, DamageDone } from "../types/types";
 import { Skill, SkillResult } from "./skills";
 import { Player } from "./teams";
@@ -81,7 +80,7 @@ export class RangeModifier extends Modifier {
 }
 
 export class CriticModifier extends Modifier {
-    maxCritic: number = 100;
+    maxCritic = 100;
 
     constructor(Player: Player, Skill: Skill){
         super(Player, Skill);

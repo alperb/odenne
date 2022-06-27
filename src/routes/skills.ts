@@ -5,10 +5,10 @@ const skillRouter = Router();
 import skillConfig from '../odenne/config/skills.json';
 import { GetSkillRequest } from "../types/requests";
 
-skillRouter.post('/get', (req: Request<{}, {}, GetSkillRequest>, res: Response, next) => {
+skillRouter.post('/get', (req: Request<Record<string, unknown>, Record<string, unknown>, GetSkillRequest>, res: Response) => {
     try{
         const wantedSkills: number[] = req.body.skills;
-        let filtered: OriginalSkill[] = [];
+        const filtered: OriginalSkill[] = [];
         for(const skillId of wantedSkills){
             const skillFilter = skillConfig.filter(s => skillId === s.id);
             if(skillFilter.length > 0) filtered.push(skillFilter[0]);
