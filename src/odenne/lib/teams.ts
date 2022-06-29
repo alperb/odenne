@@ -251,7 +251,7 @@ export class Player extends Member {
             }
         }
     }
-
+ 
     createStats(){
         this.player.stats = this.original.stats;
         console.log(this.player.stats);
