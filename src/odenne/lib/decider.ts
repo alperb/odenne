@@ -226,9 +226,8 @@ export default class Decider {
         if(!damage.isTrue){
             dmg -= this.Player.getStat("defense");
             
-
             if(damage.source.source instanceof Skill) {
-                const minPossibleDamage = (damage.source.source.skill.min as number) + (damage.source.player.getStat("attack") * damage.source.player.getStat("accuracy") / 1000);
+                const minPossibleDamage = (damage.source.source.skill.min as number) + (damage.source.player.getStat("attack") * damage.source.player.getStat("accuracy") / 500);
                 if(dmg <= minPossibleDamage){
                     if(damage.source.source.damageType == DAMAGETYPES.RANGED){
                         dmg = damage.damage / 2;
@@ -239,7 +238,7 @@ export default class Decider {
                 } 
             }
             else if(damage.source.source instanceof Effect){
-                dmg = 0; // TODO: calculate effect's damage
+                dmg = Math.floor(damage.damage / 10);
             }
         }
         

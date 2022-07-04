@@ -105,11 +105,11 @@ const player1 = {
             "crafting": []
         },
         "skills": [
-            3000,
-            3010,
-            3020,
-            3040,
-            3110
+            1000,
+            1050,
+            1060,
+            1020,
+            1110
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -186,11 +186,11 @@ const player1 = {
         "boost": {}
     },
     "stats": {
-        "defense": 250,
-        "attack": 380,
-        "health": 300,
-        critic: 0,
-        penetration: 0,
+        "defense": 850,
+        "attack": 3300,
+        "health": 900,
+        critic: 750,
+        penetration: 50,
         accuracy: 100
     },
     "name": "Waffle",
@@ -303,11 +303,9 @@ const player2 = {
             "crafting": []
         },
         "skills": [
-            0,
-            10,
-            20,
-            30,
-            110
+            69031,
+            69032,
+            69033,
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -384,12 +382,12 @@ const player2 = {
         "boost": {}
     },
     "stats": {
-        "defense": 120,
-        "attack": 420,
-        "health": 250,
-        critic: 0,
-        penetration: 0,
-        accuracy: 100
+        "attack":3000,
+        "defense":1000,
+        "health":1000,
+        "critic": 3,
+        "penetration": 3,
+        "accuracy": 95
     },
     "name": "Edip",
     "isDead": false,
