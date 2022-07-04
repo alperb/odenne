@@ -1333,6 +1333,27 @@
         "min":450,
         "max": 750,
         "level": 1
+    },
+    {
+        "id": 69031,
+        "name": "Strike",
+        "min":50,
+        "max": 75,
+        "level": 1
+    }, 
+    {
+        "id": 69032,
+        "name": "Anger",
+        "min":75,
+        "max": 100,
+        "level": 1
+    }, 
+    {
+        "id": 69033,
+        "name": "Charge",
+        "min":100,
+        "max": 200,
+        "level": 1
     }
 
 

@@ -175,7 +175,7 @@ export class Member {
     }
 
     // for temporary effects
-    getStat(type: string): number{
+    getPrimitiveStat(type: string): number{
         let sum = this.player.stats[type];
 
         for(const effect of this.effects){
@@ -207,6 +207,13 @@ export class Member {
             return skill instanceof DefenseSkill;
         }
     }
+
+    getStat(type: string){
+        if(type === "accuracy"){
+            return this.getPrimitiveStat(type) > 100 ? 100 : this.getPrimitiveStat(type);
+        }
+        return Math.floor(this.getPrimitiveStat(type));
+    }
 }
 
 export class Player extends Member {
@@ -227,6 +234,13 @@ export class Player extends Member {
 
 
         this.prepare();
+    }
+
+    getStat(type: string){
+        if(type === "accuracy"){
+            return this.getPrimitiveStat(type) > 100 ? 100 : this.getPrimitiveStat(type);
+        }
+        return Math.floor(this.getPrimitiveStat(type));
     }
 
     prepare(){
@@ -251,7 +265,7 @@ export class Player extends Member {
             }
         }
     }
-
+ 
     createStats(){
         this.player.stats = this.original.stats;
         console.log(this.player.stats);

@@ -111,7 +111,7 @@ export class CriticModifier extends Modifier {
         const isCrit = this.isCrit(damage.source.player.original.stats.critic);
         if(isCrit){
             const percentage = this.playerCritPercentage(damage.source.player.original.stats.critic)
-            const totalDamage = damage.damage + (percentage * damage.damage);
+            const totalDamage = (percentage * damage.damage);
             return {isCritic: true, percentage: percentage, damage: totalDamage}
         }
         return {isCritic: false, percentage: 0, damage: 0}

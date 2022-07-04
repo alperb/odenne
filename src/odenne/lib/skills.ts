@@ -883,6 +883,18 @@ export default class Skills {
                 Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
                 isCreated = true;
                 break;
+            case 69031:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 69032:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;
+            case 69033:
+                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                isCreated = true;
+                break;    
             default:
                 break;
         }
