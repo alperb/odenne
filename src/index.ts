@@ -186,10 +186,10 @@ const player1 = {
         "boost": {}
     },
     "stats": {
-        "defense": 2250,
-        "attack": 5087,
-        "health": 1770,
-        critic: 500,
+        "defense": 250,
+        "attack": 380,
+        "health": 300,
+        critic: 0,
         penetration: 0,
         accuracy: 100
     },
@@ -384,10 +384,10 @@ const player2 = {
         "boost": {}
     },
     "stats": {
-        "defense": 775,
-        "attack": 5550,
-        "health": 775,
-        critic: 4412,
+        "defense": 120,
+        "attack": 420,
+        "health": 250,
+        critic: 0,
         penetration: 0,
         accuracy: 100
     },
@@ -431,8 +431,8 @@ try{
             console.log({p: battle.teams[0].players[0].player.stats.penetration});
             console.log({p: battle.teams[1].players[0].player.stats.penetration});
 
-            console.log({s: battle.teams[0].players[0].player.shields});
-            console.log({s: battle.teams[1].players[0].player.shields});
+            console.log({s: battle.teams[0].players[0].player.shields.temporary[0]});
+            console.log({s: battle.teams[1].players[0].player.shields.temporary[0]});
         }
         catch(e){
             const used = process.memoryUsage().heapUsed / 1024 / 1024;

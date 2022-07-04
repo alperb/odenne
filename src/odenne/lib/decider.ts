@@ -198,22 +198,22 @@ export default class Decider {
         for(let i = 0; i < this.Player.player.shields.temporary.length; i++){
             if(this.Player.player.shields.temporary[i].value >= damage){
                 this.Player.player.shields.temporary[i].value -= damage
-                shieldApplied = damage;
+                shieldApplied += damage;
                 return {damageApplied: 0, shieldApplied};
             }
             else{
                 damage -= this.Player.player.shields.temporary[i].value;
-                shieldApplied = this.Player.player.shields.temporary[i].value;
+                shieldApplied += this.Player.player.shields.temporary[i].value;
                 this.Player.player.shields.temporary[i].value = 0;
             }
         }
-
+        
         if(this.Player.player.shields.permanent >= damage){
             this.Player.player.shields.permanent -= damage;
             return {damageApplied: 0, shieldApplied: damage};
         }else{
             damage -= this.Player.player.shields.permanent;
-            shieldApplied = this.Player.player.shields.permanent;
+            shieldApplied += this.Player.player.shields.permanent;
             this.Player.player.shields.permanent = 0;
         }
 
@@ -224,11 +224,9 @@ export default class Decider {
         let dmg = _.clone(damage.damage);
         let shield = 0;
         if(!damage.isTrue){
-            let {damageApplied, shieldApplied} = this.applyShield(dmg);
-            shield = shieldApplied;
-            dmg = damageApplied;
             dmg -= this.Player.getStat("defense");
             
+
             if(damage.source.source instanceof Skill) {
                 const minPossibleDamage = (damage.source.source.skill.min as number) + (damage.source.player.getStat("attack") * damage.source.player.getStat("accuracy") / 1000);
                 if(dmg <= minPossibleDamage){
@@ -244,6 +242,11 @@ export default class Decider {
                 dmg = 0; // TODO: calculate effect's damage
             }
         }
+        
+        const {damageApplied, shieldApplied} = this.applyShield(dmg);
+        shield = shieldApplied;
+        dmg = damageApplied;
+
         return {damageValue: Math.floor(dmg), damageWithoutShield: Math.floor(dmg + shield)};
     }
 
