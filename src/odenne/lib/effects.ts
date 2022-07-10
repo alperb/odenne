@@ -524,7 +524,7 @@ export class Dodge extends ActiveEffect {
                     damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
                     defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
                     skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
-                    reason: "__dodged__"
+                    reason: "**dodged**"
                 }
                 this.saveEvent(newEvent);
             }
@@ -560,7 +560,7 @@ export class Invulnerable extends ActiveEffect {
                     damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
                     defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
                     skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
-                    reason: "was __invulnerable__"
+                    reason: "was **invulnerable**"
                 }
                 this.saveEvent(newEvent);
             }
