@@ -150,7 +150,7 @@ export default class Decider {
                 damage: damage.damage, 
                 attacker: damage.source.player.original.name,
                 skill: damage.source.source.skill.name,
-                reason: `disabled __${damage.source.source.disabledSkill.skill.name}__`
+                reason: `disabled **${damage.source.source.disabledSkill.skill.name}**`
             }
 
             this.Player.team.Odenne.Narrator.saveEvent(newEvent);

@@ -20,7 +20,7 @@ export default class Narrator {
             [EventTypes.DAMAGE_CANCEL, "**{{ attacker }}** dealt `{{ damage }}` damage with **{{ skill }}** but **{{ defender }}** {{ reason }}"],
             [EventTypes.CC, "**{{ attacker }}** was **{{ skill }}**"],
             [EventTypes.STATS_INCREASE, "**{{ attacker }}** gained `{{ statvalue }}` {{ stattype }} with **{{ skill }}**"],
-            [EventTypes.INVULNERABLE, "**{{ attacker }}** became __invulnerable__"],
+            [EventTypes.INVULNERABLE, "**{{ attacker }}** became **invulnerable**"],
             [EventTypes.ROUND_STEAL, "**{{ attacker }}** stole the next round"],
             [EventTypes.SHIELD_GAIN, "**{{ attacker }}** gained `{{ shieldValue }}` {{ shieldType }} shield"],
             [EventTypes.GAIN_CC_IMMUNITY, '**{{ attacker }}** gained immunity with **{{ skill }}**']
