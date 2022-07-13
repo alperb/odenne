@@ -5,6 +5,9 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import fs from 'fs';
 import path from 'path';
+import Init from './grpc/init'
+
+new Init();
 
 const app = express();
 
