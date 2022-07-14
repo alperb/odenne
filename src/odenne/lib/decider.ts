@@ -1,6 +1,6 @@
 import { DAMAGETYPES, SHIELDTYPES, TempShield } from "../types/player";
 import { CancelInfo, DamageDone, DeciderSummary, EventParameters, EventTypes, ShieldDone } from "../types/types";
-import { CrowdControlEffect, Effect, Stun } from "./effects";
+import { Blind, CrowdControlEffect, Effect, Frozen, Stun } from "./effects";
 import { ParalyzeI, Skill } from "./skills";
 import { Player } from "./teams";
 import _ from "lodash";
@@ -10,8 +10,8 @@ export default class Decider {
     Player: Player;
 
     Current: DeciderSummary;
-    constructor(Player: Player){
-        this.Player = Player;
+    constructor(player: Player){
+        this.Player = player;
         this.Current = {damageTaken: [], damageDone: [], effects: [], shieldTaken: []}
     }
 
@@ -69,15 +69,24 @@ export default class Decider {
     shouldTakeDamage(damage: DamageDone): CancelInfo {
         const cc = damage.source.player.hasCC();
         if(cc && !damage.bypass && damage.source.player === this.Player.team.Odenne.Referee.turn.player.player){
-            if(cc instanceof Stun){
-                const newEvent: EventParameters = {
-                    type: EventTypes.CC,
-                    attacker: damage.source.player.original.name,
-                    skill: "stunned"
-                }
-
-                damage.source.player.team.Odenne.Narrator.saveEvent(newEvent);
+            const newEvent: EventParameters = {
+                type: EventTypes.CC,
+                attacker: damage.source.player.original.name
             }
+            
+            if(cc instanceof Stun){
+                newEvent.skill = 'stunned';
+            }
+            else if(cc instanceof Blind){
+                newEvent.skill = 'blinded';
+            }
+            else if(cc instanceof Frozen){
+                newEvent.skill = 'frozen';
+            }
+            else {
+                newEvent.skill = 'under crowd control';
+            }
+            damage.source.player.team.Odenne.Narrator.saveEvent(newEvent);
 
             return {isCancelled: true, source: cc, sourceMember: cc.config.sourceMember};
         }
@@ -93,7 +102,8 @@ export default class Decider {
         }
 
         if(shield.source.source instanceof Skill) {
-            const shieldType = shield.target.hasEffect('FastAndFurious') ? 'permanent' : (shield.type === SHIELDTYPES.TEMP ? 'temporary' : 'permanent');
+            const secondaryShieldType = (shield.type === SHIELDTYPES.TEMP ? 'temporary' : 'permanent');
+            const shieldType = shield.target.hasEffect('FastAndFurious') ? 'permanent' : secondaryShieldType;
             const event: EventParameters = {
                 type: EventTypes.SHIELD_GAIN,
                 attacker: shield.target.original.name,
