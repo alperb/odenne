@@ -73,7 +73,7 @@ export default class Decider {
                 type: EventTypes.CC,
                 attacker: damage.source.player.original.name
             }
-            
+
             if(cc instanceof Stun){
                 newEvent.skill = 'stunned';
             }
@@ -205,16 +205,16 @@ export default class Decider {
 
     private applyShield(damage: number): {damageApplied: number, shieldApplied: number} {
         let shieldApplied = 0;
-        for(let i = 0; i < this.Player.player.shields.temporary.length; i++){
-            if(this.Player.player.shields.temporary[i].value >= damage){
-                this.Player.player.shields.temporary[i].value -= damage
+        for(const element of this.Player.player.shields.temporary){
+            if(element.value >= damage){
+                element.value -= damage
                 shieldApplied += damage;
                 return {damageApplied: 0, shieldApplied};
             }
             else{
-                damage -= this.Player.player.shields.temporary[i].value;
-                shieldApplied += this.Player.player.shields.temporary[i].value;
-                this.Player.player.shields.temporary[i].value = 0;
+                damage -= element.value;
+                shieldApplied += element.value;
+                element.value = 0;
             }
         }
         

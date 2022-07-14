@@ -8,8 +8,8 @@ import { Player } from "./teams";
 export default class Effects {
     Odenne: Odenne;
 
-    constructor(Odenne: Odenne){
-        this.Odenne = Odenne;
+    constructor(odenne: Odenne){
+        this.Odenne = odenne;
     }
 
     new(name: string, config: EffectConfig, details: BonusDetails | undefined = undefined) : Effect | undefined{
@@ -157,9 +157,6 @@ export abstract class StatBonus extends ActiveEffect {
 export class EffectResult {
     source: Player | Environment |  undefined;
 
-    constructor(){
-    }
-
     setSource(player: Player){
         this.source = player;
     }
@@ -198,11 +195,11 @@ export class AttackBonus extends StatBonus {
         return 0;
     }
 
-    init(): void {}
+    init(): void { /* TODO document why this method 'init' is empty */ }
 
-    do(): void {}
+    do(): void { /* TODO document why this method 'do' is empty */ }
 
-    afterDo(): void {}
+    afterDo(): void { /* TODO document why this method 'afterDo' is empty */ }
 }
 
 export class DefenseBonus extends StatBonus {
@@ -279,10 +276,10 @@ export class Stun extends CrowdControlEffect {
     }
 
     private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {
+        for(const element of this.config.targetMember.Decider.Current.damageDone){
+            for(let j = 0; j < element.target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember === element.target.Decider.Current.damageTaken[j].source.player){
+                    element.target.Decider.Current.damageTaken[j].cancel = {
                         isCancelled: true, 
                         source: this, 
                         sourceMember: this.config.sourceMember
@@ -322,9 +319,18 @@ export class Blind extends CrowdControlEffect {
 
     private removeDamages(){
         for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+            for(const element of this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken){
+                if(this.config.targetMember === element.source.player){
+                    element.cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+                    const newEvent: EventParameters = {
+                        type: EventTypes.DAMAGE_CANCEL,
+                        attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
+                        damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
+                        defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
+                        skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
+                        reason: "**blinded** {{ attacker }}"
+                    }
+                    this.saveEvent(newEvent);
                 }
             }
         }
@@ -359,10 +365,10 @@ export class Frozen extends CrowdControlEffect {
     }
 
     private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
+        for(const element of this.config.targetMember.Decider.Current.damageDone){
+            for(let j = 0; j < element.target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember === element.target.Decider.Current.damageTaken[j].source.player){
+                    element.target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
                 }
             }
         }
@@ -515,15 +521,15 @@ export class Dodge extends ActiveEffect {
     }
 
     private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {isCancelled: true, source: this.config.source, sourceMember: this.config.sourceMember}
-            if(this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+        for(const element of this.config.targetMember.Decider.Current.damageTaken){
+            element.cancel = {isCancelled: true, source: this.config.source, sourceMember: this.config.sourceMember}
+            if(element.source.source instanceof Skill){
                 const newEvent: EventParameters = {
                     type: EventTypes.DAMAGE_CANCEL,
-                    attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
-                    damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
-                    defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
-                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
+                    attacker: element.source.player.original.name,
+                    damage: element.damage,
+                    defender: element.target.original.name,
+                    skill: (element.source.source).skill.name,
                     reason: "**dodged**"
                 }
                 this.saveEvent(newEvent);
@@ -542,24 +548,26 @@ export class Invulnerable extends ActiveEffect {
     init(): void {}
 
     do(): void {
+      // TODO document why this method 'do' is empty
+    
 
     }
 
     private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {
+        for(const element of this.config.targetMember.Decider.Current.damageTaken){
+            element.cancel = {
                 isCancelled: true, 
                 source: this.config.source, 
                 sourceMember: this.config.sourceMember
             }
 
-            if(this.count === 1 && this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+            if(this.count === 1 && element.source.source instanceof Skill){
                 const newEvent: EventParameters = {
                     type: EventTypes.DAMAGE_CANCEL,
-                    attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
-                    damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
-                    defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
-                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
+                    attacker: element.source.player.original.name,
+                    damage: element.damage,
+                    defender: element.target.original.name,
+                    skill: (element.source.source as Skill).skill.name,
                     reason: "was **invulnerable**"
                 }
                 this.saveEvent(newEvent);
@@ -598,16 +606,18 @@ export class SineminCizimTableti extends PassiveEffect {
     }
 
     private makeDamagesTrue(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember.player.stats.health < this.config.sourceMember.Decider.Current.damageDone[i].target.player.stats.health){
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].isTrue = true;
+        for(const element of this.config.sourceMember.Decider.Current.damageDone){
+            for(let j = 0; j < element.target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember.player.stats.health < element.target.player.stats.health){
+                    element.target.Decider.Current.damageTaken[j].isTrue = true;
                 }
             }
         }
     }
 
     do(): void {
+      // TODO document why this method 'do' is empty
+    
     }
 
     afterDo(): void {
@@ -686,21 +696,25 @@ export class OmnininCocugu extends PassiveEffect {
     }
 
     private increaseDamage(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember.player.stats.health < this.config.sourceMember.Decider.Current.damageDone[i].target.player.stats.health){
-                    const gain = this.calculateDamageBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]);
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage += gain;
+        for(const element of this.config.sourceMember.Decider.Current.damageDone){
+            for(let j = 0; j < element.target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember.player.stats.health < element.target.player.stats.health){
+                    const gain = this.calculateDamageBonus(element.target.Decider.Current.damageTaken[j]);
+                    element.target.Decider.Current.damageTaken[j].damage += gain;
                 }
             }
         }
     }
 
     init(): void {
+      // TODO document why this method 'init' is empty
+    
         
     }
 
     do(): void {
+      // TODO document why this method 'do' is empty
+    
         
     }
 
@@ -747,11 +761,11 @@ export class HasmetliHatirati extends PassiveEffect {
     }
 
     private increaseDamage(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember.player.stats.health < this.config.sourceMember.Decider.Current.damageDone[i].target.player.stats.health){
-                    const gainMultiplier = this.shouldDealBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]) ? 2 : 1;
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
+        for(const element of this.config.sourceMember.Decider.Current.damageDone){
+            for(let j = 0; j < element.target.Decider.Current.damageTaken.length; j++){
+                if(this.config.targetMember.player.stats.health < element.target.player.stats.health){
+                    const gainMultiplier = this.shouldDealBonus(element.target.Decider.Current.damageTaken[j]) ? 2 : 1;
+                    element.target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
                 }
             }
         }
