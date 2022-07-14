@@ -18,182 +18,182 @@ export default class Skills {
      * 2000 - 3000: Mage
      * 3000 - 4000: Warrior
      */
-    create(Player: Player, skill: OriginalSkill) {
+    create(player: Player, skill: OriginalSkill) {
         let isCreated = false;
         switch (skill.id) {
             //#region Archer Skills
             case 0:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                player.player.skills.push(new ArcherBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 10:
-                Player.player.skills.push(new ArcaneShotI(Player, skill));
+                player.player.skills.push(new ArcaneShotI(player, skill));
                 isCreated = true;
                 break;
             case 20:
-                Player.player.skills.push(new DodgeI(Player, skill));
+                player.player.skills.push(new DodgeI(player, skill));
                 isCreated = true;
                 break;
             case 30:
-                Player.player.skills.push(new ArrowRainI(Player, skill));
+                player.player.skills.push(new ArrowRainI(player, skill));
                 isCreated = true;
                 break;
             case 40:
-                Player.player.skills.push(new TacticalI(Player, skill));
+                player.player.skills.push(new TacticalI(player, skill));
                 isCreated = true;
                 break;
             case 50:
-                Player.player.skills.push(new OneTheHuntI(Player, skill));
+                player.player.skills.push(new OneTheHuntI(player, skill));
                 isCreated = true;
                 break;
             case 60:
-                Player.player.skills.push(new LongShotsI(Player, skill));
+                player.player.skills.push(new LongShotsI(player, skill));
                 isCreated = true;
                 break;
             case 70:
-                Player.player.skills.push(new AccuracyI(Player, skill));
+                player.player.skills.push(new AccuracyI(player, skill));
                 isCreated = true;
                 break;
             case 80:
-                Player.player.skills.push(new PoisonI(Player, skill));
+                player.player.skills.push(new PoisonI(player, skill));
                 isCreated = true;
                 break;
             case 90:
-                Player.player.skills.push(new SnipeI(Player, skill));
+                player.player.skills.push(new SnipeI(player, skill));
                 isCreated = true;
                 break;
             case 100:
-                Player.player.skills.push(new RangerI(Player, skill));
+                player.player.skills.push(new RangerI(player, skill));
                 isCreated = true;
                 break;
             case 110:
-                Player.player.skills.push(new ColdBloodI(Player, skill));
+                player.player.skills.push(new ColdBloodI(player, skill));
                 isCreated = true;
                 break;
             case 120:
-                Player.player.skills.push(new FocusI(Player, skill));
+                player.player.skills.push(new FocusI(player, skill));
                 isCreated = true;
                 break;
             case 130:
-                Player.player.skills.push(new HeadStartI(Player, skill));
+                player.player.skills.push(new HeadStartI(player, skill));
                 isCreated = true;
                 break;
                 //#endregion
 
             //#region Assassin Skills
             case 1000:
-                Player.player.skills.push(new AssassinBasicAttackI(Player, skill));
+                player.player.skills.push(new AssassinBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 1010:
-                Player.player.skills.push(new BetrayalI(Player, skill));
+                player.player.skills.push(new BetrayalI(player, skill));
                 isCreated = true;
                 break;
             case 1020:
-                Player.player.skills.push(new ThinArmorI(Player, skill));
+                player.player.skills.push(new ThinArmorI(player, skill));
                 isCreated = true;
                 break;
             case 1030:
-                Player.player.skills.push(new BladeRainI(Player, skill));
+                player.player.skills.push(new BladeRainI(player, skill));
                 isCreated = true;
                 break;
             case 1040:
-                Player.player.skills.push(new TheUntouchableI(Player, skill));
+                player.player.skills.push(new TheUntouchableI(player, skill));
                 isCreated = true;
                 break;
             case 1050:
-                Player.player.skills.push(new BlindI(Player, skill));
+                player.player.skills.push(new BlindI(player, skill));
                 isCreated = true;
                 break;
             case 1060:
-                Player.player.skills.push(new StealthI(Player, skill));
+                player.player.skills.push(new StealthI(player, skill));
                 isCreated = true;
                 break;
             case 1070:
-                Player.player.skills.push(new ExecutionerI(Player, skill));
+                player.player.skills.push(new ExecutionerI(player, skill));
                 isCreated = true;
                 break;
             case 1080:
-                Player.player.skills.push(new SlaughterI(Player, skill));
+                player.player.skills.push(new SlaughterI(player, skill));
                 isCreated = true;
                 break;
             case 1090:
-                Player.player.skills.push(new CatalystI(Player, skill));
+                player.player.skills.push(new CatalystI(player, skill));
                 isCreated = true;
                 break;
             case 1100:
-                Player.player.skills.push(new MasterAssassinI(Player, skill));
+                player.player.skills.push(new MasterAssassinI(player, skill));
                 isCreated = true;
                 break;
             case 1110:
-                Player.player.skills.push(new DeadlyMarkI(Player, skill));
+                player.player.skills.push(new DeadlyMarkI(player, skill));
                 isCreated = true;
                 break;
             case 1120:
-                Player.player.skills.push(new ParalyzeI(Player, skill));
+                player.player.skills.push(new ParalyzeI(player, skill));
                 isCreated = true;
                 break;
             case 1130:
-                Player.player.skills.push(new BackstabI(Player, skill));
+                player.player.skills.push(new BackstabI(player, skill));
                 isCreated = true;
                 break;
                 //#endregion
 
             //#region Mage Skills
             case 2000:
-                Player.player.skills.push(new MageBasicAttackI(Player, skill));
+                player.player.skills.push(new MageBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 2010:
-                Player.player.skills.push(new FireballI(Player, skill));
+                player.player.skills.push(new FireballI(player, skill));
                 isCreated = true;
                 break;
             case 2020:
-                Player.player.skills.push(new TheMirrorI(Player, skill));
+                player.player.skills.push(new TheMirrorI(player, skill));
                 isCreated = true;
                 break;
             case 2030:
-                Player.player.skills.push(new IgniteI(Player, skill));
+                player.player.skills.push(new IgniteI(player, skill));
                 isCreated = true;
                 break;
             case 2040:
-                Player.player.skills.push(new FreezeI(Player, skill));
+                player.player.skills.push(new FreezeI(player, skill));
                 isCreated = true;
                 break;
             case 2050:
-                Player.player.skills.push(new IcebornI(Player, skill));
+                player.player.skills.push(new IcebornI(player, skill));
                 isCreated = true;
                 break;
             case 2060:
-                Player.player.skills.push(new BlizzardI(Player, skill));
+                player.player.skills.push(new BlizzardI(player, skill));
                 isCreated = true;
                 break;
             case 2070:
-                Player.player.skills.push(new ForesightI(Player, skill));
+                player.player.skills.push(new ForesightI(player, skill));
                 isCreated = true;
                 break;
             case 2080:
-                Player.player.skills.push(new DestructionI(Player, skill));
+                player.player.skills.push(new DestructionI(player, skill));
                 isCreated = true;
                 break;
             case 2090:
-                Player.player.skills.push(new MageAdeptI(Player, skill));
+                player.player.skills.push(new MageAdeptI(player, skill));
                 isCreated = true;
                 break;
             case 2100:
-                Player.player.skills.push(new MagelightI(Player, skill));
+                player.player.skills.push(new MagelightI(player, skill));
                 isCreated = true;
                 break;
             case 2110:
-                Player.player.skills.push(new MimicI(Player, skill));
+                player.player.skills.push(new MimicI(player, skill));
                 isCreated = true;
                 break;
             case 2120:
-                Player.player.skills.push(new IllusionI(Player, skill));
+                player.player.skills.push(new IllusionI(player, skill));
                 isCreated = true;
                 break;
             case 2130:
-                Player.player.skills.push(new MeteorI(Player, skill));
+                player.player.skills.push(new MeteorI(player, skill));
                 isCreated = true;
                 break;
 
@@ -201,59 +201,59 @@ export default class Skills {
 
             //#region Warrior Skills
             case 3000:
-                Player.player.skills.push(new WarriorBasicAttackI(Player, skill));
+                player.player.skills.push(new WarriorBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 3010:
-                Player.player.skills.push(new BashI(Player, skill));
+                player.player.skills.push(new BashI(player, skill));
                 isCreated = true;
                 break;
             case 3020:
-                Player.player.skills.push(new ShieldStrikeI(Player, skill));
+                player.player.skills.push(new ShieldStrikeI(player, skill));
                 isCreated = true;
                 break;
             case 3030:
-                Player.player.skills.push(new TheDefenderI(Player, skill));
+                player.player.skills.push(new TheDefenderI(player, skill));
                 isCreated = true;
                 break;
             case 3040:
-                Player.player.skills.push(new ShieldUpI(Player, skill));
+                player.player.skills.push(new ShieldUpI(player, skill));
                 isCreated = true;
                 break;
             case 3050:
-                Player.player.skills.push(new AwakenI(Player, skill));
+                player.player.skills.push(new AwakenI(player, skill));
                 isCreated = true;
                 break;
             case 3060:
-                Player.player.skills.push(new UnstoppableI(Player, skill));
+                player.player.skills.push(new UnstoppableI(player, skill));
                 isCreated = true;
                 break;
             case 3070:
-                Player.player.skills.push(new FuryI(Player, skill));
+                player.player.skills.push(new FuryI(player, skill));
                 isCreated = true;
                 break;
             case 3080:
-                Player.player.skills.push(new CircleOfProtectionI(Player, skill));
+                player.player.skills.push(new CircleOfProtectionI(player, skill));
                 isCreated = true;
                 break;
             case 3090:
-                Player.player.skills.push(new TauntI(Player, skill));
+                player.player.skills.push(new TauntI(player, skill));
                 isCreated = true;
                 break;
             case 3100:
-                Player.player.skills.push(new BruteForceI(Player, skill));
+                player.player.skills.push(new BruteForceI(player, skill));
                 isCreated = true;
                 break;
             case 3110:
-                Player.player.skills.push(new RageI(Player, skill));
+                player.player.skills.push(new RageI(player, skill));
                 isCreated = true;
                 break;
             case 3120:
-                Player.player.skills.push(new MagmaArmorI(Player, skill));
+                player.player.skills.push(new MagmaArmorI(player, skill));
                 isCreated = true;
                 break;
             case 3130:
-                Player.player.skills.push(new EvolveI(Player, skill));
+                player.player.skills.push(new EvolveI(player, skill));
                 isCreated = true;
                 break;
                 //#endregion
@@ -265,12 +265,12 @@ export default class Skills {
         const isDungeonSkills = (skill.id >= 65000 && skill.id <= 65999) || (skill.id >= 69000 && skill.id <= 69999);
 
         if(!isCreated && (isEnemySkill || isDungeonSkills)){
-            Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+            player.player.skills.push(new ArcherBasicAttackI(player, skill));
             isCreated = true;
         }
 
 
-        if (isCreated) return Player.player.skills[Player.player.skills.length - 1];
+        if (isCreated) return player.player.skills[player.player.skills.length - 1];
         else return undefined;
     }
 }
@@ -299,8 +299,7 @@ export abstract class Skill {
 
     findTarget(): {id: number, player: Player} {
         const opponentIndex = (this.player.team.index + 1) % 2;
-        const p = this.player.team.Odenne.Referee.getRandomPlayer(opponentIndex, {considerTaunt: true});
-        return p;
+        return this.player.team.Odenne.Referee.getRandomPlayer(opponentIndex, {considerTaunt: true});
     }
 
     applyDamage(damages: DamageDone[]){
@@ -388,6 +387,13 @@ export abstract class AttackSkill extends ActiveSkill {
         super();
         this.modifiers = [];
     }
+
+    protected prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
 }
 export abstract class DefenseSkill extends ActiveSkill {
 
@@ -413,13 +419,6 @@ export class ArcherBasicAttackI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -429,7 +428,7 @@ export class ArcherBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -457,12 +456,7 @@ export class AssassinBasicAttackI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
+    
 
     
 
@@ -473,7 +467,7 @@ export class AssassinBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -501,13 +495,6 @@ export class MageBasicAttackI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -517,7 +504,7 @@ export class MageBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -545,13 +532,6 @@ export class WarriorBasicAttackI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -561,7 +541,7 @@ export class WarriorBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -593,13 +573,6 @@ export class ArcaneShotI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -609,7 +582,7 @@ export class ArcaneShotI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -638,13 +611,6 @@ export class ArrowRainI extends AttackSkill {
         this.effects = ["EdipinYarragi"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -655,7 +621,7 @@ export class ArrowRainI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -712,13 +678,6 @@ export class OneTheHuntI extends AttackSkill {
         this.effects = ['SamuraiinCuku'];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     do(): SkillResult {
         this.saveUse();
 
@@ -728,7 +687,7 @@ export class OneTheHuntI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -817,13 +776,6 @@ export class SnipeI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -833,7 +785,7 @@ export class SnipeI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: true});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -925,20 +877,13 @@ export class AccuracyI extends AttackSkill {
         this.prepare();
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     do(): SkillResult {
         this.saveUse()
         let result = new SkillResult(this.player);
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1019,13 +964,6 @@ export class BetrayalI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -1035,7 +973,7 @@ export class BetrayalI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1064,13 +1002,6 @@ export class BladeRainI extends AttackSkill {
         this.effects = ["WaffleinHukmu"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -1081,7 +1012,7 @@ export class BladeRainI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -1111,13 +1042,6 @@ export class ThinArmorI extends AttackSkill {
         this.prepare();
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     do(): SkillResult {
         this.saveUse();
 
@@ -1126,7 +1050,7 @@ export class ThinArmorI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -1214,13 +1138,6 @@ export class BlindI extends AttackSkill {
         this.prepare();
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     do(): SkillResult {
         this.saveUse();
         
@@ -1229,7 +1146,7 @@ export class BlindI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const invconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player, count: 2};
@@ -1348,13 +1265,6 @@ export class ParalyzeI extends AttackSkill {
         this.prepare();
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     private disableTargetSkill(target: Player){
         const targetSkillset: ActiveSkill[] = [];
         for(let i = 1; i < target.player.skills.length; i++){
@@ -1380,7 +1290,7 @@ export class ParalyzeI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.disableTargetSkill(target.player);
@@ -1464,13 +1374,6 @@ export class FireballI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -1480,7 +1383,7 @@ export class FireballI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1535,13 +1438,6 @@ export class IgniteI extends AttackSkill {
         this.effects = ["Ignite"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -1551,7 +1447,7 @@ export class IgniteI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player}
@@ -1581,13 +1477,6 @@ export class FreezeI extends AttackSkill {
         this.effects = ["Frozen"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -1597,7 +1486,7 @@ export class FreezeI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player}
@@ -1651,17 +1540,10 @@ export class BlizzardI extends AttackSkill {
         this.effects = ['Frozen'];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
 
     private increaseDamageIfTargetIsFrozen(result: SkillResult){
-        for(let i = 0; i < result.damaged.length; i++){
-            result.damaged[i].damage *= 2;
+        for(const damageDone of result.damaged){
+            damageDone.damage *= 2;
         }
         return result;
     }
@@ -1673,7 +1555,7 @@ export class BlizzardI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         if(target.player.hasEffect("Frozen")){
@@ -1763,13 +1645,6 @@ export class MageAdeptI extends AttackSkill {
         this.effects = ['SineminAnnelikIcgudusu'];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     do(): SkillResult {
         this.saveUse();
 
@@ -1777,7 +1652,7 @@ export class MageAdeptI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player, count: -1};
@@ -1835,13 +1710,6 @@ export class MeteorI extends AttackSkill {
         this.effects = ["MeteorRain"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -1851,7 +1719,7 @@ export class MeteorI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player}
@@ -1957,13 +1825,6 @@ export class BashI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -1973,7 +1834,7 @@ export class BashI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -2000,13 +1861,6 @@ export class ShieldStrikeI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -2017,7 +1871,7 @@ export class ShieldStrikeI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         result.addShield({value: this.skill.shieldMin as number, source: {player: this.player, source: this}, target: this.player, type: SHIELDTYPES.TEMP, cancel: {isCancelled: false}});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -2045,13 +1899,6 @@ export class TheDefenderI extends AttackSkill {
         this.effects = ["Stun"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -2061,7 +1908,7 @@ export class TheDefenderI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
@@ -2092,13 +1939,6 @@ export class ShieldUpI extends AttackSkill {
         this.effects = ["DefenseBonus"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -2107,7 +1947,7 @@ export class ShieldUpI extends AttackSkill {
         let result = new SkillResult(this.player);
         result.addShield({value: this.skill.shieldMin as number, source: {player: this.player, source: this}, target: this.player, type: SHIELDTYPES.TEMP, cancel: {isCancelled: false}});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         // context ayni
@@ -2139,13 +1979,6 @@ export class AwakenI extends AttackSkill {
         this.effects = ["Awaken"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -2155,7 +1988,7 @@ export class AwakenI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false, bypass: true});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         // context ayni
@@ -2274,13 +2107,6 @@ export class TauntI extends AttackSkill {
         this.effects = ["Taunt"];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     
 
     do(): SkillResult {
@@ -2291,7 +2117,7 @@ export class TauntI extends AttackSkill {
 
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
