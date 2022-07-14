@@ -16,4 +16,8 @@ export default class GRPCInit {
     getServices() {
         return this.services;
     }
+
+    getServiceCount(): number {
+        return this.services.getServiceCount();
+    }
 }

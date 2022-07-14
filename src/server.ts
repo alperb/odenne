@@ -7,7 +7,9 @@ import fs from 'fs';
 import path from 'path';
 import Init from './grpc/init'
 
-new Init();
+const grpcInit = new Init();
+console.log(grpcInit.getServiceCount() + " Services Started");
+
 
 const app = express();
 

@@ -16,5 +16,8 @@ export default class GRPCServers implements GRPCService {
             service.start();
         });
     }
-    
+
+    getServiceCount(): number {
+        return this.services.size;
+    }
 }
