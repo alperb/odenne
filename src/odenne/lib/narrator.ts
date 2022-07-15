@@ -9,8 +9,8 @@ export default class Narrator {
     templates: Map<number, string>;
     priority: EventTypes[];
 
-    constructor(Odenne: Odenne){
-        this.Odenne = Odenne;
+    constructor(odenne: Odenne){
+        this.Odenne = odenne;
 
         this.events = [];
         this.templates = new Map<number, string>([

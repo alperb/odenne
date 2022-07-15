@@ -9,8 +9,8 @@ import { Player } from "./teams";
 export default class Skills {
     Odenne: Odenne;
 
-    constructor(Odenne: Odenne){
-        this.Odenne = Odenne;
+    constructor(odenne: Odenne){
+        this.Odenne = odenne;
     }
     /**
      * 0 - 1000: Archer
@@ -18,182 +18,182 @@ export default class Skills {
      * 2000 - 3000: Mage
      * 3000 - 4000: Warrior
      */
-    create(Player: Player, skill: OriginalSkill) {
+    create(player: Player, skill: OriginalSkill) {
         let isCreated = false;
         switch (skill.id) {
             //#region Archer Skills
             case 0:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
+                player.player.skills.push(new ArcherBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 10:
-                Player.player.skills.push(new ArcaneShotI(Player, skill));
+                player.player.skills.push(new ArcaneShotI(player, skill));
                 isCreated = true;
                 break;
             case 20:
-                Player.player.skills.push(new DodgeI(Player, skill));
+                player.player.skills.push(new DodgeI(player, skill));
                 isCreated = true;
                 break;
             case 30:
-                Player.player.skills.push(new ArrowRainI(Player, skill));
+                player.player.skills.push(new ArrowRainI(player, skill));
                 isCreated = true;
                 break;
             case 40:
-                Player.player.skills.push(new TacticalI(Player, skill));
+                player.player.skills.push(new TacticalI(player, skill));
                 isCreated = true;
                 break;
             case 50:
-                Player.player.skills.push(new OneTheHuntI(Player, skill));
+                player.player.skills.push(new OneTheHuntI(player, skill));
                 isCreated = true;
                 break;
             case 60:
-                Player.player.skills.push(new LongShotsI(Player, skill));
+                player.player.skills.push(new LongShotsI(player, skill));
                 isCreated = true;
                 break;
             case 70:
-                Player.player.skills.push(new AccuracyI(Player, skill));
+                player.player.skills.push(new AccuracyI(player, skill));
                 isCreated = true;
                 break;
             case 80:
-                Player.player.skills.push(new PoisonI(Player, skill));
+                player.player.skills.push(new PoisonI(player, skill));
                 isCreated = true;
                 break;
             case 90:
-                Player.player.skills.push(new SnipeI(Player, skill));
+                player.player.skills.push(new SnipeI(player, skill));
                 isCreated = true;
                 break;
             case 100:
-                Player.player.skills.push(new RangerI(Player, skill));
+                player.player.skills.push(new RangerI(player, skill));
                 isCreated = true;
                 break;
             case 110:
-                Player.player.skills.push(new ColdBloodI(Player, skill));
+                player.player.skills.push(new ColdBloodI(player, skill));
                 isCreated = true;
                 break;
             case 120:
-                Player.player.skills.push(new FocusI(Player, skill));
+                player.player.skills.push(new FocusI(player, skill));
                 isCreated = true;
                 break;
             case 130:
-                Player.player.skills.push(new HeadStartI(Player, skill));
+                player.player.skills.push(new HeadStartI(player, skill));
                 isCreated = true;
                 break;
                 //#endregion
 
             //#region Assassin Skills
             case 1000:
-                Player.player.skills.push(new AssassinBasicAttackI(Player, skill));
+                player.player.skills.push(new AssassinBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 1010:
-                Player.player.skills.push(new BetrayalI(Player, skill));
+                player.player.skills.push(new BetrayalI(player, skill));
                 isCreated = true;
                 break;
             case 1020:
-                Player.player.skills.push(new ThinArmorI(Player, skill));
+                player.player.skills.push(new ThinArmorI(player, skill));
                 isCreated = true;
                 break;
             case 1030:
-                Player.player.skills.push(new BladeRainI(Player, skill));
+                player.player.skills.push(new BladeRainI(player, skill));
                 isCreated = true;
                 break;
             case 1040:
-                Player.player.skills.push(new TheUntouchableI(Player, skill));
+                player.player.skills.push(new TheUntouchableI(player, skill));
                 isCreated = true;
                 break;
             case 1050:
-                Player.player.skills.push(new BlindI(Player, skill));
+                player.player.skills.push(new BlindI(player, skill));
                 isCreated = true;
                 break;
             case 1060:
-                Player.player.skills.push(new StealthI(Player, skill));
+                player.player.skills.push(new StealthI(player, skill));
                 isCreated = true;
                 break;
             case 1070:
-                Player.player.skills.push(new ExecutionerI(Player, skill));
+                player.player.skills.push(new ExecutionerI(player, skill));
                 isCreated = true;
                 break;
             case 1080:
-                Player.player.skills.push(new SlaughterI(Player, skill));
+                player.player.skills.push(new SlaughterI(player, skill));
                 isCreated = true;
                 break;
             case 1090:
-                Player.player.skills.push(new CatalystI(Player, skill));
+                player.player.skills.push(new CatalystI(player, skill));
                 isCreated = true;
                 break;
             case 1100:
-                Player.player.skills.push(new MasterAssassinI(Player, skill));
+                player.player.skills.push(new MasterAssassinI(player, skill));
                 isCreated = true;
                 break;
             case 1110:
-                Player.player.skills.push(new DeadlyMarkI(Player, skill));
+                player.player.skills.push(new DeadlyMarkI(player, skill));
                 isCreated = true;
                 break;
             case 1120:
-                Player.player.skills.push(new ParalyzeI(Player, skill));
+                player.player.skills.push(new ParalyzeI(player, skill));
                 isCreated = true;
                 break;
             case 1130:
-                Player.player.skills.push(new BackstabI(Player, skill));
+                player.player.skills.push(new BackstabI(player, skill));
                 isCreated = true;
                 break;
                 //#endregion
 
             //#region Mage Skills
             case 2000:
-                Player.player.skills.push(new MageBasicAttackI(Player, skill));
+                player.player.skills.push(new MageBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 2010:
-                Player.player.skills.push(new FireballI(Player, skill));
+                player.player.skills.push(new FireballI(player, skill));
                 isCreated = true;
                 break;
             case 2020:
-                Player.player.skills.push(new TheMirrorI(Player, skill));
+                player.player.skills.push(new TheMirrorI(player, skill));
                 isCreated = true;
                 break;
             case 2030:
-                Player.player.skills.push(new IgniteI(Player, skill));
+                player.player.skills.push(new IgniteI(player, skill));
                 isCreated = true;
                 break;
             case 2040:
-                Player.player.skills.push(new FreezeI(Player, skill));
+                player.player.skills.push(new FreezeI(player, skill));
                 isCreated = true;
                 break;
             case 2050:
-                Player.player.skills.push(new IcebornI(Player, skill));
+                player.player.skills.push(new IcebornI(player, skill));
                 isCreated = true;
                 break;
             case 2060:
-                Player.player.skills.push(new BlizzardI(Player, skill));
+                player.player.skills.push(new BlizzardI(player, skill));
                 isCreated = true;
                 break;
             case 2070:
-                Player.player.skills.push(new ForesightI(Player, skill));
+                player.player.skills.push(new ForesightI(player, skill));
                 isCreated = true;
                 break;
             case 2080:
-                Player.player.skills.push(new DestructionI(Player, skill));
+                player.player.skills.push(new DestructionI(player, skill));
                 isCreated = true;
                 break;
             case 2090:
-                Player.player.skills.push(new MageAdeptI(Player, skill));
+                player.player.skills.push(new MageAdeptI(player, skill));
                 isCreated = true;
                 break;
             case 2100:
-                Player.player.skills.push(new MagelightI(Player, skill));
+                player.player.skills.push(new MagelightI(player, skill));
                 isCreated = true;
                 break;
             case 2110:
-                Player.player.skills.push(new MimicI(Player, skill));
+                player.player.skills.push(new MimicI(player, skill));
                 isCreated = true;
                 break;
             case 2120:
-                Player.player.skills.push(new IllusionI(Player, skill));
+                player.player.skills.push(new IllusionI(player, skill));
                 isCreated = true;
                 break;
             case 2130:
-                Player.player.skills.push(new MeteorI(Player, skill));
+                player.player.skills.push(new MeteorI(player, skill));
                 isCreated = true;
                 break;
 
@@ -201,704 +201,76 @@ export default class Skills {
 
             //#region Warrior Skills
             case 3000:
-                Player.player.skills.push(new WarriorBasicAttackI(Player, skill));
+                player.player.skills.push(new WarriorBasicAttackI(player, skill));
                 isCreated = true;
                 break;
             case 3010:
-                Player.player.skills.push(new BashI(Player, skill));
+                player.player.skills.push(new BashI(player, skill));
                 isCreated = true;
                 break;
             case 3020:
-                Player.player.skills.push(new ShieldStrikeI(Player, skill));
+                player.player.skills.push(new ShieldStrikeI(player, skill));
                 isCreated = true;
                 break;
             case 3030:
-                Player.player.skills.push(new TheDefenderI(Player, skill));
+                player.player.skills.push(new TheDefenderI(player, skill));
                 isCreated = true;
                 break;
             case 3040:
-                Player.player.skills.push(new ShieldUpI(Player, skill));
+                player.player.skills.push(new ShieldUpI(player, skill));
                 isCreated = true;
                 break;
             case 3050:
-                Player.player.skills.push(new AwakenI(Player, skill));
+                player.player.skills.push(new AwakenI(player, skill));
                 isCreated = true;
                 break;
             case 3060:
-                Player.player.skills.push(new UnstoppableI(Player, skill));
+                player.player.skills.push(new UnstoppableI(player, skill));
                 isCreated = true;
                 break;
             case 3070:
-                Player.player.skills.push(new FuryI(Player, skill));
+                player.player.skills.push(new FuryI(player, skill));
                 isCreated = true;
                 break;
             case 3080:
-                Player.player.skills.push(new CircleOfProtectionI(Player, skill));
+                player.player.skills.push(new CircleOfProtectionI(player, skill));
                 isCreated = true;
                 break;
             case 3090:
-                Player.player.skills.push(new TauntI(Player, skill));
+                player.player.skills.push(new TauntI(player, skill));
                 isCreated = true;
                 break;
             case 3100:
-                Player.player.skills.push(new BruteForceI(Player, skill));
+                player.player.skills.push(new BruteForceI(player, skill));
                 isCreated = true;
                 break;
             case 3110:
-                Player.player.skills.push(new RageI(Player, skill));
+                player.player.skills.push(new RageI(player, skill));
                 isCreated = true;
                 break;
             case 3120:
-                Player.player.skills.push(new MagmaArmorI(Player, skill));
+                player.player.skills.push(new MagmaArmorI(player, skill));
                 isCreated = true;
                 break;
             case 3130:
-                Player.player.skills.push(new EvolveI(Player, skill));
+                player.player.skills.push(new EvolveI(player, skill));
                 isCreated = true;
                 break;
                 //#endregion
-
-            //#region Enemy Skills
-            case 10000:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10010:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10020:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10030:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10040:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10050:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10060:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10070:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10080:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10090:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10100:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10110:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10120:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10130:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10140:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10150:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10160:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 10170:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-                //#endregion
-
-            //#region Dungeon Skills
-            case 65128:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65129:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65130:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65131:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65132:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65133:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65134:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65135:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65136:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65137:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65138:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65139:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65140:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65141:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65142:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65143:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65144:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65145:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65146:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65147:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65148:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65149:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65150:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65151:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65152:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65153:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65154:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65155:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65156:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65157:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65158:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65159:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65160:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65161:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65162:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65163:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65164:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65165:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65166:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65167:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65168:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65169:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65170:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65171:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65172:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65173:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65174:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65175:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65176:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65177:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65178:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65179:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65180:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65181:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65182:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65183:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65184:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65185:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65186:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65187:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65188:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65189:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65190:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65191:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65192:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65193:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65194:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65195:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65196:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65197:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65198:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65199:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65200:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65201:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65202:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65203:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65204:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65205:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65206:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65207:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65208:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65209:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65210:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65211:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65212:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65213:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65214:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65215:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65216:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65217:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65218:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65219:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65220:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65221:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65222:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65223:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65224:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65225:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65226:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65227:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65228:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65229:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65230:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65231:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65232:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65233:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 65234:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-                //#endregion
-            case 69001:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69002:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69003:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69004:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69005:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69006:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;    
-            case 69007:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69008:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69009:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;       
-            case 69010:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69011:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69012:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;  
-            case 69013:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69014:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69015:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break; 
-            case 69016:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69017:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69018:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break; 
-            case 69019:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;  
-            case 69020:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69021:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69022:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break; 
-            case 69023:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69024:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69025:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69026:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;  
-            case 69027:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69028:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69029:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break; 
-            case 69030:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69031:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69032:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;
-            case 69033:
-                Player.player.skills.push(new ArcherBasicAttackI(Player, skill));
-                isCreated = true;
-                break;    
             default:
                 break;
         }
-        if (isCreated) return Player.player.skills[Player.player.skills.length - 1];
+
+        const isEnemySkill = skill.id >= 10000 && skill.id <= 19999;
+        const isDungeonSkills = (skill.id >= 65000 && skill.id <= 65999) || (skill.id >= 69000 && skill.id <= 69999);
+
+        if(!isCreated && (isEnemySkill || isDungeonSkills)){
+            player.player.skills.push(new ArcherBasicAttackI(player, skill));
+            isCreated = true;
+        }
+
+
+        if (isCreated) return player.player.skills[player.player.skills.length - 1];
         else return undefined;
     }
 }
@@ -927,8 +299,7 @@ export abstract class Skill {
 
     findTarget(): {id: number, player: Player} {
         const opponentIndex = (this.player.team.index + 1) % 2;
-        const p = this.player.team.Odenne.Referee.getRandomPlayer(opponentIndex, {considerTaunt: true});
-        return p;
+        return this.player.team.Odenne.Referee.getRandomPlayer(opponentIndex, {considerTaunt: true});
     }
 
     applyDamage(damages: DamageDone[]){
@@ -977,12 +348,12 @@ export abstract class Skill {
 }
 
 export class SkillResult {
-    Player: Player;
+    player: Player;
     damaged: DamageDone[];
     shields: ShieldDone[];
 
-    constructor(Player: Player){
-        this.Player = Player;
+    constructor(player: Player){
+        this.player = player;
         this.damaged = [];
         this.shields = [];
     }
@@ -1016,6 +387,13 @@ export abstract class AttackSkill extends ActiveSkill {
         super();
         this.modifiers = [];
     }
+
+    protected prepare(){
+        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
+        this.registerModifier(rangemodifier);
+        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
+        this.registerModifier(criticmodifier);
+    }
 }
 export abstract class DefenseSkill extends ActiveSkill {
 
@@ -1029,23 +407,16 @@ export class ArcherBasicAttackI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
         this.type = SKILLTYPES.BASIC;
         this.maxUseCount = -1;
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1057,7 +428,7 @@ export class ArcherBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1073,10 +444,10 @@ export class AssassinBasicAttackI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
         this.maxUseCount = -1;
@@ -1085,12 +456,7 @@ export class AssassinBasicAttackI extends AttackSkill {
         this.effects = [];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
+    
 
     
 
@@ -1101,7 +467,7 @@ export class AssassinBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1117,23 +483,16 @@ export class MageBasicAttackI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
         this.maxUseCount = -1;
         this.type = SKILLTYPES.BASIC;
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1145,7 +504,7 @@ export class MageBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1161,23 +520,16 @@ export class WarriorBasicAttackI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
         this.maxUseCount = -1;
         this.type = SKILLTYPES.BASIC;
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1189,7 +541,7 @@ export class WarriorBasicAttackI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1210,22 +562,15 @@ export class ArcaneShotI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1237,7 +582,7 @@ export class ArcaneShotI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1253,10 +598,10 @@ export class ArrowRainI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 500;
         this.maxUseCount = 1;
@@ -1264,13 +609,6 @@ export class ArrowRainI extends AttackSkill {
         
 
         this.effects = ["EdipinYarragi"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1283,7 +621,7 @@ export class ArrowRainI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -1304,9 +642,9 @@ export class DodgeI extends DefenseSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 60;
         this.maxUseCount = 1;
@@ -1329,22 +667,15 @@ export class DodgeI extends DefenseSkill {
 export class OneTheHuntI extends AttackSkill {
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ['SamuraiinCuku'];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     do(): SkillResult {
@@ -1356,7 +687,7 @@ export class OneTheHuntI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -1373,9 +704,9 @@ export class OneTheHuntI extends AttackSkill {
 export class FocusI extends PassiveSkill {
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
@@ -1395,11 +726,11 @@ export class FocusI extends PassiveSkill {
 }
 
 export class ColdBloodI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.NONE;
         this.type = SKILLTYPES.ULTIMATE;
         this.chance = 100;
@@ -1433,23 +764,16 @@ export class SnipeI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
         this.maxUseCount = 1;
 
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1461,7 +785,7 @@ export class SnipeI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: true});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1474,9 +798,9 @@ export class SnipeI extends AttackSkill {
 export class HeadStartI extends PassiveSkill {
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
@@ -1496,10 +820,10 @@ export class HeadStartI extends PassiveSkill {
 }
 
 export class RangerI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
 
@@ -1518,10 +842,10 @@ export class RangerI extends PassiveSkill {
 }
 
 export class TacticalI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
 
@@ -1540,11 +864,11 @@ export class TacticalI extends PassiveSkill {
 }
 
 export class AccuracyI extends AttackSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
         this.maxUseCount = 1;
@@ -1553,20 +877,13 @@ export class AccuracyI extends AttackSkill {
         this.prepare();
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     do(): SkillResult {
         this.saveUse()
         let result = new SkillResult(this.player);
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1579,10 +896,10 @@ export class AccuracyI extends AttackSkill {
 }
 
 export class LongShotsI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
 
@@ -1601,10 +918,10 @@ export class LongShotsI extends PassiveSkill {
 }
 
 export class PoisonI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
 
@@ -1636,22 +953,15 @@ export class BetrayalI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1663,7 +973,7 @@ export class BetrayalI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -1679,10 +989,10 @@ export class BladeRainI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 500;
         this.maxUseCount = 1;
@@ -1690,13 +1000,6 @@ export class BladeRainI extends AttackSkill {
         
 
         this.effects = ["WaffleinHukmu"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -1709,7 +1012,7 @@ export class BladeRainI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -1725,10 +1028,10 @@ export class BladeRainI extends AttackSkill {
 }
 
 export class ThinArmorI extends AttackSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super()
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.damageType = DAMAGETYPES.RANGED;
@@ -1739,13 +1042,6 @@ export class ThinArmorI extends AttackSkill {
         this.prepare();
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
     do(): SkillResult {
         this.saveUse();
 
@@ -1754,7 +1050,7 @@ export class ThinArmorI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         
@@ -1772,10 +1068,10 @@ export class ThinArmorI extends AttackSkill {
 }
 
 export class StealthI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["Invulnerable"];
@@ -1796,10 +1092,10 @@ export class StealthI extends PassiveSkill {
 }
 
 export class TheUntouchableI extends AttackSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super()
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.damageType = DAMAGETYPES.NONE;
@@ -1829,10 +1125,10 @@ export class TheUntouchableI extends AttackSkill {
 }
 
 export class BlindI extends AttackSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super()
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.damageType = DAMAGETYPES.RANGED;
@@ -1840,13 +1136,6 @@ export class BlindI extends AttackSkill {
         this.maxUseCount = 1;
         this.effects = ["Blind"];
         this.prepare();
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     do(): SkillResult {
@@ -1857,7 +1146,7 @@ export class BlindI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const invconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player, count: 2};
@@ -1872,10 +1161,10 @@ export class BlindI extends AttackSkill {
 }
 
 export class ExecutionerI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["HasmetliHatirati"];
@@ -1896,10 +1185,10 @@ export class ExecutionerI extends PassiveSkill {
 }
 
 export class SlaughterI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["MakarnaCanavari"];
@@ -1918,10 +1207,10 @@ export class SlaughterI extends PassiveSkill {
 }
 
 export class CatalystI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["PestoSosluMakarna"];
@@ -1940,10 +1229,10 @@ export class CatalystI extends PassiveSkill {
 }
 
 export class MasterAssassinI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["SukruSaracoglu"];
@@ -1964,23 +1253,16 @@ export class MasterAssassinI extends PassiveSkill {
 export class ParalyzeI extends AttackSkill {
     disabledSkill!: Skill;
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super()
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.damageType = DAMAGETYPES.RANGED;
         this.type = SKILLTYPES.ULTIMATE;
         this.maxUseCount = 1;
         this.prepare();
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     private disableTargetSkill(target: Player){
@@ -2008,7 +1290,7 @@ export class ParalyzeI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.disableTargetSkill(target.player);
@@ -2020,10 +1302,10 @@ export class ParalyzeI extends AttackSkill {
 }
 
 export class DeadlyMarkI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["HakimBey"];
@@ -2048,9 +1330,9 @@ export class BackstabI extends DefenseSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 60;
         this.maxUseCount = 1;
@@ -2081,22 +1363,15 @@ export class FireballI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2108,7 +1383,7 @@ export class FireballI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -2124,9 +1399,9 @@ export class TheMirrorI extends DefenseSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 1000;
         this.maxUseCount = 1;
@@ -2152,22 +1427,15 @@ export class IgniteI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ["Ignite"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2179,7 +1447,7 @@ export class IgniteI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player}
@@ -2198,22 +1466,15 @@ export class FreezeI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ["Frozen"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2225,7 +1486,7 @@ export class FreezeI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player}
@@ -2239,10 +1500,10 @@ export class FreezeI extends AttackSkill {
 }
 
 export class IcebornI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["FrozenCut"];
@@ -2268,10 +1529,10 @@ export class BlizzardI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
@@ -2279,17 +1540,10 @@ export class BlizzardI extends AttackSkill {
         this.effects = ['Frozen'];
     }
 
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
-    }
-
 
     private increaseDamageIfTargetIsFrozen(result: SkillResult){
-        for(let i = 0; i < result.damaged.length; i++){
-            result.damaged[i].damage *= 2;
+        for(const damageDone of result.damaged){
+            damageDone.damage *= 2;
         }
         return result;
     }
@@ -2301,7 +1555,7 @@ export class BlizzardI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         if(target.player.hasEffect("Frozen")){
@@ -2324,10 +1578,10 @@ export class BlizzardI extends AttackSkill {
 }
 
 export class ForesightI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["DefenseBonus"];
@@ -2351,10 +1605,10 @@ export class ForesightI extends PassiveSkill {
 }
 
 export class DestructionI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["Destructor"];
@@ -2380,22 +1634,15 @@ export class MageAdeptI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ['SineminAnnelikIcgudusu'];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     do(): SkillResult {
@@ -2405,7 +1652,7 @@ export class MageAdeptI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: this.player, count: -1};
@@ -2420,10 +1667,10 @@ export class MageAdeptI extends AttackSkill {
 }
 
 export class MagelightI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["DefenseBonus"];
@@ -2452,22 +1699,15 @@ export class MeteorI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 1000;
         this.type = SKILLTYPES.ULTIMATE;
         this.prepare();
         this.effects = ["MeteorRain"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2479,7 +1719,7 @@ export class MeteorI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effConfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player}
@@ -2498,10 +1738,10 @@ export class IllusionI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.NONE;
         this.chance = 100;
         this.maxUseCount = 1;
@@ -2533,10 +1773,10 @@ export class IllusionI extends AttackSkill {
 export class MimicI extends AttackSkill {
     copiedSkill: Skill | undefined;
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["Copycat"];
@@ -2574,22 +1814,15 @@ export class BashI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2601,7 +1834,7 @@ export class BashI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -2617,22 +1850,15 @@ export class ShieldStrikeI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = [];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2645,7 +1871,7 @@ export class ShieldStrikeI extends AttackSkill {
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         result.addShield({value: this.skill.shieldMin as number, source: {player: this.player, source: this}, target: this.player, type: SHIELDTYPES.TEMP, cancel: {isCancelled: false}});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         this.applyDamage(result.damaged);
@@ -2662,22 +1888,15 @@ export class TheDefenderI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ["Stun"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2689,7 +1908,7 @@ export class TheDefenderI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
@@ -2709,22 +1928,15 @@ export class ShieldUpI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ["DefenseBonus"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2735,7 +1947,7 @@ export class ShieldUpI extends AttackSkill {
         let result = new SkillResult(this.player);
         result.addShield({value: this.skill.shieldMin as number, source: {player: this.player, source: this}, target: this.player, type: SHIELDTYPES.TEMP, cancel: {isCancelled: false}});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         // context ayni
@@ -2756,22 +1968,15 @@ export class AwakenI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ["Awaken"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2783,7 +1988,7 @@ export class AwakenI extends AttackSkill {
         const target = this.findTarget();
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false, bypass: true});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         // context ayni
@@ -2803,10 +2008,10 @@ export class UnstoppableI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
@@ -2838,10 +2043,10 @@ export class UnstoppableI extends AttackSkill {
 }
 
 export class FuryI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["FastAndFurious"];
@@ -2862,10 +2067,10 @@ export class FuryI extends PassiveSkill {
 }
 
 export class CircleOfProtectionI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.effects = ["ValenianinAdaleti"];
@@ -2891,22 +2096,15 @@ export class TauntI extends AttackSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.RANGED;
         this.chance = 100;
 
         this.prepare();
         this.effects = ["Taunt"];
-    }
-
-    prepare(){
-        const rangemodifier = this.player.team.Odenne.Modifiers.create("RangeModifier", this.player, this) as RangeModifier;
-        this.registerModifier(rangemodifier);
-        const criticmodifier = this.player.team.Odenne.Modifiers.create('CriticModifier', this.player, this) as CriticModifier;
-        this.registerModifier(criticmodifier);
     }
 
     
@@ -2919,7 +2117,7 @@ export class TauntI extends AttackSkill {
 
         result.addDamage({damage: this.skill.min as number, source: {player: this.player, source: this}, target: target.player, cancel: {isCancelled: false}, isTrue: false});
         for(const modifier of this.modifiers){
-            result = modifier.apply(result) as SkillResult;
+            result = modifier.apply(result);
         }
 
         const effconfig: EffectConfig = {source: this, sourceMember: this.player, targetMember: target.player};
@@ -2933,10 +2131,10 @@ export class TauntI extends AttackSkill {
 }
 
 export class BruteForceI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
 
@@ -2955,10 +2153,10 @@ export class BruteForceI extends PassiveSkill {
 }
 
 export class RageI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
@@ -2977,10 +2175,10 @@ export class RageI extends PassiveSkill {
 }
 
 export class MagmaArmorI extends PassiveSkill {
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
 
-        this.player = Player;
+        this.player = player;
         this.skill = skill;
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
@@ -3004,10 +2202,10 @@ export class EvolveI extends PassiveSkill {
     player: Player;
     effects: string[];
 
-    constructor(Player: Player, skill: OriginalSkill){
+    constructor(player: Player, skill: OriginalSkill){
         super();
         this.skill = skill;
-        this.player = Player;
+        this.player = player;
         this.damageType = DAMAGETYPES.NONE;
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
