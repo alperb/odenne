@@ -8,8 +8,8 @@ import { Player } from "./teams";
 export default class Effects {
     Odenne: Odenne;
 
-    constructor(Odenne: Odenne){
-        this.Odenne = Odenne;
+    constructor(odenne: Odenne){
+        this.Odenne = odenne;
     }
 
     new(name: string, config: EffectConfig, details: BonusDetails | undefined = undefined) : Effect | undefined{
@@ -126,6 +126,14 @@ export abstract class Effect {
         this.config.targetMember.team.Odenne.Narrator.saveEvent(event);
     }
 
+    protected checkIfTargetDealtAnyDamage(){
+        for(const damage of this.config.targetMember.Decider.Current.damageDone){
+            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
+        }
+
+        return false;
+    }
+
     abstract init(): void;
     abstract do(): void;
     abstract afterDo(): void;
@@ -151,14 +159,18 @@ export abstract class PassiveEffect extends Effect {
 export abstract class StatBonus extends ActiveEffect {
     details!: BonusDetails
 
+    constructor(config: EffectConfig, details:BonusDetails){
+        super(config);
+
+        this.details = details;
+        this.count = this.details.count;
+    }
+
     abstract get(type: string): number;
 }
 
 export class EffectResult {
     source: Player | Environment |  undefined;
-
-    constructor(){
-    }
 
     setSource(player: Player){
         this.source = player;
@@ -166,17 +178,26 @@ export class EffectResult {
 }
 
 export abstract class CrowdControlEffect extends ActiveEffect {
-
+    protected removeDamages(){
+        for(const damageDone of this.config.targetMember.Decider.Current.damageDone){
+            for(const damageTaken of damageDone.target.Decider.Current.damageTaken){
+                if(this.config.targetMember === damageTaken.source.player){
+                    damageTaken.cancel = {
+                        isCancelled: true, 
+                        source: this, 
+                        sourceMember: this.config.sourceMember
+                    };
+                }
+            }
+        }
+    }
 }
 
 //#region Stat Bonuses
 
 export class AttackBonus extends StatBonus {
-    constructor(config: EffectConfig, details:BonusDetails){
-        super(config);
-
-        this.details = details;
-        this.count = this.details.count;
+    constructor(config: EffectConfig, details: BonusDetails){
+        super(config, details);
     }
 
     private getIncreaseByMissingHealth(){
@@ -198,19 +219,16 @@ export class AttackBonus extends StatBonus {
         return 0;
     }
 
-    init(): void {}
+    init(): void { /* TODO document why this method 'init' is empty */ }
 
-    do(): void {}
+    do(): void { /* TODO document why this method 'do' is empty */ }
 
-    afterDo(): void {}
+    afterDo(): void { /* TODO document why this method 'afterDo' is empty */ }
 }
 
 export class DefenseBonus extends StatBonus {
-    constructor(config: EffectConfig, details:BonusDetails){
-        super(config);
-
-        this.details = details;
-        this.count = this.details.count;
+    constructor(config: EffectConfig, details: BonusDetails){
+        super(config, details);
     }
 
     private getIncreaseByMissingHealth(){
@@ -240,11 +258,8 @@ export class DefenseBonus extends StatBonus {
 }
 
 export class CriticBonus extends StatBonus {
-    constructor(config: EffectConfig, details:BonusDetails){
-        super(config);
-
-        this.details = details;
-        this.count = this.details.count;
+    constructor(config: EffectConfig, details: BonusDetails){
+        super(config, details);
     }
 
     get(type: string): number {
@@ -278,30 +293,8 @@ export class Stun extends CrowdControlEffect {
 
     }
 
-    private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {
-                        isCancelled: true, 
-                        source: this, 
-                        sourceMember: this.config.sourceMember
-                    };
-                }
-            }
-        }
-    }
-
-    private checkIfDamageDealt(){
-        for(const damage of this.config.targetMember.Decider.Current.damageDone){
-            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
-        }
-
-        return false;
-    }
-
     afterDo(): void {
-        if(this.checkIfDamageDealt()) this.removeDamages();
+        if(this.checkIfTargetDealtAnyDamage()) this.removeDamages();
     }
 
     
@@ -320,26 +313,8 @@ export class Blind extends CrowdControlEffect {
 
     }
 
-    private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
-                }
-            }
-        }
-    }
-
-    private checkIfDamageDealt(){
-        for(const damage of this.config.targetMember.Decider.Current.damageDone){
-            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
-        }
-
-        return false;
-    }
-
     afterDo(): void {
-        if(this.checkIfDamageDealt()) this.removeDamages();
+        if(this.checkIfTargetDealtAnyDamage()) this.removeDamages();
     }
 
     
@@ -358,26 +333,8 @@ export class Frozen extends CrowdControlEffect {
 
     }
 
-    private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember === this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player){
-                    this.config.targetMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].cancel = {isCancelled: true, source: this, sourceMember: this.config.sourceMember};
-                }
-            }
-        }
-    }
-
-    private checkIfDamageDealt(){
-        for(const damage of this.config.targetMember.Decider.Current.damageDone){
-            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
-        }
-
-        return false;
-    }
-
     afterDo(): void {
-        if(this.checkIfDamageDealt()) this.removeDamages();
+        if(this.checkIfTargetDealtAnyDamage()) this.removeDamages();
     }
 
     
@@ -515,15 +472,15 @@ export class Dodge extends ActiveEffect {
     }
 
     private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {isCancelled: true, source: this.config.source, sourceMember: this.config.sourceMember}
-            if(this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+        for(const element of this.config.targetMember.Decider.Current.damageTaken){
+            element.cancel = {isCancelled: true, source: this.config.source, sourceMember: this.config.sourceMember}
+            if(element.source.source instanceof Skill){
                 const newEvent: EventParameters = {
                     type: EventTypes.DAMAGE_CANCEL,
-                    attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
-                    damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
-                    defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
-                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
+                    attacker: element.source.player.original.name,
+                    damage: element.damage,
+                    defender: element.target.original.name,
+                    skill: (element.source.source).skill.name,
                     reason: "**dodged**"
                 }
                 this.saveEvent(newEvent);
@@ -542,37 +499,31 @@ export class Invulnerable extends ActiveEffect {
     init(): void {}
 
     do(): void {
+      // TODO document why this method 'do' is empty
+    
 
     }
 
     private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {
+        for(const element of this.config.targetMember.Decider.Current.damageTaken){
+            element.cancel = {
                 isCancelled: true, 
                 source: this.config.source, 
                 sourceMember: this.config.sourceMember
             }
 
-            if(this.count === 1 && this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+            if(this.count === 1 && element.source.source instanceof Skill){
                 const newEvent: EventParameters = {
                     type: EventTypes.DAMAGE_CANCEL,
-                    attacker: this.config.targetMember.Decider.Current.damageTaken[i].source.player.original.name,
-                    damage: this.config.targetMember.Decider.Current.damageTaken[i].damage,
-                    defender: this.config.targetMember.Decider.Current.damageTaken[i].target.original.name,
-                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name,
+                    attacker: element.source.player.original.name,
+                    damage: element.damage,
+                    defender: element.target.original.name,
+                    skill: element.source.source.skill.name,
                     reason: "was **invulnerable**"
                 }
                 this.saveEvent(newEvent);
             }
         }
-    }
-
-    private checkIfDamageDealt(){
-        for(const damage of this.config.targetMember.Decider.Current.damageDone){
-            if(damage.cancel.isCancelled === false && damage.damage > 0) return true
-        }
-
-        return false;
     }
 
     afterDo(): void {
@@ -586,7 +537,7 @@ export class Invulnerable extends ActiveEffect {
             this.saveEvent(newEvent);
         }
 
-        if(this.count < 0 && this.checkIfDamageDealt()) this.count = 1;
+        if(this.count < 0 && this.checkIfTargetDealtAnyDamage()) this.count = 1;
     }
 
     
@@ -598,16 +549,18 @@ export class SineminCizimTableti extends PassiveEffect {
     }
 
     private makeDamagesTrue(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember.player.stats.health < this.config.sourceMember.Decider.Current.damageDone[i].target.player.stats.health){
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].isTrue = true;
+        for(const damageDone of this.config.sourceMember.Decider.Current.damageDone){
+            for(const damageTaken of damageDone.target.Decider.Current.damageTaken){
+                if(this.config.targetMember.player.stats.health < damageDone.target.player.stats.health){
+                    damageTaken.isTrue = true;
                 }
             }
         }
     }
 
     do(): void {
+      // TODO document why this method 'do' is empty
+    
     }
 
     afterDo(): void {
@@ -686,21 +639,25 @@ export class OmnininCocugu extends PassiveEffect {
     }
 
     private increaseDamage(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember.player.stats.health < this.config.sourceMember.Decider.Current.damageDone[i].target.player.stats.health){
-                    const gain = this.calculateDamageBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]);
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage += gain;
+        for(const damageDone of this.config.sourceMember.Decider.Current.damageDone){
+            for(const damageTaken of damageDone.target.Decider.Current.damageTaken){
+                if(this.config.targetMember.player.stats.health < damageDone.target.player.stats.health){
+                    const gain = this.calculateDamageBonus(damageTaken);
+                    damageTaken.damage += gain;
                 }
             }
         }
     }
 
     init(): void {
+      // TODO document why this method 'init' is empty
+    
         
     }
 
     do(): void {
+      // TODO document why this method 'do' is empty
+    
         
     }
 
@@ -747,13 +704,20 @@ export class HasmetliHatirati extends PassiveEffect {
     }
 
     private increaseDamage(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.targetMember.player.stats.health < this.config.sourceMember.Decider.Current.damageDone[i].target.player.stats.health){
-                    const gainMultiplier = this.shouldDealBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]) ? 2 : 1;
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
+        for(const damageDone of this.config.sourceMember.Decider.Current.damageDone){
+            for(const damageTaken of damageDone.target.Decider.Current.damageTaken){
+                if(this.config.targetMember.player.stats.health < damageDone.target.player.stats.health){
+                    const gainMultiplier = this.shouldDealBonus(damageTaken) ? 2 : 1;
+                    damageTaken.damage *= gainMultiplier;
                 }
             }
+            // Expected behaviour
+            // for(let j = 0; j < element.target.Decider.Current.damageTaken.length; j++){
+            //     if(this.config.targetMember.player.stats.health < element.target.player.stats.health){
+            //         const gainMultiplier = this.shouldDealBonus(element.target.Decider.Current.damageTaken[j]) ? 2 : 1;
+            //         element.target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
+            //     }
+            // }
         }
     }
 
@@ -780,14 +744,23 @@ export class MakarnaCanavari extends PassiveEffect {
     }
 
     private increaseDamage(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.sourceMember === this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player ){
-                    const gainMultiplier = this.shouldDealBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]) ? 2.5 : 1;
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
-                }   
+        for(const damageDone of this.config.sourceMember.Decider.Current.damageDone){
+            for(const damageTaken of damageDone.target.Decider.Current.damageTaken){
+                if(this.config.sourceMember === damageTaken.source.player){
+                    const gainMultiplier = this.shouldDealBonus(damageTaken) ? 2.5 : 1;
+                    damageTaken.damage *= gainMultiplier;
+                }
             }
         }
+        // Expected behaviour
+        // for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
+        //     for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
+        //         if(this.config.sourceMember === this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player ){
+        //             const gainMultiplier = this.shouldDealBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]) ? 2.5 : 1;
+        //             this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
+        //         }   
+        //     }
+        // }
     }
 
     init(): void {}
@@ -892,11 +865,11 @@ export class RuhsarinIntikami extends PassiveEffect {
     }
 
     private reflectDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            const takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
+        for(const damageTaken of this.config.targetMember.Decider.Current.damageTaken){
+            const takenDamage = damageTaken.damage;
             
             const reflectedDamage = takenDamage * 0.4;
-            this.config.targetMember.Decider.Current.damageTaken[i].cancel = {
+            damageTaken.cancel = {
                 isCancelled: true,
                 source: this,
                 sourceMember: this.config.targetMember
@@ -904,17 +877,17 @@ export class RuhsarinIntikami extends PassiveEffect {
             const reflected: DamageDone = {
                 damage: reflectedDamage + (this.config.sourceMember.getStat('attack') / 2), 
                 source: {player: this.config.sourceMember, source: this}, 
-                target: this.config.targetMember.Decider.Current.damageTaken[i].source.player, 
+                target: damageTaken.source.player, 
                 cancel: {isCancelled: false}, 
                 isTrue: false
             }
             const cancelInfo = this.placeDamage(reflected);
-            if(!cancelInfo.isCancelled && this.config.targetMember.Decider.Current.damageTaken[i].source.source instanceof Skill){
+            if(!cancelInfo.isCancelled && damageTaken.source.source instanceof Skill){
                 const newEvent: EventParameters = {
                     type: EventTypes.REFLECT,
                     defender: this.config.targetMember.original.name,
                     damage: reflected.damage,
-                    skill: (this.config.targetMember.Decider.Current.damageTaken[i].source.source as Skill).skill.name
+                    skill: damageTaken.source.source.skill.name
                 }
 
                 this.saveEvent(newEvent);
@@ -940,12 +913,7 @@ export class Awaken extends ActiveEffect {
     }
 
     private removeCCs(){
-        for(let i = 0; i < this.config.targetMember.effects.length; i++){
-            if(this.config.targetMember.effects[i] instanceof CrowdControlEffect){
-                this.config.targetMember.effects.splice(i, 1);
-                i--;
-            }
-        }
+        this.config.targetMember.effects = this.config.targetMember.effects.filter(effect => !(effect instanceof CrowdControlEffect));
     }
 
     init(): void {
@@ -1108,14 +1076,14 @@ export class BumBeYarrag extends PassiveEffect {
     }
 
     private reflectDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            const takenDamage = this.config.targetMember.Decider.Current.damageTaken[i].damage;
+        for(const damageTaken of this.config.targetMember.Decider.Current.damageTaken){
+            const takenDamage = damageTaken.damage;
             
             const reflectedDamage = takenDamage * .2;
             const reflected: DamageDone = {
                 damage: reflectedDamage + (this.config.sourceMember.getStat('attack') / 2), 
                 source: {player: this.config.sourceMember, source: this}, 
-                target: this.config.targetMember.Decider.Current.damageTaken[i].source.player, 
+                target: damageTaken.source.player, 
                 cancel: {isCancelled: false}, 
                 isTrue: false
             }
@@ -1150,8 +1118,8 @@ export class TheMirror extends ActiveEffect {
     }
 
     private removeDamages(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            this.config.targetMember.Decider.Current.damageTaken[i].damage *= 0.6;
+        for(const damageTaken of this.config.targetMember.Decider.Current.damageTaken){
+            damageTaken.damage *= 0.6;
         }
     }
 }
@@ -1166,12 +1134,12 @@ export class FrozenCut extends PassiveEffect {
     }
 
     private increaseDamage(){
-        for(let i = 0; i < this.config.sourceMember.Decider.Current.damageDone.length; i++){
-            for(let j = 0; j < this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken.length; j++){
-                if(this.config.sourceMember === this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].source.player ){
-                    const gainMultiplier = this.shouldDealBonus(this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j]) ? 2 : 1;
-                    this.config.sourceMember.Decider.Current.damageDone[i].target.Decider.Current.damageTaken[j].damage *= gainMultiplier;
-                }   
+        for(const damageDone of this.config.targetMember.Decider.Current.damageDone){
+            for(const damageTaken of damageDone.target.Decider.Current.damageTaken){
+                if(this.config.sourceMember === damageTaken.source.player){
+                    const gainMultiplier = this.shouldDealBonus(damageTaken) ? 2 : 1;
+                    damageTaken.damage *= gainMultiplier;
+                }  
             }
         }
     }
@@ -1244,8 +1212,8 @@ export class SineminAnnelikIcgudusu extends ActiveEffect {
     }
 
     private applyAbsorption(){
-        for(let i = 0; i < this.config.targetMember.Decider.Current.damageTaken.length; i++){
-            this.config.targetMember.Decider.Current.damageTaken[i].damage *= 0.5;
+        for(const damageTaken of this.config.targetMember.Decider.Current.damageTaken){
+            damageTaken.damage *= 0.5;
         }
     }
 }
