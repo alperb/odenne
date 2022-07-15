@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package odenneServerPackage;
+
+service OdenneServer {
+    rpc createSession(CreateSessionRequest) returns (CreateSessionResponse) {};
+}
+
+message CreateSessionRequest {
+    bytes player = 1;
+}
+
+message CreateSessionResponse {
+    string session = 1;
+}

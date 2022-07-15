@@ -18,7 +18,7 @@ export default class OdenneService implements GRPCService  {
         this.host = host;
         this.port = port;
 
-        this.file = path.join(__dirname, '../proto/odenne-server.proto');
+        this.file = path.join(__dirname, '../proto/odenne.proto');
         this.packageDefinition = protoLoader.loadSync(path.resolve(__dirname, this.file))
         this.grpcObj = (grpc.loadPackageDefinition(this.packageDefinition) as unknown) as ProtoGrpcType;
         this.serverPackage = this.grpcObj.odenneServerPackage;

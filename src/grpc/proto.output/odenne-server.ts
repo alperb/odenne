@@ -9,8 +9,8 @@ type SubtypeConstructor<Constructor extends new (...args: any) => any, Subtype> 
 
 export interface ProtoGrpcType {
   odenneServerPackage: {
-    BattleRequest: MessageTypeDefinition
-    BattleResponse: MessageTypeDefinition
+    CreateSessionRequest: MessageTypeDefinition
+    CreateSessionResponse: MessageTypeDefinition
     OdenneServer: SubtypeConstructor<typeof grpc.Client, _odenneServerPackage_OdenneServerClient> & { service: _odenneServerPackage_OdenneServerDefinition }
   }
 }
