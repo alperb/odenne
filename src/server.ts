@@ -6,10 +6,8 @@ import morgan from 'morgan';
 import fs from 'fs';
 import path from 'path';
 import Init from './grpc/init'
-import MongoService from './database/mongo';
 
 const grpcInit = new Init();
-MongoService.connect();
 console.log(grpcInit.getServiceCount() + " Services Started");
 import helmet from 'helmet';
 

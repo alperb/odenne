@@ -4,6 +4,71 @@ package odenneServerPackage;
 
 service OdenneServer {
     rpc createSession(CreateSessionRequest) returns (CreateSessionResponse) {};
+    rpc battle(BattleRequest) returns (BattleResponse) {};
+}
+
+// helpers
+message int32Array {
+    repeated int32 value = 1;
+}
+message StringArray {
+    repeated string value = 1;
+}
+
+// end - helpers
+
+// Battle Result Types 
+message UILog {
+    string log = 1;
+    repeated StringArray players = 2;
+    repeated int32Array healths = 3;
+    int32 turn = 4;
+    repeated int32Array shields = 5;
+    repeated int32Array critics = 6;
+    repeated int32Array attacks = 7;
+    repeated int32Array penetrations = 8;
+    repeated int32Array accuracies = 9;
+}
+
+message TotalDamageDone {
+    int32 skill = 1;
+    int32 effect = 2;
+}
+
+message UsedSkillCount {
+    int32 skillId = 1;
+    int32 count = 2;
+}
+
+message PlayerStatistics {
+    string snowflake = 1;
+    string characterId = 2;
+    repeated UsedSkillCount skillUseCounts = 3;
+    TotalDamageDone totalDamageDone = 4;
+}
+
+message TeamStatistics {
+    repeated PlayerStatistics players = 1;
+}
+
+message MatchResult {
+    int32 winner = 1;
+    string reason = 2;
+}
+// end - Battle Result Types
+
+message BattleRequest {
+    string session = 1;
+    bytes enemy = 2;
+    bytes options = 3;
+}
+
+message BattleResponse {
+    int32 result = 1;
+    optional bytes logs = 2;
+    optional MatchResult end = 3;
+    optional bytes stats = 4;
+    optional string error = 5;
 }
 
 message CreateSessionRequest {
@@ -11,5 +76,7 @@ message CreateSessionRequest {
 }
 
 message CreateSessionResponse {
-    string session = 1;
+    int32 status = 1;
+    optional string session = 2;
+    optional string error = 3;
 }

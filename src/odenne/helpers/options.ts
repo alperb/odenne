@@ -1,4 +1,4 @@
-import { OriginalPlayer } from "../types/player";
+import { OriginalPlayer, SessionPlayer } from "../types/player";
 
 class OdenneOptions {
     teams: Array<Array<OriginalPlayer>>;
@@ -16,7 +16,7 @@ class OdenneOptions {
         this.shouldCalculateItems = [true, true];
         this.roundLimit = 11;
         this.shouldOverwriteHealth = false;
-        this.healthOverwrite = [];
+        this.healthOverwrite = []; // @deprecated
     }
 
     /**
@@ -49,6 +49,7 @@ class OdenneOptions {
     }
 
     /**
+     * @deprecated
      * Decide whether item stats should be calculated while preparing
      * @param {0 | 1} index Team index
      * @param {Boolean} value Whether items should be calculated
@@ -62,6 +63,15 @@ class OdenneOptions {
         return this.shouldCalculateItems[index];
     }
 
+    /**
+     * @deprecated
+     * @note This method is deprecated do not use, instead use sessions
+
+     * Overwrites the given player's health
+     * @param teamIndex Team index
+     * @param playerIndex Player index
+     * @param health Player health
+     */
     overwriteHealth(teamIndex: number, playerIndex: number, health: number){
         this.shouldOverwriteHealth = true;
         this.healthOverwrite = [teamIndex, playerIndex, health];

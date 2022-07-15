@@ -1,4 +1,4 @@
-// Original file: src/grpc/proto/odenne-server.proto
+// Original file: src/grpc/proto/odenne.proto
 
 
 export interface CreateSessionRequest {
