@@ -1,9 +1,9 @@
 import path from 'path';
 import * as grpc from '@grpc/grpc-js'
 import * as protoLoader from '@grpc/proto-loader'
-import { ProtoGrpcType } from '../proto.output/odenne-server'
+import { ProtoGrpcType } from '../proto.output/odenne'
 import { GRPCService } from "../../types/grpc";
-import OdenneServiceHelper from '../helpers/odenneServiceHelper';
+import OdenneServiceHandler from '../../service/odenne';
 
 export default class OdenneService implements GRPCService  {
     port: number;
@@ -18,7 +18,7 @@ export default class OdenneService implements GRPCService  {
         this.host = host;
         this.port = port;
 
-        this.file = path.join(__dirname, '../proto/odenne-server.proto');
+        this.file = path.join(__dirname, '../proto/odenne.proto');
         this.packageDefinition = protoLoader.loadSync(path.resolve(__dirname, this.file))
         this.grpcObj = (grpc.loadPackageDefinition(this.packageDefinition) as unknown) as ProtoGrpcType;
         this.serverPackage = this.grpcObj.odenneServerPackage;
@@ -38,7 +38,8 @@ export default class OdenneService implements GRPCService  {
 
     addServices() {
         this.server.addService(this.serverPackage.OdenneServer.service, {
-            'battle': OdenneServiceHelper.battle,
+            'createSession': OdenneServiceHandler.createSession,
+            'battle': OdenneServiceHandler.battle
         });
     }
 

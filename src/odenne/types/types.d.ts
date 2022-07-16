@@ -1,6 +1,6 @@
 import { Effect } from "../lib/effects";
 import { Skill } from "../lib/skills";
-import { Mob, Player } from "../lib/teams";
+import { Enemy, Player } from "../lib/teams";
 import { SHIELDTYPES } from "./player";
 
 export interface OdenneTurn {
@@ -28,7 +28,7 @@ export const enum STATUSCODES {
 export interface DamageDone {
     damage: number;
     source: DamageSource;
-    target: Player | Mob;
+    target: Player;
     cancel: CancelInfo;
     critic?: CriticResult;
     isTrue: boolean;
@@ -39,18 +39,18 @@ export interface ShieldDone{
     value: number;
     type: SHIELDTYPES;
     source: DamageSource;
-    target: Player | Mob;
+    target: Player;
     cancel: CancelInfo;
 }
 
 export interface DamageSource {
-    player: Player | Mob;
+    player: Player;
     source: Skill | Effect;
 }
 
 export interface CancelInfo {
     isCancelled: boolean;
-    sourceMember?: Player | Mob;
+    sourceMember?: Player;
     source?: Skill | Effect;
 }
 
@@ -62,8 +62,8 @@ export interface DeciderSummary {
 }
 
 export interface EffectConfig {
-    targetMember: Player | Mob;
-    sourceMember: Player | Mob;
+    targetMember: Player;
+    sourceMember: Player;
     source: Skill | Effect;
     count?: number;
 }

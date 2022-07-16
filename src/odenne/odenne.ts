@@ -15,7 +15,7 @@ import OdenneOptions from './helpers/options';
 // Odenne bound helpers
 import Exceptions from './helpers/exceptions';
 import Status from './helpers/status';
-import Teams, { Team } from './lib/teams';
+import Teams, { Member, Team } from './lib/teams';
 import Keeper from './lib/keeper';
 import Referee from './lib/referee';
 import Environments from './lib/environments';
@@ -27,9 +27,10 @@ import Rarity from './helpers/rarity';
 import Modifiers from './lib/modifiers';
 import SkillConfig from './config/skills.json';
 import { STATUSCODES } from './types/types';
-import { OriginalSkill } from './types/player';
+import { OriginalPlayer, OriginalSkill, PlayerizableEnemy } from './types/player';
 import Narrator from './lib/narrator';
 import Statistics from './lib/statistics';
+import OdenneSpace from './helpers/space';
 
 /**
  * TODO List
@@ -40,6 +41,7 @@ import Statistics from './lib/statistics';
  */
 
 export class Odenne {
+    static space: OdenneSpace = new OdenneSpace();
     exceptions: {[key: string]: string};
     status: Status;
     options: OdenneOptions;
@@ -87,9 +89,26 @@ export class Odenne {
         this.SkillConfig = SkillConfig;
         
         this.prepare();
-        
-        
-        
+    }
+
+    static playerizeEnemy(enemy: PlayerizableEnemy): OriginalPlayer{
+        return {
+			snowflake: 'IRRELEVANT',
+			characterId: 'IRRELEVANT',
+			name: enemy.name,
+			discriminator: 'IRRELEVANT',
+			wearings: {
+                ...require('./config/rookies.json'),
+				skills: enemy.skills,
+			},
+			stats: Member.randomizeStats(enemy.stats),
+			class: 'enemy',
+			boost: {
+				isBoost: false,
+				boost: {},
+			},
+			isDead: false,
+		};
     }
 
     prepare(){

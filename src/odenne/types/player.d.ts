@@ -1,5 +1,12 @@
 import { Skill, SkillResult } from "../lib/skills";
 import { DamageSource } from "./types";
+import { Effect } from "../lib/effects";
+
+export interface PlayerizableEnemy {
+    name: string;
+    skills: number[];
+    stats: RandomizableStats;
+}
 
 export interface OriginalPlayer {
     snowflake: string;
@@ -10,7 +17,6 @@ export interface OriginalPlayer {
     wearings: Wearings;
     class: string;
     boost: PlayerBoostBonus;
-    skills: Array<Record<string, unknown>>;
     isDead: boolean;
 }
 
@@ -26,6 +32,7 @@ export interface Wearings {
 }
 
 export interface Stats {[key: string]: number}
+export interface RandomizableStats {[key: string]: number[2]}
 
 export type Item = {
     id: string;
@@ -112,6 +119,10 @@ export interface OdennePlayer {
         temporary: TempShield[],
         permanent: number
     }
+}
+
+export interface SessionPlayer extends OdennePlayer {
+    effects: Effect[];
 }
 
 export interface Boost {

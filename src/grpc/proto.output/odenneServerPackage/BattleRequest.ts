@@ -1,14 +1,14 @@
-// Original file: src/grpc/proto/odenne-server.proto
+// Original file: src/grpc/proto/odenne.proto
 
 
 export interface BattleRequest {
-  'name'?: (string);
-  'opponent'?: (string);
-  'move'?: (string);
+  'session'?: (string);
+  'enemy'?: (Buffer | Uint8Array | string);
+  'options'?: (Buffer | Uint8Array | string);
 }
 
 export interface BattleRequest__Output {
-  'name'?: (string);
-  'opponent'?: (string);
-  'move'?: (string);
+  'session'?: (string);
+  'enemy'?: (Buffer);
+  'options'?: (Buffer);
 }

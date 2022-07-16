@@ -11,7 +11,17 @@ export interface ProtoGrpcType {
   odenneServerPackage: {
     BattleRequest: MessageTypeDefinition
     BattleResponse: MessageTypeDefinition
+    CreateSessionRequest: MessageTypeDefinition
+    CreateSessionResponse: MessageTypeDefinition
+    MatchResult: MessageTypeDefinition
     OdenneServer: SubtypeConstructor<typeof grpc.Client, _odenneServerPackage_OdenneServerClient> & { service: _odenneServerPackage_OdenneServerDefinition }
+    PlayerStatistics: MessageTypeDefinition
+    StringArray: MessageTypeDefinition
+    TeamStatistics: MessageTypeDefinition
+    TotalDamageDone: MessageTypeDefinition
+    UILog: MessageTypeDefinition
+    UsedSkillCount: MessageTypeDefinition
+    int32Array: MessageTypeDefinition
   }
 }
 

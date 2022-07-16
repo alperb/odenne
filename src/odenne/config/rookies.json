@@ -1,0 +1,170 @@
+{
+    "arms": {
+        "class": "mage",
+        "code": "rookie.arm",
+        "crafting": [],
+        "deconstruct": [],
+        "durability": 100,
+        "emoji": {
+            "id": "864633317185159168"
+        },
+        "function": [],
+        "id": "bdf5fd01-ab64-4f1d-aa8f-d8871110f03a",
+        "image": {
+            "original": [
+                "item/set/rookie/mage/leftshoulderarm.png",
+                "item/set/rookie/mage/rightshoulderarm.png"
+            ],
+            "wearings": "item/wearings/rookie/mage/arm.png"
+        },
+        "isTradeable": true,
+        "name": "Rookie Arms",
+        "placement": "arms",
+        "rarity": 0,
+        "set": "rookie.set",
+        "soulbind": {
+            "date": 0,
+            "isBindable": false,
+            "isBound": false,
+            "player": {
+                "characterId": "",
+                "snowflake": ""
+            }
+        },
+        "stack": 1,
+        "stats": {},
+        "type": "armor"
+    },
+    "chest": {
+        "class": "mage",
+        "code": "rookie.chest",
+        "crafting": [],
+        "deconstruct": [],
+        "durability": 100,
+        "emoji": {
+            "id": "864633322427645952"
+        },
+        "function": [],
+        "id": "3178fe18-f678-4bfc-9969-a48a36d3beac",
+        "image": {
+            "original": "item/set/rookie/mage/chestwaist.png",
+            "wearings": "item/wearings/rookie/mage/chest.png"
+        },
+        "isTradeable": true,
+        "name": "Rookie Chest",
+        "placement": "chest",
+        "rarity": 0,
+        "set": "rookie.set",
+        "soulbind": {
+            "date": 0,
+            "isBindable": false,
+            "isBound": false,
+            "player": {
+                "characterId": "",
+                "snowflake": ""
+            }
+        },
+        "stack": 1,
+        "stats": {},
+        "type": "armor"
+    },
+    "lefthand": {
+        "class": "mage",
+        "code": "rookie.book",
+        "crafting": [],
+        "deconstruct": [],
+        "durability": 100,
+        "emoji": {
+            "id": "864633323682398219"
+        },
+        "function": [],
+        "id": "d6f6e01d-2c4d-4075-8f72-279b3d16a7e3",
+        "image": {
+            "original": "item/set/rookie/mage/leftbook.png",
+            "wearings": "item/wearings/rookie/mage/spellbook.png"
+        },
+        "isTradeable": true,
+        "name": "Rookie Book",
+        "placement": "lefthand",
+        "rarity": 0,
+        "set": "rookie.set",
+        "soulbind": {
+            "date": 0,
+            "isBindable": true,
+            "isBound": false,
+            "player": {
+                "characterId": "",
+                "snowflake": ""
+            }
+        },
+        "stack": 1,
+        "stats": {},
+        "type": "weapon"
+    },
+    "leggings": {
+        "class": "mage",
+        "code": "rookie.legs",
+        "crafting": [],
+        "deconstruct": [],
+        "durability": 100,
+        "emoji": {
+            "id": "864633322118316104"
+        },
+        "function": [],
+        "id": "670d092f-ee47-4eab-8020-33e7c998edc3",
+        "image": {
+            "original": "item/set/rookie/mage/legs.png",
+            "wearings": "item/wearings/rookie/mage/legs.png"
+        },
+        "isTradeable": true,
+        "name": "Rookie Legs",
+        "placement": "leggings",
+        "rarity": 0,
+        "set": "rookie.set",
+        "soulbind": {
+            "date": 0,
+            "isBindable": false,
+            "isBound": false,
+            "player": {
+                "characterId": "",
+                "snowflake": ""
+            }
+        },
+        "stack": 1,
+        "stats": {},
+        "type": "armor"
+    },
+    "righthand": {
+        "class": "mage",
+        "code": "rookie.staff",
+        "crafting": [],
+        "deconstruct": [],
+        "durability": 100,
+        "emoji": {
+            "id": "864633319185186836"
+        },
+        "function": [],
+        "id": "1642f2e0-ea45-48c1-a9d6-b1364cb514bf",
+        "image": {
+            "original": "item/set/rookie/mage/rightwand.png",
+            "wearings": "item/wearings/rookie/mage/wand.png"
+        },
+        "isTradeable": true,
+        "name": "Rookie Staff",
+        "placement": "righthand",
+        "rarity": 0,
+        "set": "rookie.set",
+        "soulbind": {
+            "date": 0,
+            "isBindable": true,
+            "isBound": false,
+            "player": {
+                "characterId": "",
+                "snowflake": ""
+            }
+        },
+        "stack": 1,
+        "stats": {},
+        "type": "weapon"
+    }
+}
