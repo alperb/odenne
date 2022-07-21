@@ -107,9 +107,9 @@ const player1 = {
         "skills": [
             1000,
             1050,
-            1060,
-            1020,
-            1110
+            1050,
+            1050,
+            1050
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -410,7 +410,6 @@ try{
     const battle = new Odenne(options);
 
     battle.start();
-        // console.log('=======================');
     while(battle.status.get() === STATUSCODES.STARTED){
         try{
             battle.advance();
@@ -433,15 +432,12 @@ try{
             console.log({s: battle.teams[1].players[0].player.shields.temporary[0]});
         }
         catch(e){
-            const used = process.memoryUsage().heapUsed / 1024 / 1024;
-            console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+            const usedMemory = process.memoryUsage().heapUsed / 1024 / 1024;
+            console.log(`The script uses approximately ${Math.round(usedMemory * 100) / 100} MB`);
             console.log(e);
         }
     }
-        
-    // console.log('=======================');
-    // console.log(battle.Statistics.teams[1][0].totalDamageDone);
-    // console.log('=======================');
+
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
     console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
 }

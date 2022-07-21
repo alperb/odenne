@@ -1,6 +1,6 @@
 import _ from "lodash";
 import Odenne from "../odenne";
-import { Boost, Item, OdennePlayer, OriginalPlayer, OriginalSkill } from "../types/player";
+import { Boost, Item, OdennePlayer, OriginalPlayer, OriginalSkill, RandomizableStats, Stats } from "../types/player";
 import { DamageDone, DeciderSummary, ShieldDone } from "../types/types";
 import Decider from "./decider";
 import { Effect, StatBonus } from "./effects";
@@ -10,8 +10,8 @@ export class Teams {
     Odenne: Odenne;
     teamCount: number;
 
-    constructor(Odenne: Odenne){
-        this.Odenne = Odenne;
+    constructor(odenne: Odenne){
+        this.Odenne = odenne;
 
         this.teamCount = 0;
     }
@@ -44,6 +44,11 @@ export class Team {
 
     addPlayer(originalPlayer: OriginalPlayer){
         const player = new Player(this, originalPlayer);
+        this.players.push(player);
+    }
+
+    insertCreatedPlayer(player: Player){
+        player.team = this;
         this.players.push(player);
     }
 
@@ -126,6 +131,15 @@ export class Member {
         };
 
         this.effects = [];
+    }
+
+    static randomizeStats(stats: RandomizableStats){
+        const newStats: Stats = {};
+
+        for(const stat in stats){
+            newStats[stat] = Math.floor(Math.random() * (stats[stat][1] - stats[stat][0] + 1)) + stats[stat][0];
+        }
+        return newStats;
     }
 
     hasEffect(effectType: string){
@@ -268,13 +282,12 @@ export class Player extends Member {
  
     createStats(){
         this.player.stats = this.original.stats;
-        console.log(this.player.stats);
-        console.log(this.player.boost);
         this.addBoost();
-        console.log(this.player.stats);
-        if(this.team.Odenne.options.shouldOverwriteHealth){
-            if(this.team.index === this.team.Odenne.options.healthOverwrite[0]){
-                this.player.stats.health = this.team.Odenne.options.healthOverwrite[2];
+        if(this.team){
+            if(this.team.Odenne.options.shouldOverwriteHealth){
+                if(this.team.index === this.team.Odenne.options.healthOverwrite[0]){
+                    this.player.stats.health = this.team.Odenne.options.healthOverwrite[2];
+                }
             }
         }
     }
@@ -288,7 +301,7 @@ export class Player extends Member {
     }
 
     calculateItemStats(){
-        if(this.team.Odenne.options.shouldCalculateItemStats(this.team.index)){
+        if(this.team && this.team.Odenne.options.shouldCalculateItemStats(this.team.index)){
             for(const clothKey of Object.keys(this.original.wearings)){
                 if(clothKey == 'skills') continue;
 
@@ -318,7 +331,7 @@ export class Player extends Member {
     }
 
     findSkillFromConfig(id: number): OriginalSkill | undefined{
-        for(const skill of this.team.Odenne.SkillConfig as Array<OriginalSkill>){
+        for(const skill of this.team.Odenne.SkillConfig){
             if(skill.id == id) return skill;
         }
     }
@@ -345,7 +358,7 @@ export class Player extends Member {
 
 }
 
-export class Mob extends Member{
+export class Enemy extends Player{
     
 }
 
