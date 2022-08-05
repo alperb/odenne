@@ -7,7 +7,7 @@ export default class GRPCServers implements GRPCService {
 
     constructor() {
         this.services = new Map([
-            ["odenne-service", new OdenneService("localhost", 5020)]
+            ["odenne-service", new OdenneService("0.0.0.0", 5020)]
         ]);
     }
 
