@@ -242,7 +242,7 @@ export class Player extends Member {
             defense: 5,
             health: 1,
             accuracy: 1,
-            critic: 20,
+            critic: 10,
             penetration: 5
         }
 
