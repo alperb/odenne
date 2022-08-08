@@ -31,14 +31,7 @@ import { OriginalPlayer, OriginalSkill, PlayerizableEnemy } from './types/player
 import Narrator from './lib/narrator';
 import Statistics from './lib/statistics';
 import OdenneSpace from './helpers/space';
-
-/**
- * TODO List
- * [] Set Bonuses
- * [] Mage Mimic & Illusion
- * [] Critic Modifier
- * [] UI Bulk Log
- */
+import BonusFactory from './lib/bonuses';
 
 export class Odenne {
     static space: OdenneSpace = new OdenneSpace();
@@ -58,6 +51,7 @@ export class Odenne {
     SkillConfig: OriginalSkill[];
     Narrator: Narrator;
     Statistics: Statistics;
+    BonusFactory: BonusFactory;
 
     teams: Array<Team> = [];
 
@@ -86,6 +80,7 @@ export class Odenne {
         this.Modifiers = new Modifiers(this);
         this.Narrator = new Narrator(this);
         this.Statistics = new Statistics(this);
+        this.BonusFactory = new BonusFactory(this);
         this.SkillConfig = SkillConfig;
         
         this.prepare();

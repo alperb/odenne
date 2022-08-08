@@ -43,7 +43,7 @@ export default class OdenneUI {
     getHealth(teamIndex: number): number[] {
         const healths: number[] = [];
         this.Odenne.teams[teamIndex].players.forEach(p => {
-            healths.push(_.clone(p.player.stats.health));
+            healths.push(_.clone(p.getStat('health')));
         });
         return healths;
     }

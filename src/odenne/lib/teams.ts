@@ -133,6 +133,10 @@ export class Member {
         this.effects = [];
     }
 
+    addEffect(effect: Effect){
+        this.effects.push(effect);
+    }
+
     static randomizeStats(stats: RandomizableStats){
         const newStats: Stats = {};
 
@@ -316,18 +320,7 @@ export class Player extends Member {
     }
 
     prepareSetBonuses(){
-        const sets: {[key: string]: number} = {};
-
-        for(const cloth of Object.keys(this.original.wearings)){
-            if(cloth === 'skills') continue;
-
-            const item = this.original.wearings[cloth] as Item;
-            if(sets[item.set]) sets[item.set] += 1;
-            else sets[item.set] = 1;
-        }
-
-        // calculated set counts do necessary set bonuses
-        // TBI
+        this.team.Odenne.BonusFactory.create(this);
     }
 
     findSkillFromConfig(id: number): OriginalSkill | undefined{
