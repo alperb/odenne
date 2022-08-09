@@ -221,11 +221,11 @@ export class AttackBonus extends StatBonus {
         return 0;
     }
 
-    init(): void { /* TODO document why this method 'init' is empty */ }
+    init(): void {  }
 
-    do(): void { /* TODO document why this method 'do' is empty */ }
+    do(): void {  }
 
-    afterDo(): void { /* TODO document why this method 'afterDo' is empty */ }
+    afterDo(): void {  }
 }
 
 export class HealthBonus extends StatBonus {
@@ -532,7 +532,7 @@ export class Invulnerable extends ActiveEffect {
     init(): void {}
 
     do(): void {
-      // TODO document why this method 'do' is empty
+      
     
 
     }
@@ -592,7 +592,7 @@ export class SineminCizimTableti extends PassiveEffect {
     }
 
     do(): void {
-      // TODO document why this method 'do' is empty
+      
     
     }
 
@@ -683,13 +683,11 @@ export class OmnininCocugu extends PassiveEffect {
     }
 
     init(): void {
-      // TODO document why this method 'init' is empty
-    
         
     }
 
     do(): void {
-      // TODO document why this method 'do' is empty
+      
     
         
     }
@@ -1005,7 +1003,6 @@ export class ValenianinAdaleti extends PassiveEffect {
         
 
     do(): void {
-        // TODO: burayi anlamadik
         if(this.config.targetMember !== this.config.targetMember.team.Odenne.Referee.turn.player.player as Player){
             const bonusDetails: BonusDetails = {value: 150, type: 1, count: 2};
             const effconfig: EffectConfig = {source: this, sourceMember: this.config.targetMember, targetMember: this.config.targetMember}

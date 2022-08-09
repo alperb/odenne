@@ -148,7 +148,7 @@ export default class Decider {
 
     private applyEffects(){
         for(const effect of this.Current.effects){
-            // TODO: double effects should be removed first
+            // double effects should be removed first
             this.Player.effects.push(effect);
         }
     }
