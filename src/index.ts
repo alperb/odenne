@@ -9,7 +9,7 @@ const player1 = {
             "placement": "leggings",
             "function": [],
             "stack": 1,
-            "set": "rookie.set",
+            "set": "nightbringer.set",
             "image": {
                 "original": "item/set/rookie/archer/legs.png",
                 "wearings": "item/wearings/rookie/archer/legs.png"
@@ -40,7 +40,7 @@ const player1 = {
         },
         "righthand": {
             "rarity": 0,
-            "set": "rookie.set",
+            "set": "nightbringer.set",
             "type": "weapon",
             "stats": {},
             "emoji": {
@@ -88,7 +88,7 @@ const player1 = {
                 "original": "item/set/rookie/archer/leftarrow.png",
                 "wearings": "item/wearings/rookie/archer/arrow.png"
             },
-            "set": "ancient.set",
+            "set": "nightbringer.set",
             "id": "e1be694f-abe5-48e1-b70f-786cbb37b813",
             "placement": "lefthand",
             "rarity": 0,
@@ -119,7 +119,7 @@ const player1 = {
             "placement": "chest",
             "durability": 0,
             "rarity": 4,
-            "set": "ancient.set",
+            "set": "nightbringer.set",
             "isTradeable": true,
             "soulbind": {
                 "isBindable": true,
@@ -148,7 +148,7 @@ const player1 = {
             "crafting": []
         },
         "arms": {
-            "set": "rookie.set",
+            "set": "nightbringer.set",
             "stack": 1,
             "class": "archer",
             "isTradeable": true,
@@ -414,7 +414,7 @@ try{
         try{
             battle.advance();
             console.log(battle.UI.getCurrentRoundLog());
-            console.log({t1: battle.UI.getHealth(0), t2: battle.UI.getHealth(1)});
+            console.log({p1: battle.teams[0].players[0].getStat('health'), p2: battle.teams[1].players[0].getStat('health')});
 
             console.log({a: battle.teams[0].players[0].player.stats.attack, b: battle.teams[0].players[0].getStat("attack")});
             console.log({a: battle.teams[1].players[0].player.stats.attack, b: battle.teams[1].players[0].getStat("attack")});
@@ -422,8 +422,8 @@ try{
             console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
             console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
 
-            console.log({c: battle.teams[0].players[0].player.stats.critic});
-            console.log({c: battle.teams[1].players[0].player.stats.critic});
+            console.log({c: battle.teams[0].players[0].player.stats.critic, b: battle.teams[0].players[0].getStat("critic")});
+            console.log({c: battle.teams[1].players[0].player.stats.critic, b: battle.teams[1].players[0].getStat("critic")});
 
             console.log({p: battle.teams[0].players[0].player.stats.penetration});
             console.log({p: battle.teams[1].players[0].player.stats.penetration});

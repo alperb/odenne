@@ -44,11 +44,11 @@ export type Item = {
     }
     set: string;
     placement: string;
-    function: Array<Record<string, unknown>>; // TODO: not known yet
+    function: Array<Record<string, unknown>>;
     stack: number;
     image: ItemImages;
-    crafting: Array<Record<string, unknown>>; // TODO: now known yet
-    deconstruct: Array<Record<string, unknown>>; // TODO: now known yet
+    crafting: Array<Record<string, unknown>>;
+    deconstruct: Array<Record<string, unknown>>;
     durability: number;
     rarity: number;
     isTradeable: boolean;

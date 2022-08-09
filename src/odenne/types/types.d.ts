@@ -64,7 +64,7 @@ export interface DeciderSummary {
 export interface EffectConfig {
     targetMember: Player;
     sourceMember: Player;
-    source: Skill | Effect;
+    source: Skill | Effect | undefined;
     count?: number;
 }
 
@@ -150,4 +150,10 @@ export const enum EndResult {
 export interface MatchResult {
     winner: number;
     reason: EndResult
+}
+
+export interface SetBonus {
+    partCount: number;
+    effectName: string;
+    details: BonusDetails
 }
