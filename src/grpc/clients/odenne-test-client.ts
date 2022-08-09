@@ -2,14 +2,10 @@ import path from 'path';
 import * as grpc from '@grpc/grpc-js'
 import * as protoLoader from '@grpc/proto-loader'
 import { ProtoGrpcType } from '../proto.output/odenne'
-import { GRPCService } from "../../types/grpc";
-import OdenneServiceHelper from '../helpers/odenneServiceHelper';
 import { OdenneServerClient } from '../proto.output/odenneServerPackage/OdenneServer';
 import { CreateSessionRequest } from '../proto.output/odenneServerPackage/CreateSessionRequest';
 import { CreateSessionResponse } from '../proto.output/odenneServerPackage/CreateSessionResponse';
-import { BattleResponse } from '../proto.output/odenneServerPackage/BattleResponse';
 import { BattleRequest } from '../proto.output/odenneServerPackage/BattleRequest';
-// import { UILog } from '../proto.output/odenneServerPackage/UILog';
 import { UILog } from '../../odenne/types/types';
 import { PlayerStatistics } from '../proto.output/odenneServerPackage/PlayerStatistics';
 import { MatchResult } from '../proto.output/odenneServerPackage/MatchResult';
