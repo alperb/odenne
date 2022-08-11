@@ -6,7 +6,7 @@ export default class GRPCInit {
     constructor() {
         this.services = new GRPCServers();
 
-        this.init();
+       this.init();
     }
 
     init() {

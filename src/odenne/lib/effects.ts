@@ -32,6 +32,8 @@ export default class Effects {
                 return new DefenseBonus(config, details as BonusDetails);
             case 'CriticBonus':
                 return new CriticBonus(config, details as BonusDetails);
+            case 'HealthBonus':
+                return new HealthBonus(config, details as BonusDetails);
             case 'Invulnerable':
                 return new Invulnerable(config);
             case 'SineminCizimTableti':
@@ -219,11 +221,42 @@ export class AttackBonus extends StatBonus {
         return 0;
     }
 
-    init(): void { /* TODO document why this method 'init' is empty */ }
+    init(): void {  }
 
-    do(): void { /* TODO document why this method 'do' is empty */ }
+    do(): void {  }
 
-    afterDo(): void { /* TODO document why this method 'afterDo' is empty */ }
+    afterDo(): void {  }
+}
+
+export class HealthBonus extends StatBonus {
+    constructor(config: EffectConfig, details: BonusDetails){
+        super(config, details);
+    }
+
+    private getIncreaseByMissingHealth(){
+        const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.player.stats.health;
+        const missingPercentage = missingHealth / this.config.targetMember.player.baseStats.health * 100;
+        if(missingPercentage >= this.details.value){
+            return this.config.targetMember.player.stats.health * this.details.value / 100;
+        }
+        return this.config.targetMember.player.stats.health * missingPercentage / 100;
+    }
+
+    get(type: string): number {
+        if(type !== "health") return 0
+
+        if(this.details.type === 0) return this.details.value;
+        else if(this.details.type === 1) return this.details.value / 100 * this.config.targetMember.player.stats.health;
+        else if(this.details.type === 2) return this.getIncreaseByMissingHealth();
+
+        return 0;
+    }
+
+    init(): void {}
+
+    do(): void {}
+
+    afterDo(): void {}
 }
 
 export class DefenseBonus extends StatBonus {
@@ -499,7 +532,7 @@ export class Invulnerable extends ActiveEffect {
     init(): void {}
 
     do(): void {
-      // TODO document why this method 'do' is empty
+      
     
 
     }
@@ -551,7 +584,7 @@ export class SineminCizimTableti extends PassiveEffect {
     private makeDamagesTrue(){
         for(const damageDone of this.config.sourceMember.Decider.Current.damageDone){
             for(const damageTaken of damageDone.target.Decider.Current.damageTaken){
-                if(this.config.targetMember.player.stats.health < damageDone.target.player.stats.health){
+                if(this.config.targetMember.getStat('health') < damageDone.target.getStat('health')){
                     damageTaken.isTrue = true;
                 }
             }
@@ -559,7 +592,7 @@ export class SineminCizimTableti extends PassiveEffect {
     }
 
     do(): void {
-      // TODO document why this method 'do' is empty
+      
     
     }
 
@@ -650,13 +683,11 @@ export class OmnininCocugu extends PassiveEffect {
     }
 
     init(): void {
-      // TODO document why this method 'init' is empty
-    
         
     }
 
     do(): void {
-      // TODO document why this method 'do' is empty
+      
     
         
     }
@@ -972,7 +1003,6 @@ export class ValenianinAdaleti extends PassiveEffect {
         
 
     do(): void {
-        // TODO: burayi anlamadik
         if(this.config.targetMember !== this.config.targetMember.team.Odenne.Referee.turn.player.player as Player){
             const bonusDetails: BonusDetails = {value: 150, type: 1, count: 2};
             const effconfig: EffectConfig = {source: this, sourceMember: this.config.targetMember, targetMember: this.config.targetMember}

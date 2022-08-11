@@ -1,4 +1,4 @@
-import { OriginalPlayer, SessionPlayer } from "../types/player";
+import { OriginalPlayer } from "../types/player";
 
 class OdenneOptions {
     teams: Array<Array<OriginalPlayer>>;

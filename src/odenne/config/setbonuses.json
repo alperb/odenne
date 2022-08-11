@@ -1,0 +1,83 @@
+{
+    "sets": {
+        "iron.set": {
+            "rarity": 0,
+            "levels": [
+                { "partCount": 2, "effectName": "AttackBonus", "details": { "type": 0, "value": 5, "count": -1 } },
+                { "partCount": 3, "effectName": "DefenseBonus", "details": { "type": 0, "value": 5, "count": -1 } },
+                { "partCount": 4, "effectName": "AttackBonus", "details": { "type": 0, "value": 5, "count": -1 } }
+            ]
+        },
+        "elven.set": {
+            "rarity": 0,
+            "levels": [
+                { "partCount": 2, "effectName": "DefenseBonus", "details": { "type": 0, "value": 5, "count": -1 } },
+                { "partCount": 3, "effectName": "CriticBonus", "details": { "type": 0, "value": 5, "count": -1 } },
+                { "partCount": 4, "effectName": "AttackBonus", "details": { "type": 0, "value": 5, "count": -1 } },
+                { "partCount": 5, "effectName": "AttackBonus", "details": { "type": 0, "value": 30, "count": -1 } }
+            ]
+        },
+        "dwarven.set": {
+            "rarity": 1,
+            "levels": [
+                { "partCount": 2, "effectName": "DefenseBonus", "details": { "type": 0, "value": 8, "count": -1 } },
+                { "partCount": 3, "effectName": "HealthBonus", "details": { "type": 0, "value": 4, "count": -1 } },
+                { "partCount": 4, "effectName": "HealthBonus", "details": { "type": 0, "value": 4, "count": -1 } },
+                { "partCount": 5, "effectName": "DefenseBonus", "details": { "type": 0, "value": 50, "count": -1 } }
+            ]
+        },
+        "golden.set": {
+            "rarity": 2,
+            "levels": [
+                { "partCount": 2, "effectName": "AttackBonus", "details": { "type": 0, "value": 15, "count": -1 } },
+                { "partCount": 3, "effectName": "AttackBonus", "details": { "type": 0, "value": 15, "count": -1 } },
+                { "partCount": 4, "effectName": "DefenseBonus", "details": { "type": 0, "value": 15, "count": -1 } },
+                { "partCount": 5, "effectName": "DefenseBonus", "details": { "type": 1, "value": 15, "count": -1 } }
+            ]
+        },
+        "nightbringer.set": {
+            "rarity": 3,
+            "levels": [
+                { "partCount": 2, "effectName": "AttackBonus", "details": { "type": 0, "value": 25, "count": -1 } },
+                { "partCount": 3, "effectName": "CriticBonus", "details": { "type": 0, "value": 25, "count": -1 } },
+                { "partCount": 4, "effectName": "DefenseBonus", "details": { "type": 0, "value": 25, "count": -1 } },
+
+                { "partCount": 5, "effectName": "CriticBonus", "details": { "type": 1, "value": 50, "count": -1 } },
+                { "partCount": 5, "effectName": "HealthBonus", "details": { "type": 0, "value": 60, "count": -1 } }
+            ]
+        },
+        "ancient.set": {
+            "rarity": 4,
+            "levels": [
+                { "partCount": 2, "effectName": "AttackBonus", "details": { "type": 0, "value": 50, "count": -1 } },
+                { "partCount": 3, "effectName": "CriticBonus", "details": { "type": 0, "value": 50, "count": -1 } },
+                { "partCount": 4, "effectName": "DefenseBonus", "details": { "type": 0, "value": 50, "count": -1 } },
+
+                { "partCount": 5, "effectName": "AttackBonus", "details": { "type": 1, "value": 75, "count": -1 } },
+                { "partCount": 5, "effectName": "CriticBonus", "details": { "type": 1, "value": 25, "count": -1 } }
+            ]
+        },
+        "raider.set": {
+            "rarity": 5,
+            "levels": [
+                { "partCount": 2, "effectName": "AttackBonus", "details": { "type": 0, "value": 80, "count": -1 } },
+                { "partCount": 3, "effectName": "AttackBonus", "details": { "type": 0, "value": 80, "count": -1 } },
+                { "partCount": 4, "effectName": "CriticBonus", "details": { "type": 0, "value": 80, "count": -1 } },
+
+                { "partCount": 5, "effectName": "AttackBonus", "details": { "type": 1, "value": 100, "count": -1 } },
+                { "partCount": 5, "effectName": "CriticBonus", "details": { "type": 1, "value": 50, "count": -1 } }
+            ]
+        },
+        "royal.set": {
+            "rarity": 6,
+            "levels": [
+                { "partCount": 2, "effectName": "HealthBonus", "details": { "type": 0, "value": 65, "count": -1 } },
+                { "partCount": 3, "effectName": "DefenseBonus", "details": { "type": 0, "value": 130, "count": -1 } },
+                { "partCount": 4, "effectName": "AttackBonus", "details": { "type": 0, "value": 30, "count": -1 } },
+
+                { "partCount": 5, "effectName": "DefenseBonus", "details": { "type": 1, "value": 125, "count": -1 } },
+                { "partCount": 5, "effectName": "HealthBonus", "details": { "type": 1, "value": 50, "count": -1 } }
+            ]
+        }
+    }
+}
