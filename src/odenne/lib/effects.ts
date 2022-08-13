@@ -1071,8 +1071,8 @@ export class Ataturk extends PassiveEffect {
         super(config);
     }
 
-    private calculateDefenseBonus(): number{
-        const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.player.stats.health;
+    private calculateHealthBonus(): number{
+        const missingHealth = this.config.targetMember.player.baseStats.health - this.config.targetMember.getStat('health');
         const percentage = missingHealth / this.config.targetMember.player.baseStats.health * 100;
         if(percentage > 50){
             this.hasWorked = true;
@@ -1086,7 +1086,7 @@ export class Ataturk extends PassiveEffect {
 
     do(): void {
         if(!this.hasWorked){
-            this.config.targetMember.player.shields.permanent += this.calculateDefenseBonus();
+            this.config.targetMember.player.shields.permanent += this.calculateHealthBonus();
         }
     }
 
