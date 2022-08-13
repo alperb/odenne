@@ -105,11 +105,11 @@ const player1 = {
             "crafting": []
         },
         "skills": [
-            1000,
-            1050,
-            1050,
-            1050,
-            1050
+            3000,
+            3010,
+            3020,
+            3030,
+            3110
         ],
         "chest": {
             "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
@@ -186,12 +186,12 @@ const player1 = {
         "boost": {}
     },
     "stats": {
-        "defense": 850,
-        "attack": 3300,
-        "health": 900,
-        critic: 750,
-        penetration: 50,
-        accuracy: 100
+        "defense": 707,
+        "attack": 785,
+        "health": 480,
+        critic: 0,
+        penetration: 0,
+        accuracy: 50
     },
     "name": "Waffle",
     "isDead": false,
@@ -382,9 +382,9 @@ const player2 = {
         "boost": {}
     },
     "stats": {
-        "attack":3000,
-        "defense":1000,
-        "health":1000,
+        "attack": 500,
+        "defense":300,
+        "health": 10000,
         "critic": 3,
         "penetration": 3,
         "accuracy": 95
@@ -413,6 +413,7 @@ try{
     while(battle.status.get() === STATUSCODES.STARTED){
         try{
             battle.advance();
+            console.log({effects: battle.teams[0].players[0].effects});
             console.log(battle.UI.getCurrentRoundLog());
             console.log({p1: battle.teams[0].players[0].getStat('health'), p2: battle.teams[1].players[0].getStat('health')});
 
@@ -430,6 +431,9 @@ try{
 
             console.log({s: battle.teams[0].players[0].player.shields.temporary[0]});
             console.log({s: battle.teams[1].players[0].player.shields.temporary[0]});
+
+            console.log({sp: battle.teams[0].players[0].player.shields.permanent});
+            console.log({sp: battle.teams[1].players[0].player.shields.permanent});
         }
         catch(e){
             const usedMemory = process.memoryUsage().heapUsed / 1024 / 1024;
