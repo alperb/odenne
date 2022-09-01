@@ -262,7 +262,7 @@ export default class Skills {
         }
 
         const isEnemySkill = skill.id >= 10000 && skill.id <= 19999;
-        const isDungeonSkills = (skill.id >= 65000 && skill.id <= 65999) || (skill.id >= 69000 && skill.id <= 69999);
+        const isDungeonSkills = (skill.id >= 65000 && skill.id <= 65999) || (skill.id >= 69000 && skill.id <= 69999) || (skill.id >= 69999 && skill.id <= 70100);
 
         if(!isCreated && (isEnemySkill || isDungeonSkills)){
             player.player.skills.push(new ArcherBasicAttackI(player, skill));
