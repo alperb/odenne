@@ -19,7 +19,7 @@ export default class BonusFactory {
         const effects: SetBonus[] = [];
         const createdEffects: Effect[] = [];
         for(const lvl of setGroup.levels){
-            if(level <= lvl.partCount){
+            if(level >= lvl.partCount){
                 effects.push(lvl);
             }
         }
