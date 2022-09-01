@@ -544,6 +544,11 @@ cookie@0.4.2:
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.4.2.tgz"
   integrity sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==
 
+crandom@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/crandom/-/crandom-1.0.5.tgz#64921954d595627c0a0fb29625cd8287c1401bf5"
+  integrity sha512-swDk9WBnD6FaO4H/s8by/LqiPPWrzEgdnMkSD8JXuJiMSfHj2rM+tmWfQIXfNLOCKymftqyQE/MFKZLMkE+0dA==
+
 create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
