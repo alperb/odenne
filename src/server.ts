@@ -24,10 +24,12 @@ app.use(helmet.hidePoweredBy());
 
 import battleRouter from './routes/battle';
 import skillRouter from './routes/skills';
+import bonusRouter from './routes/bonuses';
 
 
 app.use('/battle', battleRouter);
 app.use('/skills', skillRouter);
+app.use('/bonuses', bonusRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Odenne is up at :${process.env.PORT}`)
