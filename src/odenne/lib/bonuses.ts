@@ -12,6 +12,26 @@ export default class BonusFactory {
         this.Odenne = odenne;
     }
 
+    static getBonusesFromGivenCounts(setCounts: Record<string, number>): Record<string, SetBonus[]> {
+        const allEffects: Record<string, SetBonus[]> = {};
+        console.log({setCounts});
+        for(const set of Object.keys(setCounts)){
+            const level = setCounts[set];
+            const setGroup = SetBonusConfig.sets[set as keyof typeof SetBonusConfig.sets];
+            if(!setGroup) continue;
+            
+            const effects: SetBonus[] = [];
+            for(const lvl of setGroup.levels){
+                if(level >= lvl.partCount){
+                    effects.push(lvl);
+                }
+            }
+            allEffects[set] = effects;
+        }
+
+        return allEffects;
+    }
+
     private getEffects(set: string, level: number, config: EffectConfig): Effect[] {
         const setGroup = SetBonusConfig.sets[set as keyof typeof SetBonusConfig.sets];
         if(!setGroup) return [];
