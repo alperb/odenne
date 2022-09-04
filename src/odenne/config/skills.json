@@ -1358,435 +1358,435 @@
     {
         "id": 70000,
         "name": "Stroke",
-        "min": "40",
-        "max": "60",
+        "min": 40,
+        "max": 60,
         "level": 1
     }, {
         "id": 70001,
         "name": "Smash",
-        "min": "60",
-        "max": "70",
+        "min": 60,
+        "max": 70,
         "level": 1
     }, {
         "id": 70002,
         "name": "Roar",
-        "min": "70",
-        "max": "80",
+         "min": 70,
+        "max": 80,
         "level": 1
     }, {
         "id": 70003,
         "name": "Stroke",
-        "min": "80",
-        "max": "100",
+        "min": 80,
+        "max": 100,
         "level": 1
     }, {
         "id": 70004,
         "name": "Smash",
-        "min": "50",
-        "max": "150",
+        "min": 50,
+        "max": 150,
         "level": 1
     }, {
         "id": 70005,
         "name": "Roar",
-        "min": "150",
-        "max": "200",
+        "min": 150,
+        "max": 200,
         "level": 1
     }, {
         "id": 70006,
         "name": "Stroke",
-        "min": "100",
-        "max": "150",
+        "min": 100,
+        "max": 150,
         "level": 1
     }, {
         "id": 70007,
         "name": "Smash",
-        "min": "150",
-        "max": "200",
+        "min": 150,
+        "max": 200,
         "level": 1
     }, {
         "id": 70008,
         "name": "Roar",
-        "min": "200",
-        "max": "250",
+        "min": 200,
+        "max": 250,
         "level": 1
     }, {
         "id": 70009,
         "name": "Stroke",
-        "min": "200",
-        "max": "250",
+        "min": 200,
+        "max": 250,
         "level": 1
     }, {
         "id": 70010,
         "name": "Smash",
-        "min": "250",
-        "max": "300",
+        "min": 250,
+        "max": 300,
         "level": 1
     }, {
         "id": 70011,
         "name": "Roar",
-        "min": "300",
-        "max": "400",
+        "min": 300,
+        "max": 400,
         "level": 1
     }, {
         "id": 70012,
         "name": "Stroke",
-        "min": "200",
-        "max": "300",
+        "min": 200,
+        "max": 300,
         "level": 1
     }, {
         "id": 70013,
         "name": "Smash",
-        "min": "300",
-        "max": "400",
+        "min": 300,
+        "max": 400,
         "level": 1
     }, {
         "id": 70014,
         "name": "Roar",
-        "min": "400",
-        "max": "500",
+        "min": 400,
+        "max": 500,
         "level": 1
     }, {
         "id": 70015,
         "name": "Stroke",
-        "min": "300",
-        "max": "400",
+        "min": 300,
+        "max": 400,
         "level": 1
     }, {
         "id": 70016,
         "name": "Smash",
-        "min": "400",
-        "max": "500",
+        "min": 400,
+        "max": 500,
         "level": 1
     }, {
         "id": 70017,
         "name": "Roar",
-        "min": "500",
-        "max": "600",
+        "min": 500,
+        "max": 600,
         "level": 1
     }, {
         "id": 70018,
         "name": "Stroke",
-        "min": "400",
-        "max": "500",
+        "min": 400,
+        "max": 500,
         "level": 1
     }, {
         "id": 70019,
         "name": "Smash",
-        "min": "500",
-        "max": "600",
+        "min": 500,
+        "max": 600,
         "level": 1
     }, {
         "id": 70020,
         "name": "Roar",
-        "min": "600",
-        "max": "700",
+        "min": 600,
+        "max": 700,
         "level": 1
     }, {
         "id": 70021,
         "name": "Stroke",
-        "min": "500",
-        "max": "600",
+        "min": 500,
+        "max": 600,
         "level": 1
     }, {
         "id": 70022,
         "name": "Smash",
-        "min": "600",
-        "max": "700",
+        "min": 600,
+        "max": 700,
         "level": 1
     }, {
         "id": 70023,
         "name": "Roar",
-        "min": "700",
-        "max": "800",
+        "min": 700,
+        "max": 800,
         "level": 1
     }, {
         "id": 70024,
         "name": "Stroke",
-        "min": "600",
-        "max": "700",
+        "min": 600,
+        "max": 700,
         "level": 1
     }, {
         "id": 70025,
         "name": "Smash",
-        "min": "700",
-        "max": "800",
+        "min": 700,
+        "max": 800,
         "level": 1
     }, {
         "id": 70026,
         "name": "Roar",
-        "min": "800",
-        "max": "900",
+        "min": 800,
+        "max": 900,
         "level": 1
     }, {
         "id": 70027,
         "name": "Stroke",
-        "min": "700",
-        "max": "800",
+        "min": 700,
+        "max": 800,
         "level": 1
     }, {
         "id": 70028,
         "name": "Smash",
-        "min": "800",
-        "max": "900",
+        "min": 800,
+        "max": 900,
         "level": 1
     }, {
         "id": 70029,
         "name": "Roar",
-        "min": "900",
-        "max": "1000",
+        "min": 900,
+        "max": 1000,
         "level": 1
     }, {
         "id": 70030,
         "name": "Stroke",
-        "min": "800",
-        "max": "900",
+        "min": 800,
+        "max": 900,
         "level": 1
     }, {
         "id": 70031,
         "name": "Smash",
-        "min": "900",
-        "max": "1000",
+        "min": 900,
+        "max": 1000,
         "level": 1
     }, {
         "id": 70032,
         "name": "Roar",
-        "min": "1000",
-        "max": "1100",
+        "min": 1000,
+        "max": 1100,
         "level": 1
     }, {
         "id": 70033,
         "name": "Stroke",
-        "min": "900",
-        "max": "1200",
+        "min": 900,
+        "max": 1200,
         "level": 1
     }, {
         "id": 70034,
         "name": "Smash",
-        "min": "1000",
-        "max": "1300",
+        "min": 1000,
+        "max": 1300,
         "level": 1
     }, {
         "id": 70035,
         "name": "Roar",
-        "min": "1100",
-        "max": "1500",
+        "min": 1100,
+        "max": 1500,
         "level": 1
     },
     {
         "id": 70036,
         "name": "Inhale",
-        "min": "80",
-        "max": "120",
+        "min": 80,
+        "max": 120,
         "level": 1
     }, {
         "id": 70037,
         "name": "Fiery Breath",
-        "min": "120",
-        "max": "140",
+        "min": 120,
+        "max": 140,
         "level": 1
     }, {
         "id": 70038,
         "name": "Molten Flame",
-        "min": "140",
-        "max": "160",
+        "min": 140,
+        "max": 160,
         "level": 1
     }, {
         "id": 70039,
         "name": "Inhale",
-        "min": "160",
-        "max": "200",
+        "min": 160,
+        "max": 200,
         "level": 1
     }, {
         "id": 70040,
         "name": "Fiery Breath",
-        "min": "100",
-        "max": "300",
+        "min": 100,
+        "max": 300,
         "level": 1
     }, {
         "id": 70041,
         "name": "Molten Flame",
-        "min": "300",
-        "max": "400",
+        "min": 300,
+        "max": 400,
         "level": 1
     }, {
         "id": 70042,
         "name": "Inhale",
-        "min": "200",
-        "max": "300",
+        "min": 200,
+        "max": 300,
         "level": 1
     }, {
         "id": 70043,
         "name": "Fiery Breath",
-        "min": "300",
-        "max": "400",
+        "min": 300,
+        "max": 400,
         "level": 1
     }, {
         "id": 70044,
         "name": "Molten Flame",
-        "min": "400",
-        "max": "500",
+        "min": 400,
+        "max": 500,
         "level": 1
     }, {
         "id": 70045,
         "name": "Inhale",
-        "min": "400",
-        "max": "500",
+        "min": 400,
+        "max": 500,
         "level": 1
     }, {
         "id": 70046,
         "name": "Fiery Breath",
-        "min": "500",
-        "max": "600",
+        "min": 500,
+        "max": 600,
         "level": 1
     }, {
         "id": 70047,
         "name": "Molten Flame",
-        "min": "600",
-        "max": "800",
+        "min": 600,
+        "max": 800,
         "level": 1
     }, {
         "id": 70048,
         "name": "Inhale",
-        "min": "400",
-        "max": "600",
+        "min": 400,
+        "max": 600,
         "level": 1
     }, {
         "id": 70049,
         "name": "Fiery Breath",
-        "min": "600",
-        "max": "800",
+        "min": 600,
+        "max": 800,
         "level": 1
     }, {
         "id": 70050,
         "name": "Molten Flame",
-        "min": "800",
-        "max": "1000",
+        "min": 800,
+        "max": 1000,
         "level": 1
     }, {
         "id": 70051,
         "name": "Inhale",
-        "min": "600",
-        "max": "800",
+        "min": 600,
+        "max": 800,
         "level": 1
     }, {
         "id": 70052,
         "name": "Fiery Breath",
-        "min": "800",
-        "max": "1000",
+        "min": 800,
+        "max": 1000,
         "level": 1
     }, {
         "id": 70053,
         "name": "Molten Flame",
-        "min": "1000",
-        "max": "1200",
+        "min": 1000,
+        "max": 1200,
         "level": 1
     }, {
         "id": 70054,
         "name": "Inhale",
-        "min": "800",
-        "max": "1000",
+        "min": 800,
+        "max": 1000,
         "level": 1
     }, {
         "id": 70055,
         "name": "Fiery Breath",
-        "min": "1000",
-        "max": "1200",
+        "min": 1000,
+        "max": 1200,
         "level": 1
     }, {
         "id": 70056,
         "name": "Molten Flame",
-        "min": "1200",
-        "max": "1400",
+        "min": 1200,
+        "max": 1400,
         "level": 1
     }, {
         "id": 70057,
         "name": "Inhale",
-        "min": "1000",
-        "max": "1200",
+        "min": 1000,
+        "max": 1200,
         "level": 1
     }, {
         "id": 70058,
         "name": "Fiery Breath",
-        "min": "1200",
-        "max": "1400",
+        "min": 1200,
+        "max": 1400,
         "level": 1
     }, {
         "id": 70059,
         "name": "Molten Flame",
-        "min": "1400",
-        "max": "1600",
+        "min": 1400,
+        "max": 1600,
         "level": 1
     }, {
         "id": 70060,
         "name": "Inhale",
-        "min": "1200",
-        "max": "1400",
+        "min": 1200,
+        "max": 1400,
         "level": 1
     }, {
         "id": 70061,
         "name": "Fiery Breath",
-        "min": "1400",
-        "max": "1600",
+        "min": 1400,
+        "max": 1600,
         "level": 1
     }, {
         "id": 70062,
         "name": "Molten Flame",
-        "min": "1600",
-        "max": "1800",
+        "min": 1600,
+        "max": 1800,
         "level": 1
     }, {
         "id": 70063,
         "name": "Inhale",
-        "min": "1400",
-        "max": "1600",
+        "min": 1400,
+        "max": 1600,
         "level": 1
     }, {
         "id": 70064,
         "name": "Fiery Breath",
-        "min": "1600",
-        "max": "1800",
+        "min": 1600,
+        "max": 1800,
         "level": 1
     }, {
         "id": 70065,
         "name": "Molten Flame",
-        "min": "1800",
-        "max": "2000",
+        "min": 1800,
+        "max": 2000,
         "level": 1
     }, {
         "id": 70066,
         "name": "Inhale",
-        "min": "1600",
-        "max": "1800",
+        "min": 1600,
+        "max": 1800,
         "level": 1
     }, {
         "id": 70067,
         "name": "Fiery Breath",
-        "min": "1800",
-        "max": "2000",
+        "min": 1800,
+        "max": 2000,
         "level": 1
     }, {
         "id": 70068,
         "name": "Molten Flame",
-        "min": "2000",
-        "max": "2200",
+        "min": 2000,
+        "max": 2200,
         "level": 1
     }, {
         "id": 70069,
         "name": "Inhale",
-        "min": "1800",
-        "max": "2400",
+        "min": 1800,
+        "max": 2400,
         "level": 1
     }, {
         "id": 70070,
         "name": "Fiery Breath",
-        "min": "2000",
-        "max": "2600",
+        "min": 2000,
+        "max": 2600,
         "level": 1
     }, {
         "id": 70071,
         "name": "Molten Flame",
-        "min": "2200",
-        "max": "3000",
+        "min": 2200,
+        "max": 3000,
         "level": 1
     }
 
