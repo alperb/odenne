@@ -53,11 +53,18 @@ export default class BonusFactory {
     private countSetCount(target: Member): Record<string, number> {
         const sets: Record<string, number> = {};
         for(const part of Object.keys(target.original.wearings)){
-            const setName = (target.original.wearings[part] as Item).set;
-            if(setName === 'rookie') continue;
+            try{
+                if(part === 'skills') continue;
+            
+                const setName = (target.original.wearings[part] as Item).set;
+                if(setName === 'rookie') continue;
 
-            if(!sets[setName]) sets[setName] = 0;
-            sets[setName]++;
+                if(!sets[setName]) sets[setName] = 0;
+                sets[setName]++;
+            }
+            catch(e){
+                continue;
+            }
         }
         return sets;
     }
