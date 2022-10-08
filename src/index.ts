@@ -1,452 +1,163 @@
-import OdenneOptions from './odenne/helpers/options';
-import Odenne from './odenne/odenne';
+/**
+ * Odenne
+ * Authors: Alper Berber <berber@sabanciuniv.edu> & Edip Emre Bodur <edipemre.bodur@bahcesehir.edu.tr>
+ * Version: 1.0.0
+ */
 
+import OdenneOptions from './helpers/options';
 
-const player1 = {
-    "class": "warrior",
-    "wearings": {
-        "leggings": {
-            "placement": "leggings",
-            "function": [],
-            "stack": 1,
-            "set": "nightbringer.set",
-            "image": {
-                "original": "item/set/rookie/archer/legs.png",
-                "wearings": "item/wearings/rookie/archer/legs.png"
-            },
-            "code": "rookie.legs",
-            "deconstruct": [],
-            "durability": 100,
-            "crafting": [],
-            "stats": {},
-            "rarity": 0,
-            "class": "archer",
-            "id": "a3c97036-2052-45eb-9569-f433d876beda",
-            "isTradeable": true,
-            "emoji": {
-                "id": "864633251677863946"
-            },
-            "type": "armor",
-            "soulbind": {
-                "date": 0,
-                "isBindable": false,
-                "isBound": false,
-                "player": {
-                    "snowflake": "",
-                    "characterId": ""
-                }
-            },
-            "name": "Rookie Legs"
-        },
-        "righthand": {
-            "rarity": 0,
-            "set": "nightbringer.set",
-            "type": "weapon",
-            "stats": {},
-            "emoji": {
-                "id": "864633251326459955"
-            },
-            "image": {
-                "original": "item/set/rookie/archer/rightbow.png",
-                "wearings": "item/wearings/rookie/archer/bow.png"
-            },
-            "deconstruct": [],
-            "id": "b84edf47-8949-4c56-b5c2-fd6b3517f344",
-            "code": "rookie.bow",
-            "isTradeable": true,
-            "durability": 0,
-            "name": "Rookie Bow",
-            "soulbind": {
-                "isBindable": true,
-                "isBound": false,
-                "player": {
-                    "snowflake": "",
-                    "characterId": ""
-                },
-                "date": 1
-            },
-            "function": [],
-            "placement": "righthand",
-            "stack": 1,
-            "class": "archer",
-            "crafting": []
-        },
-        "lefthand": {
-            "name": "Rookie arrow",
-            "function": [],
-            "deconstruct": [],
-            "stack": 1,
-            "stats": {},
-            "durability": 0,
-            "code": "rookie.arrow",
-            "isTradeable": true,
-            "emoji": {
-                "id": "864633251993223179"
-            },
-            "class": "archer",
-            "image": {
-                "original": "item/set/rookie/archer/leftarrow.png",
-                "wearings": "item/wearings/rookie/archer/arrow.png"
-            },
-            "set": "nightbringer.set",
-            "id": "e1be694f-abe5-48e1-b70f-786cbb37b813",
-            "placement": "lefthand",
-            "rarity": 0,
-            "soulbind": {
-                "date": 0,
-                "isBindable": true,
-                "isBound": false,
-                "player": {
-                    "characterId": "",
-                    "snowflake": ""
-                }
-            },
-            "type": "weapon",
-            "crafting": []
-        },
-        "skills": [
-            3000,
-            3010,
-            3020,
-            3030,
-            3110
-        ],
-        "chest": {
-            "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
-            "code": "ancient.chest",
-            "name": "Ancient Chest",
-            "type": "armor",
-            "placement": "chest",
-            "durability": 0,
-            "rarity": 4,
-            "set": "nightbringer.set",
-            "isTradeable": true,
-            "soulbind": {
-                "isBindable": true,
-                "isBound": true,
-                "player": {
-                    "snowflake": "181348050436882432",
-                    "characterId": "a30e405d-d75c-4874-9f77-70fa5d106027"
-                },
-                "date": 1633911564442.767
-            },
-            "stack": 1,
-            "stats": {
-                "penetration": 0
-            },
-            "function": [],
-            "class": "archer",
-            "image": {
-                "original": "item/set/ancient/archer/chestwaist.png",
-                "inventory": "item/inventory-items/ancient/archer/chest.png",
-                "wearings": "item/wearings/ancient/archer/chest.png"
-            },
-            "emoji": {
-                "id": "865966374558629909"
-            },
-            "deconstruct": [],
-            "crafting": []
-        },
-        "arms": {
-            "set": "nightbringer.set",
-            "stack": 1,
-            "class": "archer",
-            "isTradeable": true,
-            "name": "Rookie Arms",
-            "image": {
-                "original": ["item/set/rookie/archer/leftshoulderarm.png", "item/set/rookie/archer/rightshoulderarm.png"],
-                "wearings": "item/wearings/rookie/archer/arm.png"
-            },
-            "deconstruct": [],
-            "stats": {},
-            "id": "b045e142-8ee0-4c30-83b0-e9f6d989b4d0",
-            "function": [],
-            "type": "armor",
-            "emoji": {
-                "id": "864633250193997834"
-            },
-            "placement": "arms",
-            "durability": 100,
-            "crafting": [],
-            "soulbind": {
-                "isBindable": false,
-                "isBound": false,
-                "player": {
-                    "snowflake": "",
-                    "characterId": ""
-                },
-                "date": 0
-            },
-            "rarity": 0,
-            "code": "rookie.arm"
-        }
-    },
-    "boost": {
-        "isBoost": false,
-        "boost": {}
-    },
-    "stats": {
-        "defense": 707,
-        "attack": 785,
-        "health": 480,
-        critic: 0,
-        penetration: 0,
-        accuracy: 50
-    },
-    "name": "Waffle",
-    "isDead": false,
-    "skills": [],
-    discriminator: '#1234',
-    snowflake: '123',
-    characterId: '123'
-}
-const player2 = {
-    "class": "archer",
-    "wearings": {
-        "leggings": {
-            "placement": "leggings",
-            "function": [],
-            "stack": 1,
-            "set": "rookie.set",
-            "image": {
-                "original": "item/set/rookie/archer/legs.png",
-                "wearings": "item/wearings/rookie/archer/legs.png"
-            },
-            "code": "rookie.legs",
-            "deconstruct": [],
-            "durability": 100,
-            "crafting": [],
-            "stats": {},
-            "rarity": 0,
-            "class": "archer",
-            "id": "a3c97036-2052-45eb-9569-f433d876beda",
-            "isTradeable": true,
-            "emoji": {
-                "id": "864633251677863946"
-            },
-            "type": "armor",
-            "soulbind": {
-                "date": 0,
-                "isBindable": false,
-                "isBound": false,
-                "player": {
-                    "snowflake": "",
-                    "characterId": ""
-                }
-            },
-            "name": "Rookie Legs"
-        },
-        "righthand": {
-            "rarity": 0,
-            "set": "rookie.set",
-            "type": "weapon",
-            "stats": {},
-            "emoji": {
-                "id": "864633251326459955"
-            },
-            "image": {
-                "original": "item/set/rookie/archer/rightbow.png",
-                "wearings": "item/wearings/rookie/archer/bow.png"
-            },
-            "deconstruct": [],
-            "id": "b84edf47-8949-4c56-b5c2-fd6b3517f344",
-            "code": "rookie.bow",
-            "isTradeable": true,
-            "durability": 0,
-            "name": "Rookie Bow",
-            "soulbind": {
-                "isBindable": true,
-                "isBound": false,
-                "player": {
-                    "snowflake": "",
-                    "characterId": ""
-                },
-                "date": 1
-            },
-            "function": [],
-            "placement": "righthand",
-            "stack": 1,
-            "class": "archer",
-            "crafting": []
-        },
-        "lefthand": {
-            "name": "Rookie arrow",
-            "function": [],
-            "deconstruct": [],
-            "stack": 1,
-            "stats": {},
-            "durability": 0,
-            "code": "rookie.arrow",
-            "isTradeable": true,
-            "emoji": {
-                "id": "864633251993223179"
-            },
-            "class": "archer",
-            "image": {
-                "original": "item/set/rookie/archer/leftarrow.png",
-                "wearings": "item/wearings/rookie/archer/arrow.png"
-            },
-            "set": "ancient.set",
-            "id": "e1be694f-abe5-48e1-b70f-786cbb37b813",
-            "placement": "lefthand",
-            "rarity": 0,
-            "soulbind": {
-                "date": 0,
-                "isBindable": true,
-                "isBound": false,
-                "player": {
-                    "characterId": "",
-                    "snowflake": ""
-                }
-            },
-            "type": "weapon",
-            "crafting": []
-        },
-        "skills": [
-            69031,
-            69032,
-            69033,
-        ],
-        "chest": {
-            "id": "1bf5a276-e827-42a7-9b70-9bc001d1b6fd",
-            "code": "ancient.chest",
-            "name": "Ancient Chest",
-            "type": "armor",
-            "placement": "chest",
-            "durability": 0,
-            "rarity": 4,
-            "set": "ancient.set",
-            "isTradeable": true,
-            "soulbind": {
-                "isBindable": true,
-                "isBound": true,
-                "player": {
-                    "snowflake": "181348050436882432",
-                    "characterId": "a30e405d-d75c-4874-9f77-70fa5d106027"
-                },
-                "date": 1633911564442.767
-            },
-            "stack": 1,
-            "stats": {
-                "defense": 0
-            },
-            "function": [],
-            "class": "archer",
-            "image": {
-                "original": "item/set/ancient/archer/chestwaist.png",
-                "inventory": "item/inventory-items/ancient/archer/chest.png",
-                "wearings": "item/wearings/ancient/archer/chest.png"
-            },
-            "emoji": {
-                "id": "865966374558629909"
-            },
-            "deconstruct": [],
-            "crafting": []
-        },
-        "arms": {
-            "set": "rookie.set",
-            "stack": 1,
-            "class": "archer",
-            "isTradeable": true,
-            "name": "Rookie Arms",
-            "image": {
-                "original": ["item/set/rookie/archer/leftshoulderarm.png", "item/set/rookie/archer/rightshoulderarm.png"],
-                "wearings": "item/wearings/rookie/archer/arm.png"
-            },
-            "deconstruct": [],
-            "stats": {},
-            "id": "b045e142-8ee0-4c30-83b0-e9f6d989b4d0",
-            "function": [],
-            "type": "armor",
-            "emoji": {
-                "id": "864633250193997834"
-            },
-            "placement": "arms",
-            "durability": 100,
-            "crafting": [],
-            "soulbind": {
-                "isBindable": false,
-                "isBound": false,
-                "player": {
-                    "snowflake": "",
-                    "characterId": ""
-                },
-                "date": 0
-            },
-            "rarity": 0,
-            "code": "rookie.arm"
-        }
-    },
-    "boost": {
-        "isBoost": false,
-        "boost": {}
-    },
-    "stats": {
-        "attack": 500,
-        "defense":300,
-        "health": 10000,
-        "critic": 3,
-        "penetration": 3,
-        "accuracy": 95
-    },
-    "name": "Edip",
-    "isDead": false,
-    "skills": [],
-    discriminator: '#1234',
-    snowflake: '1234',
-    characterId: '1234'
-}
+// Odenne bound helpers
+import Exceptions from './helpers/exceptions';
+import Status from './helpers/status';
+import Teams, { Member, Team } from './lib/teams';
+import Keeper from './lib/keeper';
+import Referee from './lib/referee';
+import Environments from './lib/environments';
+import Effects from './lib/effects';    
+import Skills from './lib/skills';
+import Rounds from './lib/rounds';
+import OdenneUI from './lib/ui';
+import Rarity from './helpers/rarity';
+import Modifiers from './lib/modifiers';
+import SkillConfig from './config/skills.json';
+import { STATUSCODES } from './types/types';
+import { OriginalPlayer, OriginalSkill, PlayerizableEnemy } from './types/player';
+import Narrator from './lib/narrator';
+import Statistics from './lib/statistics';
+import OdenneSpace from './helpers/space';
+import BonusFactory from './lib/bonuses';
 
-const options = new OdenneOptions();
-options
-    .addToTeam(0, player1)
-    //.addToTeam(0, player15)
-    .addToTeam(1, player2)
-    //.addToTeam(1, player25);
+export class Odenne {
+    static space: OdenneSpace = new OdenneSpace();
+    exceptions: {[key: string]: string};
+    status: Status;
+    options: OdenneOptions;
+    Teams: Teams;
+    Referee: Referee;
+    Keeper: Keeper;
+    Environments: Environments;
+    Effects: Effects;
+    Skills: Skills;
+    Rounds: Rounds;
+    Rarity: Rarity;
+    UI: OdenneUI;
+    Modifiers: Modifiers;
+    SkillConfig: OriginalSkill[];
+    Narrator: Narrator;
+    Statistics: Statistics;
+    BonusFactory: BonusFactory;
 
-import { STATUSCODES } from './odenne/types/types';
+    teams: Array<Team> = [];
 
-try{
-    const battle = new Odenne(options);
+    /**
+     * Constructs a new Odenne
+     * @param {OdenneOptions} options Options for Odenne to prepare
+     */
+    constructor(options: OdenneOptions){
+        // initialize structural helpers
+        this.exceptions = Exceptions;
+        this.status = new Status(this);
+        this.Rarity = new Rarity();
+        
+        this.options = options;
+        this.validateOptions();
 
-    battle.start();
-    while(battle.status.get() === STATUSCODES.STARTED){
+        // initialize game helpers
+        this.Environments = new Environments(this);
+        this.Teams = new Teams(this);
+        this.Referee = new Referee(this);
+        this.Keeper = new Keeper(this);
+        this.Effects = new Effects(this);
+        this.Skills = new Skills(this);
+        this.Rounds = new Rounds(this);
+        this.UI = new OdenneUI(this);
+        this.Modifiers = new Modifiers(this);
+        this.Narrator = new Narrator(this);
+        this.Statistics = new Statistics(this);
+        this.BonusFactory = new BonusFactory(this);
+        this.SkillConfig = SkillConfig;
+        
+        this.prepare();
+    }
+
+    static playerizeEnemy(enemy: PlayerizableEnemy): OriginalPlayer{
+        return {
+			snowflake: 'IRRELEVANT',
+			characterId: 'IRRELEVANT',
+			name: enemy.name,
+			discriminator: 'IRRELEVANT',
+			wearings: {
+                ...require('./config/rookies.json'),
+				skills: enemy.skills,
+			},
+			stats: Member.randomizeStats(enemy.stats),
+			class: 'enemy',
+			boost: {
+				isBoost: false,
+				boost: {},
+			},
+			isDead: false,
+		};
+    }
+
+    prepare(){
         try{
-            battle.advance();
-            console.log({effects: battle.teams[0].players[0].effects});
-            console.log(battle.UI.getCurrentRoundLog());
-            console.log({p1: battle.teams[0].players[0].getStat('health'), p2: battle.teams[1].players[0].getStat('health')});
-
-            console.log({a: battle.teams[0].players[0].player.stats.attack, b: battle.teams[0].players[0].getStat("attack")});
-            console.log({a: battle.teams[1].players[0].player.stats.attack, b: battle.teams[1].players[0].getStat("attack")});
-
-            console.log({d: battle.teams[0].players[0].player.stats.defense, b: battle.teams[0].players[0].getStat("defense")});
-            console.log({d: battle.teams[1].players[0].player.stats.defense, b: battle.teams[1].players[0].getStat("defense")});
-
-            console.log({c: battle.teams[0].players[0].player.stats.critic, b: battle.teams[0].players[0].getStat("critic")});
-            console.log({c: battle.teams[1].players[0].player.stats.critic, b: battle.teams[1].players[0].getStat("critic")});
-
-            console.log({p: battle.teams[0].players[0].player.stats.penetration});
-            console.log({p: battle.teams[1].players[0].player.stats.penetration});
-
-            console.log({s: battle.teams[0].players[0].player.shields.temporary[0]});
-            console.log({s: battle.teams[1].players[0].player.shields.temporary[0]});
-
-            console.log({sp: battle.teams[0].players[0].player.shields.permanent});
-            console.log({sp: battle.teams[1].players[0].player.shields.permanent});
+            this.prepareTeams();
         }
-        catch(e){
-            const usedMemory = process.memoryUsage().heapUsed / 1024 / 1024;
-            console.log(`The script uses approximately ${Math.round(usedMemory * 100) / 100} MB`);
-            console.log(e);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        catch(err: any){
+            console.log(err);
+            this.status.set(this.status.codes.ERRORED);
+            this.status.setError(err);
+            throw this.exceptions.PREPARE_FAILED;
         }
     }
 
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+    prepareTeams(){
+        this.teams = [(this.Teams.createTeam()), (this.Teams.createTeam())];
+        
+        for(let i = 0; i < this.options.teams.length; i++){
+            for(let j = 0; j < this.options.teams[i].length; j++){
+                this.teams[i].addPlayer(this.options.teams[i][j]);
+            }
+        }
+    }
+
+    validateOptions(){
+        if(!(this.options instanceof OdenneOptions)){
+            throw this.exceptions.UNDEFINED_OPTIONS;
+        }
+        else{
+            this.status.set(this.status.codes.PREPARING);
+        }
+    }
+
+    start(){
+        if(this.status.get() === STATUSCODES.PREPARING){
+            this.Referee.prepareStart();
+            this.Statistics.prepareTeams();
+            // this.advance();
+        }
+        else {
+            this.status.set(this.status.codes.ERRORED);
+            this.status.setError(undefined);
+            throw this.exceptions.START_STATUS_CHECK_FAILED;
+        }
+    }
+
+    advance(){
+        if(this.status.get() !== STATUSCODES.STARTED)
+            throw this.exceptions.INVALID_GAME_STATUS_FOR_ADVANCING;
+        this.Referee.createRound();
+        
+        this.Referee.runRound();
+        this.Referee.checkGameStatus();
+    }
+
 }
-catch(e){
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
-    console.log(e);
-}
+
+
+
+
+
+export default Odenne;
