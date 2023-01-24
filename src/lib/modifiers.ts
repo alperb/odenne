@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { DAMAGETYPES } from "../types/player";
 import { CriticResult, DamageDone } from "../types/types";
 import { Skill, SkillResult } from "./skills";

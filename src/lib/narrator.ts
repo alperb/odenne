@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { EventLog, EventParameters, EventTypes } from "../types/types";
 import { Log } from "./keeper";
 

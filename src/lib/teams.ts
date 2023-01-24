@@ -1,5 +1,5 @@
 import _ from "lodash";
-import Odenne from "..";
+import Odenne from "../odenne";
 import { Boost, Item, OdennePlayer, OriginalPlayer, OriginalSkill, RandomizableStats, Stats } from "../types/player";
 import { DamageDone, DeciderSummary, ShieldDone } from "../types/types";
 import Decider from "./decider";

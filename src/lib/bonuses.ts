@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { EffectConfig, SetBonus } from "../types/types";
 import { Effect } from "./effects";
 

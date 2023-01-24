@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { DeciderSummary } from "../types/types";
 
 export default class Keeper {

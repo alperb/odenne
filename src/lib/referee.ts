@@ -1,4 +1,4 @@
-import Odenne from '..';
+import Odenne from '../odenne';
 import { EndResult, GetRandomPlayerOptions, MatchResult, OdenneTurn, STATUSCODES, TurnTypes, WINNER } from '../types/types';
 import { Taunt } from './effects';
 import { Round } from './rounds';

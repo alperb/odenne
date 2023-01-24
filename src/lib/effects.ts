@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { Item } from "../types/player";
 import { BonusDetails, CancelInfo, DamageDone, EffectConfig, EventParameters, EventTypes } from "../types/types";
 import { Environment } from "./environments";
@@ -18,12 +18,12 @@ export default class Effects {
                 return new Ignite(config);
             case 'Dodge':
                 return new Dodge(config);
-            case 'EdipinYarragi':
-                return new EdipinYarragi(config);
+            case 'RandomExtraDamage':
+                return new RandomExtraDamage(config);
             case 'WaffleinHukmu':
                 return new WaffleinHukmu(config);
-            case 'SamuraiinCuku':
-                return new SamuraiinCuku(config);
+            case 'ExtraAttack':
+                return new ExtraAttack(config);
             case 'Focus':
                 return new Focus(config);
             case 'AttackBonus':
@@ -38,10 +38,10 @@ export default class Effects {
                 return new Invulnerable(config);
             case 'SineminCizimTableti':
                 return new SineminCizimTableti(config);
-            case 'Timo30Cm':
-                return new Timo30Cm(config);
-            case 'AnilinYemekSepeti':
-                return new AnilinYemekSepeti(config);
+            case 'WearingAttackBonus':
+                return new WearingAttackBonus(config);
+            case 'ExtraCritic':
+                return new ExtraCritic(config);
             case 'OmnininCocugu':
                 return new OmnininCocugu(config);
             case 'AlpinGriPolosu':
@@ -76,8 +76,8 @@ export default class Effects {
                 return new HakFive(config);
             case 'Ataturk':
                 return new Ataturk(config);
-            case 'BumBeYarrag':
-                return new BumBeYarrag(config);
+            case 'AttackReflect':
+                return new AttackReflect(config);
             case 'TheMirror':
                 return new TheMirror(config);
             case 'Frozen':
@@ -399,7 +399,7 @@ export class Ignite extends ActiveEffect {
     afterDo(): void {}
 }
 
-export class EdipinYarragi extends ActiveEffect {
+export class RandomExtraDamage extends ActiveEffect {
     
     constructor(config: EffectConfig){
         super(config);
@@ -453,7 +453,7 @@ export class WaffleinHukmu extends ActiveEffect {
     afterDo(): void {}
 }
 
-export class SamuraiinCuku extends PassiveEffect {
+export class ExtraAttack extends PassiveEffect {
     constructor(config: EffectConfig){
         super(config);
     }
@@ -604,7 +604,7 @@ export class SineminCizimTableti extends PassiveEffect {
     }
 }
 
-export class Timo30Cm extends PassiveEffect {
+export class WearingAttackBonus extends PassiveEffect {
     constructor(config: EffectConfig){
         super(config);
     }
@@ -634,7 +634,7 @@ export class Timo30Cm extends PassiveEffect {
     }
 }
 
-export class AnilinYemekSepeti extends PassiveEffect {
+export class ExtraCritic extends PassiveEffect {
     constructor(config: EffectConfig){
         super(config);
     }
@@ -1095,7 +1095,7 @@ export class Ataturk extends PassiveEffect {
     }
 }
 
-export class BumBeYarrag extends PassiveEffect {
+export class AttackReflect extends PassiveEffect {
     hasWorked = false;
     constructor(config: EffectConfig){
         super(config);

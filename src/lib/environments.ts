@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 
 export default class Environments {
     Odenne: Odenne;

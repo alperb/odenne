@@ -1,5 +1,5 @@
 import _ from "lodash";
-import Odenne from "..";
+import Odenne from "../odenne";
 import { Stats } from "../types/player";
 import { EventLog, UILog } from "../types/types";
 import { Log } from "./keeper";

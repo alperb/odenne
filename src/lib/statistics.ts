@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { PlayerStatistics, UsedSkillCount } from "../types/stats";
 import { DeciderSummary } from "../types/types";
 import { Effect } from "./effects";

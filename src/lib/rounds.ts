@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { DeciderSummary, TurnTypes } from "../types/types";
 import { DefenseSkill } from "./skills";
 import { Member } from "./teams";

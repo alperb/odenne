@@ -1,2 +1,2 @@
 # odenne
-Valenia Battle Module Odenne
+A strongly typed battle simulator.

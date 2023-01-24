@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { STATUSCODES } from '../types/types';
 
 class OdenneStatus {

@@ -1,4 +1,4 @@
-import Odenne from "..";
+import Odenne from "../odenne";
 import { DAMAGETYPES, OriginalSkill, SHIELDTYPES } from "../types/player";
 import { BonusDetails, CancelInfo, DamageDone, EffectConfig, EventParameters, EventTypes, ShieldDone, SKILLTYPES } from "../types/types";
 import { Effect } from "./effects";
@@ -608,7 +608,7 @@ export class ArrowRainI extends AttackSkill {
         this.prepare();
         
 
-        this.effects = ["EdipinYarragi"];
+        this.effects = ["RandomExtraDamage"];
     }
 
     
@@ -675,7 +675,7 @@ export class OneTheHuntI extends AttackSkill {
         this.chance = 100;
 
         this.prepare();
-        this.effects = ['SamuraiinCuku'];
+        this.effects = ['ExtraAttack'];
     }
 
     do(): SkillResult {
@@ -827,7 +827,7 @@ export class RangerI extends PassiveSkill {
         this.skill = skill;
         this.chance = 100;
 
-        this.effects = ['Timo30Cm'];
+        this.effects = ['WearingAttackBonus'];
     }
 
     applyEffect(): void {
@@ -849,7 +849,7 @@ export class TacticalI extends PassiveSkill {
         this.skill = skill;
         this.chance = 100;
 
-        this.effects = ['AnilinYemekSepeti'];
+        this.effects = ['ExtraCritic'];
     }
 
     applyEffect(): void {
@@ -2182,7 +2182,7 @@ export class MagmaArmorI extends PassiveSkill {
         this.skill = skill;
         this.chance = 100;
         this.type = SKILLTYPES.ULTIMATE;
-        this.effects = ['BumBeYarrag'];
+        this.effects = ['AttackReflect'];
     }
 
     applyEffect(): void {
